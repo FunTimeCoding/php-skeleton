@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="O2 Product Importer" default="build" basedir="../">
+<project name="php-skeleton" default="build" basedir="../">
   <property name="workspace" value="${basedir}"/>
   <property name="current_dir" value="${workspace}/jenkins"/>
 
@@ -113,3 +113,4 @@
     </exec>
   </target>
 </project>
+
