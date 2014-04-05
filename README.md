@@ -20,6 +20,6 @@ curl -sS https://getcomposer.org/installer | php
 
 ```sh
 #!/bin/sh
-vendor/bin/phpunit
+bin/phpunit
 ```
 
