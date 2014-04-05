@@ -24,7 +24,7 @@
   </target>
 
   <target name="prepare" depends="clean">
-    <mkdir dir="${current_dir}/build/logs"/>
+    <mkdir dir="${current_dir}/build/log"/>
     <mkdir dir="${current_dir}/build/pdepend"/>
     <mkdir dir="${current_dir}/build/phpdox"/>
     <mkdir dir="${current_dir}/build/code-browser"/>
@@ -40,14 +40,14 @@
       <arg value="xml"/>
       <arg value="${current_dir}/phpmd.xml"/>
       <arg value="--reportfile"/>
-      <arg value="${current_dir}/build/logs/pmd.xml"/>
+      <arg value="${current_dir}/build/log/pmd.xml"/>
     </exec>
   </target>
 
   <target name="phpcs" depends="prepare">
     <exec executable="phpcs" output="/dev/null">
       <arg value="--report=checkstyle"/>
-      <arg value="--report-file=${current_dir}/build/logs/checkstyle.xml"/>
+      <arg value="--report-file=${current_dir}/build/log/checkstyle.xml"/>
       <arg value="--standard=Symfony2"/>
       <arg path="${workspace}/src"/>
     </exec>
@@ -56,7 +56,7 @@
   <target name="phpcpd" depends="prepare">
     <exec executable="phpcpd">
       <arg value="--log-pmd"/>
-      <arg value="${current_dir}/build/logs/pmd-cpd.xml"/>
+      <arg value="${current_dir}/build/log/pmd-cpd.xml"/>
       <arg path="${workspace}/src"/>
     </exec>
   </target>
@@ -64,14 +64,14 @@
   <target name="phploc" depends="prepare">
     <exec executable="phploc">
       <arg value="--log-csv"/>
-      <arg value="${current_dir}/build/logs/phploc.csv"/>
+      <arg value="${current_dir}/build/log/phploc.csv"/>
       <arg path="${workspace}/src"/>
     </exec>
   </target>
 
   <target name="pdepend" depends="prepare">
     <exec executable="pdepend">
-      <arg value="--jdepend-xml=${current_dir}/build/logs/jdepend.xml"/>
+      <arg value="--jdepend-xml=${current_dir}/build/log/jdepend.xml"/>
       <arg value="--jdepend-chart=${current_dir}/build/pdepend/dependencies.svg"/>
       <arg value="--overview-pyramid=${current_dir}/build/pdepend/pyramid.svg"/>
       <arg path="${workspace}/src"/>
@@ -85,7 +85,7 @@
   <target name="phpcb" depends="prepare">
     <exec executable="phpcb">
       <arg value="--log"/>
-      <arg path="${current_dir}/build/logs"/>
+      <arg path="${current_dir}/build/log"/>
       <arg value="--source"/>
       <arg path="${workspace}/src"/>
       <arg value="--output"/>
