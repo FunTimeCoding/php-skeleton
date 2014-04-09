@@ -99,14 +99,14 @@
     </exec>
   </target>
 
-  <target name="composer_install" depends="php_exists, composer_download">
+  <target name="composer_update" depends="php_exists, composer_download">
     <exec executable="${php_executable}" dir="${workspace}">
       <arg value="composer.phar"/>
-      <arg value="install"/>
+      <arg value="update"/>
     </exec>
   </target>
 
-  <target name="phpunit" depends="php_exists, prepare, composer_install">
+  <target name="phpunit" depends="php_exists, prepare, composer_update">
     <exec executable="${workspace}/bin/phpunit">
       <arg value="-c"/>
       <arg path="${current_dir}/phpunit.xml"/>
