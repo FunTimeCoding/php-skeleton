@@ -8,6 +8,13 @@
         "bin-dir": "bin"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.0.*"
+        "phpunit/phpunit": "4.0.*",
+        "squizlabs/php_codesniffer": "*",
+        "sebastian/phpcpd": "*",
+        "pdepend/pdepend": "*",
+        "phploc/phploc": "*",
+        "covex-nn/phpcb": "*",
+        "phpmd/phpmd": "*",
+        "theseer/phpdox": "*"
     }
 }

@@ -35,7 +35,7 @@
   </target>
 
   <target name="phpmd" depends="prepare">
-    <exec executable="phpmd">
+      <exec executable="${workspace}/bin/phpmd">
       <arg path="${workspace}/src"/>
       <arg value="xml"/>
       <arg value="${current_dir}/phpmd.xml"/>
@@ -45,7 +45,7 @@
   </target>
 
   <target name="phpcs" depends="prepare">
-    <exec executable="phpcs" output="/dev/null">
+      <exec executable="${workspace}/bin/phpcs" output="/dev/null">
       <arg value="--report=checkstyle"/>
       <arg value="--report-file=${current_dir}/build/log/checkstyle.xml"/>
       <arg value="--standard=Symfony2"/>
@@ -54,7 +54,7 @@
   </target>
 
   <target name="phpcpd" depends="prepare">
-    <exec executable="phpcpd">
+      <exec executable="${workspace}/bin/phpcpd">
       <arg value="--log-pmd"/>
       <arg value="${current_dir}/build/log/pmd-cpd.xml"/>
       <arg path="${workspace}/src"/>
@@ -62,7 +62,7 @@
   </target>
 
   <target name="phploc" depends="prepare">
-    <exec executable="phploc">
+      <exec executable="${workspace}/bin/phploc">
       <arg value="--log-csv"/>
       <arg value="${current_dir}/build/log/phploc.csv"/>
       <arg path="${workspace}/src"/>
@@ -70,7 +70,7 @@
   </target>
 
   <target name="pdepend" depends="prepare">
-    <exec executable="pdepend">
+      <exec executable="${workspace}/bin/pdepend">
       <arg value="--jdepend-xml=${current_dir}/build/log/jdepend.xml"/>
       <arg value="--jdepend-chart=${current_dir}/build/pdepend/dependencies.svg"/>
       <arg value="--overview-pyramid=${current_dir}/build/pdepend/pyramid.svg"/>
@@ -79,11 +79,11 @@
   </target>
 
   <target name="phpdox" depends="prepare">
-    <exec executable="phpdox" dir="${current_dir}"/>
+      <exec executable="${workspace}/bin/phpdox" dir="${current_dir}"/>
   </target>
 
   <target name="phpcb" depends="prepare">
-    <exec executable="phpcb">
+      <exec executable="${workspace}/bin/phpcb">
       <arg value="--log"/>
       <arg path="${current_dir}/build/log"/>
       <arg value="--source"/>
