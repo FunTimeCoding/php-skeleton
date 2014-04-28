@@ -16,7 +16,7 @@
         "covex-nn/phpcb": "*",
         "phpmd/phpmd": "*",
         "theseer/phpdox": "*",
-        "behat/behat": "3.0.*"
+        "behat/behat": "3.0.*",
         "filp/whoops": "1.0.*"
     }
 }
