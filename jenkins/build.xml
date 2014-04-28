@@ -109,7 +109,7 @@
     <target name="phpunit" depends="php_exists, prepare, composer_install">
         <exec executable="${workspace}/bin/phpunit">
             <arg value="-c"/>
-            <arg path="${current_dir}/phpunit.xml"/>
+            <arg path="${workspace}/app/phpunit.ci.xml"/>
         </exec>
     </target>
 </project>
