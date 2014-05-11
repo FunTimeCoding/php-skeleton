@@ -17,6 +17,7 @@
         "phpmd/phpmd": "*",
         "theseer/phpdox": "*",
         "behat/behat": "3.0.*",
+        "phpspec/phpspec": "2.0.*",
         "filp/whoops": "1.0.*"
     }
 }

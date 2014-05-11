@@ -3,23 +3,21 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "968a61961ac689359b8363173087f0d7",
-    "packages": [
-
-    ],
+    "hash": "d725ffe51314e6dd20f6ea45616898d9",
+    "packages": [],
     "packages-dev": [
         {
             "name": "behat/behat",
-            "version": "v3.0.3",
+            "version": "v3.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/Behat.git",
-                "reference": "b01493d7a8bfd86f201712cc9abad5f247cf5a3f"
+                "reference": "111b7cbab33a5e557bd8f1c6de46fc153482dc01"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/Behat/zipball/b01493d7a8bfd86f201712cc9abad5f247cf5a3f",
-                "reference": "b01493d7a8bfd86f201712cc9abad5f247cf5a3f",
+                "url": "https://api.github.com/repos/Behat/Behat/zipball/111b7cbab33a5e557bd8f1c6de46fc153482dc01",
+                "reference": "111b7cbab33a5e557bd8f1c6de46fc153482dc01",
                 "shasum": ""
             },
             "require": {
@@ -49,6 +47,11 @@
                 "bin/behat"
             ],
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
                     "Behat\\Behat": "src/",
@@ -82,38 +85,36 @@
                 "symfony",
                 "testing"
             ],
-            "time": "2014-04-27 13:57:08"
+            "time": "2014-05-06 21:28:24"
         },
         {
             "name": "behat/gherkin",
-            "version": "v4.1.0",
+            "version": "v4.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/Gherkin.git",
-                "reference": "4f094def58f124cf70036a4066bc82cf7a89c5f6"
+                "reference": "ca8ba535b544a42e67dfc1bb3a99b7bdb48d1cf9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/Gherkin/zipball/4f094def58f124cf70036a4066bc82cf7a89c5f6",
-                "reference": "4f094def58f124cf70036a4066bc82cf7a89c5f6",
+                "url": "https://api.github.com/repos/Behat/Gherkin/zipball/ca8ba535b544a42e67dfc1bb3a99b7bdb48d1cf9",
+                "reference": "ca8ba535b544a42e67dfc1bb3a99b7bdb48d1cf9",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "~3.7.24",
-                "symfony/config": "~2.1",
+                "phpunit/phpunit": "~4.0",
                 "symfony/yaml": "~2.1"
             },
             "suggest": {
-                "symfony/config": "If you want to use Config component to manage resources",
                 "symfony/yaml": "If you want to parse features, represented in YAML files"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.0-dev"
+                    "dev-master": "4.1-dev"
                 }
             },
             "autoload": {
@@ -142,7 +143,7 @@
                 "gherkin",
                 "parser"
             ],
-            "time": "2014-04-20 12:40:15"
+            "time": "2014-05-05 12:07:29"
         },
         {
             "name": "behat/transliterator",
@@ -439,34 +440,196 @@
             "time": "2013-07-26 14:47:02"
         },
         {
-            "name": "phpunit/php-code-coverage",
-            "version": "2.0.5",
+            "name": "phpspec/php-diff",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "3dcca2120451b98a98fe60221ca279a184ee64db"
+                "url": "https://github.com/phpspec/php-diff.git",
+                "reference": "30e103d19519fe678ae64a60d77884ef3d71b28a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/3dcca2120451b98a98fe60221ca279a184ee64db",
-                "reference": "3dcca2120451b98a98fe60221ca279a184ee64db",
+                "url": "https://api.github.com/repos/phpspec/php-diff/zipball/30e103d19519fe678ae64a60d77884ef3d71b28a",
+                "reference": "30e103d19519fe678ae64a60d77884ef3d71b28a",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Diff": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Boulton",
+                    "homepage": "http://github.com/chrisboulton"
+                }
+            ],
+            "description": "A comprehensive library for generating differences between two hashable objects (strings or arrays).",
+            "time": "2013-11-01 13:02:21"
+        },
+        {
+            "name": "phpspec/phpspec",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpspec/phpspec.git",
+                "reference": "1aade5766ddf4f28fdcf0a34d6ed642393d6c43d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/1aade5766ddf4f28fdcf0a34d6ed642393d6c43d",
+                "reference": "1aade5766ddf4f28fdcf0a34d6ed642393d6c43d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "phpspec/php-diff": "~1.0.0",
+                "phpspec/prophecy": "~1.1",
+                "symfony/console": "~2.1",
+                "symfony/event-dispatcher": "~2.1",
+                "symfony/finder": "~2.1",
+                "symfony/yaml": "~2.1"
+            },
+            "require-dev": {
+                "behat/behat": "~2.5",
+                "bossa/phpspec2-expect": "dev-master",
+                "symfony/filesystem": "~2.1"
+            },
+            "suggest": {
+                "phpspec/nyan-formatters": "~1.0 – Adds Nyan formatters"
+            },
+            "bin": [
+                "bin/phpspec"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "PhpSpec": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Konstantin Kudryashov",
+                    "email": "ever.zet@gmail.com",
+                    "homepage": "http://everzet.com"
+                },
+                {
+                    "name": "Marcello Duarte",
+                    "homepage": "http://marcelloduarte.net/"
+                }
+            ],
+            "description": "Specification-oriented BDD framework for PHP 5.3+",
+            "homepage": "http://phpspec.net/",
+            "keywords": [
+                "BDD",
+                "SpecBDD",
+                "TDD",
+                "spec",
+                "specification",
+                "testing",
+                "tests"
+            ],
+            "time": "2014-03-19 14:23:43"
+        },
+        {
+            "name": "phpspec/prophecy",
+            "version": "1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpspec/prophecy.git",
+                "reference": "976a65af02a2a0e17ce6c949f7b43437205628bb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/976a65af02a2a0e17ce6c949f7b43437205628bb",
+                "reference": "976a65af02a2a0e17ce6c949f7b43437205628bb",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpspec/phpspec": "2.0.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Prophecy\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Konstantin Kudryashov",
+                    "email": "ever.zet@gmail.com",
+                    "homepage": "http://everzet.com"
+                },
+                {
+                    "name": "Marcello Duarte",
+                    "email": "marcello.duarte@gmail.com"
+                }
+            ],
+            "description": "Highly opinionated mocking framework for PHP 5.3+",
+            "homepage": "http://phpspec.org",
+            "keywords": [
+                "Double",
+                "Dummy",
+                "fake",
+                "mock",
+                "spy",
+                "stub"
+            ],
+            "time": "2014-01-24 11:03:43"
+        },
+        {
+            "name": "phpunit/php-code-coverage",
+            "version": "2.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
+                "reference": "bccecf50645068b44f49a84009e2a0499a500b99"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/bccecf50645068b44f49a84009e2a0499a500b99",
+                "reference": "bccecf50645068b44f49a84009e2a0499a500b99",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
                 "phpunit/php-file-iterator": "~1.3.1",
-                "phpunit/php-text-template": "~1.2",
+                "phpunit/php-text-template": "~1.2.0",
                 "phpunit/php-token-stream": "~1.2.2",
-                "sebastian/environment": "~1.0",
+                "sebastian/environment": "~1.0.0",
                 "sebastian/version": "~1.0.3"
             },
             "require-dev": {
                 "ext-xdebug": ">=2.1.4",
-                "phpunit/phpunit": ">=4.0.0,<4.1.0"
+                "phpunit/phpunit": "~4.0.14"
             },
             "suggest": {
                 "ext-dom": "*",
-                "ext-xdebug": ">=2.2.1"
+                "ext-xdebug": ">=2.2.1",
+                "ext-xmlwriter": "*"
             },
             "type": "library",
             "extra": {
@@ -500,7 +663,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-03-28 10:54:55"
+            "time": "2014-04-30 09:01:21"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -687,20 +850,21 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.0.17",
+            "version": "4.0.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "8185f4bd21860cc72466009070a50bed6cd2eaca"
+                "reference": "de121ce8708b7ac7f628603d7682d0d57f528345"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/8185f4bd21860cc72466009070a50bed6cd2eaca",
-                "reference": "8185f4bd21860cc72466009070a50bed6cd2eaca",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/de121ce8708b7ac7f628603d7682d0d57f528345",
+                "reference": "de121ce8708b7ac7f628603d7682d0d57f528345",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
+                "ext-json": "*",
                 "ext-pcre": "*",
                 "ext-reflection": "*",
                 "ext-spl": "*",
@@ -717,9 +881,6 @@
                 "symfony/yaml": "~2.0"
             },
             "suggest": {
-                "ext-json": "*",
-                "ext-simplexml": "*",
-                "ext-tokenizer": "*",
                 "phpunit/php-invoker": "~1.1"
             },
             "bin": [
@@ -758,7 +919,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-04-21 06:33:32"
+            "time": "2014-05-02 07:19:37"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -1157,16 +1318,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "1.5.2",
+            "version": "1.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "a76a39b317ce8106abe6264daa505e24e1731860"
+                "reference": "396178ada8499ec492363587f037125bf7b07fcc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/a76a39b317ce8106abe6264daa505e24e1731860",
-                "reference": "a76a39b317ce8106abe6264daa505e24e1731860",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/396178ada8499ec492363587f037125bf7b07fcc",
+                "reference": "396178ada8499ec492363587f037125bf7b07fcc",
                 "shasum": ""
             },
             "require": {
@@ -1180,6 +1341,11 @@
                 "scripts/phpcs"
             ],
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-phpcs-fixer": "2.0.x-dev"
+                }
+            },
             "autoload": {
                 "classmap": [
                     "CodeSniffer.php",
@@ -1223,7 +1389,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2014-02-04 23:49:58"
+            "time": "2014-05-01 03:07:07"
         },
         {
             "name": "symfony/class-loader",
@@ -2007,17 +2173,9 @@
             "time": "2009-12-21 12:19:33"
         }
     ],
-    "aliases": [
-
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
-    "platform": [
-
-    ],
-    "platform-dev": [
-
-    ]
+    "stability-flags": [],
+    "platform": [],
+    "platform-dev": []
 }
