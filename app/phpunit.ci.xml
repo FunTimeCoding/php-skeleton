@@ -21,9 +21,9 @@
         </whitelist>
     </filter>
     <logging>
-        <log type="coverage-html" target="../jenkins/build/coverage" title="Test Coverage" charset="UTF-8" yui="true" highlight="true" lowUpperBound="35" highLowerBound="70"/>
-        <log type="coverage-clover" target="../jenkins/build/log/clover.xml"/>
-        <log type="junit" target="../jenkins/build/log/junit.xml"/>
+        <log type="coverage-html" target="../ci/build/coverage" title="Test Coverage" charset="UTF-8" yui="true" highlight="true" lowUpperBound="35" highLowerBound="70"/>
+        <log type="coverage-clover" target="../ci/build/log/clover.xml"/>
+        <log type="junit" target="../ci/build/log/junit.xml"/>
     </logging>
 </phpunit>
 
