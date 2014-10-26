@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit
-    stopOnFailure="false"
-    bootstrap="vendor/autoload.php">
+<phpunit stopOnFailure="false" bootstrap="vendor/autoload.php">
     <testsuites>
         <testsuite name="php-skeleton">
             <directory>test</directory>
@@ -13,4 +11,3 @@
         </whitelist>
     </filter>
 </phpunit>
-

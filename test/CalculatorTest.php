@@ -37,4 +37,3 @@ class CalculatorTest extends PHPUnit_Framework_Testcase
         $calc->div(2, 0);
     }
 }
-

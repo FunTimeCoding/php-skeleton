@@ -1,5 +1,4 @@
 <?php
-
 use Example\ExampleController;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
@@ -12,4 +11,3 @@ $whoops->register();
 
 $ctrl = new ExampleController();
 $ctrl->main();
-

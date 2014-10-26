@@ -22,4 +22,3 @@ curl -sS https://getcomposer.org/installer | php
 #!/bin/sh
 bin/phpunit
 ```
-

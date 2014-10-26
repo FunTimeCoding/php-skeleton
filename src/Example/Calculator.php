@@ -12,12 +12,10 @@ class Calculator
 
     public function div($a, $b)
     {
-        if($b == 0)
-        {
+        if ($b == 0) {
             throw new Exception('This doesn\'t look right.');
         }
 
         return $a / $b;
     }
 }
-
