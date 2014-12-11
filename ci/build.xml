@@ -47,7 +47,7 @@
     <target name="phpcs" depends="prepare">
         <exec executable="${workspace}/bin/phpcs" output="/dev/null">
             <arg value="--report=checkstyle"/>
-            <arg value="--report-file=${current_dir}/build/log/checkstyle.xml"/>
+            <arg value="--report-file=${current_dir}/build/log/checkstyle-result.xml"/>
             <arg value="--standard=Symfony2"/>
             <arg path="${workspace}/src"/>
         </exec>
