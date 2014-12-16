@@ -13,7 +13,7 @@ class Calculator
     public function div($a, $b)
     {
         if ($b == 0) {
-            throw new Exception('This doesn\'t look right.');
+            throw new Exception('Division by zero.');
         }
 
         return $a / $b;
