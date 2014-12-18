@@ -1,10 +1,11 @@
 <phpdox xmlns="http://phpdox.net/config">
-    <project name="php-skeleton" source="../src" workdir="build/phpdox">
+    <project name="php-skeleton" source="${basedir}/.." workdir="ci/build/phpdox">
         <collector publiconly="false">
-            <include mask="*.php"/>
-            <exclude mask="*Autoload.php"/>
+            <include mask="*/src/**/*.php"/>
+            <include mask="*/test/**/*.php"/>
+            <exclude mask="*/vendor/*"/>
         </collector>
-        <generator output="build">
+        <generator output="ci/build">
             <build engine="html" enabled="true" output="api"/>
         </generator>
     </project>
