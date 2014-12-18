@@ -10,4 +10,18 @@ class KernelTest extends PHPUnit_Framework_Testcase
         $kernel = new Kernel();
         $this->assertSame(0, $kernel->main());
     }
+
+    public function testExitCode()
+    {
+        $kernel = new Kernel();
+        $projectRoot = $kernel->getProjectRoot();
+
+        $command = 'php ' . $projectRoot . '/web/index.php';
+        $output = array();
+        $returnCode = -1;
+        exec($command, $output, $returnCode);
+
+        $this->assertEmpty($output, implode(PHP_EOL, $output));
+        $this->assertSame(0, $returnCode);
+    }
 }

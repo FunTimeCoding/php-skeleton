@@ -12,4 +12,4 @@ $whoops->register();
 $kernel = new Kernel();
 $exitCode = $kernel->main();
 
-return $exitCode;
+exit($exitCode);
