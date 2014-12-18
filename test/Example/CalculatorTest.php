@@ -29,11 +29,22 @@ class CalculatorTest extends PHPUnit_Framework_Testcase
 
     /**
      * @expectedException Exception
-     * @expectedExceptionMessage This doesn't look right.
+     * @expectedExceptionMessage Division by zero.
      */
     public function testDivideByZero()
     {
         $calc = new Calculator();
         $calc->div(2, 0);
+    }
+
+    public function testAlternativeDivideByZero()
+    {
+        try {
+            $calc = new Calculator();
+            $calc->div(2, 0);
+            $this->fail('Exception was not thrown.');
+        } catch (Exception $e) {
+            // pass test
+        }
     }
 }

@@ -1,5 +1,5 @@
 <?php
-use Example\ExampleController;
+use Example\Kernel;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 
@@ -9,5 +9,7 @@ $whoops = new Run();
 $whoops->pushHandler(new PrettyPageHandler());
 $whoops->register();
 
-$ctrl = new ExampleController();
-$ctrl->main();
+$kernel = new Kernel();
+$exitCode = $kernel->main();
+
+return $exitCode;
