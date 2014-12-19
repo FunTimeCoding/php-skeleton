@@ -1,24 +1,39 @@
 # PHP Skeleton
 
-## Get Composer
+
+## Development
+
+Install Composer.
 
 Source: http://getcomposer.org/download
 
 ```sh
-#!/bin/sh
 curl -sS https://getcomposer.org/installer | php
 ```
 
-## Install PHPUnit
+Install PHPUnit.
 
 ```sh
-#!/bin/sh
 ./composer.phar install
 ```
 
-## Run tests
+Run tests.
 
 ```sh
-#!/bin/sh
-bin/phpunit
+vendor/bin/phpunit
+```
+
+
+## Continuous integration
+
+Build project like a CI job.
+
+```sh
+ant
+```
+
+Enable colors in ant output.
+
+```sh
+export ANT_ARGS='-logger org.apache.tools.ant.listener.AnsiColorLogger'
 ```
