@@ -1,6 +1,6 @@
 {
     "name": "funtimecoding/php-skeleton",
-    "description": "skeleton for PHP projects to simplify Jenkins integration",
+    "description": "skeleton project for PHP",
     "license": "proprietary",
     "autoload": {
         "psr-0": {
