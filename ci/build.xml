@@ -37,7 +37,6 @@
     <target name="prepare" depends="clean">
         <mkdir dir="${current_dir}/build/log"/>
         <mkdir dir="${current_dir}/build/pdepend"/>
-        <mkdir dir="${current_dir}/build/phpdox"/>
         <mkdir dir="${current_dir}/build/code-browser"/>
     </target>
 
@@ -58,8 +57,6 @@
     </target>
 
     <target name="phpcs" depends="prepare">
-        <echoTS message="Note: There is no output here except on errors."/>
-
         <exec executable="${workspace}/bin/phpcs">
             <arg value="--report=checkstyle"/>
             <arg value="--report-file=${current_dir}/build/log/checkstyle-result.xml"/>
