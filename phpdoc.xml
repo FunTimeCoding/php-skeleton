@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdocumentor>
+    <parser>
+        <default-package-name>php-skeleton</default-package-name>
+        <target>build/phpdoc-tmp</target>
+    </parser>
+    <transformer>
+        <target>build/phpdoc</target>
+    </transformer>
+    <files>
+        <directory>src</directory>
+        <directory>test</directory>
+    </files>
+    <transformations>
+        <template name="responsive"/>
+    </transformations>
+</phpdocumentor>

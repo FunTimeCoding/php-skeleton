@@ -26,6 +26,12 @@ vendor/bin/phpunit
 
 ## Continuous integration
 
+Install dependencies on OS X.
+
+```sh
+brew install graphviz
+```
+
 Build project like a CI job.
 
 ```sh
@@ -36,4 +42,15 @@ Enable colors in ant output.
 
 ```sh
 export ANT_ARGS='-logger org.apache.tools.ant.listener.AnsiColorLogger'
+```
+
+
+## Documentation
+
+Read phpdoc documentation.
+
+```sh
+ant
+cd build/phpdoc
+python -m SimpleHTTPServer 8080
 ```

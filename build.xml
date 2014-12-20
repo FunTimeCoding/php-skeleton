@@ -20,7 +20,7 @@
         <echoTS message="metrics meta target complete"/>
     </target>
 
-    <target name="build" depends="metrics, phpunit, phpcb, phpdox">
+    <target name="build" depends="metrics, phpunit, phpcb, phpdox, phpdoc">
         <echoTS message="build meta target complete"/>
     </target>
 
@@ -93,6 +93,11 @@
     <target name="phpdox" depends="build-directory, metrics, phpunit">
         <exec executable="${bin_dir}/phpdox" dir="${workspace}"/>
         <delete dir="${build_dir}/phpdox-tmp"/>
+    </target>
+
+    <target name="phpdoc" depends="build-directory, metrics, phpunit">
+        <exec executable="${bin_dir}/phpdoc" dir="${workspace}"/>
+        <delete dir="${build_dir}/phpdoc-tmp"/>
     </target>
 
     <target name="phpcb" depends="build-directory">
