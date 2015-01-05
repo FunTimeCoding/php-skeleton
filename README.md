@@ -1,19 +1,21 @@
 # PHP Skeleton
 
 
-## Development
+## Operation
 
-Install Composer.
+Run scripts.
 
-Source: http://getcomposer.org/download
+```sh
+bin/example-script
+```
+
+
+## Testing
+
+Install test tools.
 
 ```sh
 curl -sS https://getcomposer.org/installer | php
-```
-
-Install PHPUnit.
-
-```sh
 ./composer.phar install
 ```
 
@@ -23,34 +25,13 @@ Run tests.
 vendor/bin/phpunit
 ```
 
-
-## Continuous integration
-
-Install dependencies on OS X.
-
-```sh
-brew install graphviz
-```
-
-Build project like a CI job.
+Run ant like Jenkins. Requires `ant` and `graphviz` to be installed.
 
 ```sh
 ant
 ```
 
-Enable colors in ant output.
 
-```sh
-export ANT_ARGS='-logger org.apache.tools.ant.listener.AnsiColorLogger'
-```
+## Important details
 
-
-## Documentation
-
-Read phpdoc documentation.
-
-```sh
-ant
-cd build/phpdoc
-python -m SimpleHTTPServer 8080
-```
+* Composer installs executable scripts in `vendor/bin/php` to leave `bin` for the actual project.
