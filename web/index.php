@@ -1,15 +1,10 @@
 <?php
-use Example\Kernel;
-use Whoops\Handler\PrettyPageHandler;
-use Whoops\Run;
+use Example\AppKernel;
+use Example\ExampleClass;
 
 require_once(realpath(__DIR__) . '/../vendor/autoload.php');
+$app = new AppKernel();
+$app->load();
 
-$whoops = new Run();
-$whoops->pushHandler(new PrettyPageHandler());
-$whoops->register();
-
-$kernel = new Kernel();
-$exitCode = $kernel->main();
-
-exit($exitCode);
+$ec = new ExampleClass();
+$ec->main();

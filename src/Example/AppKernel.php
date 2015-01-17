@@ -2,8 +2,11 @@
 namespace Example;
 
 use Exception;
+use Whoops\Handler\PlainTextHandler;
+use Whoops\Handler\PrettyPageHandler;
+use Whoops\Run;
 
-class Kernel
+class AppKernel
 {
     const EXIT_CODE_OK = 0;
     const EXIT_CODE_ERROR = 1;
@@ -15,11 +18,27 @@ class Kernel
         $this->exitCode = self::EXIT_CODE_OK;
     }
 
+    private function configureErrorHandler()
+    {
+        $whoops = new Run();
+
+        if ('cli' == PHP_SAPI) {
+            $handler = new PlainTextHandler();
+        } else {
+            $handler = new PrettyPageHandler();
+        }
+
+        $whoops->pushHandler($handler);
+        $whoops->register();
+    }
+
     /**
      * @return int
      */
-    public function main()
+    public function load()
     {
+        $this->configureErrorHandler();
+
         return $this->exitCode;
     }
 
