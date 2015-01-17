@@ -30,7 +30,7 @@ git mv "src/ExampleNamespace" "src/${CAMEL}"
 git mv "test/ExampleNamespace" "test/${CAMEL}"
 
 git mv "src/${CAMEL}/ExampleClass.php" "src/${CAMEL}/${CAMEL}.php"
-git mv "test/${CAMEL}/ExampleClassTest.php" "src/${CAMEL}/${CAMEL}Test.php"
+git mv "test/${CAMEL}/ExampleClassTest.php" "test/${CAMEL}/${CAMEL}Test.php"
 
 git mv "bin/example-script" "bin/${INITIALS}"
 
