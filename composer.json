@@ -1,6 +1,6 @@
 {
     "name": "funtimecoding/php-skeleton",
-    "description": "skeleton project for PHP",
+    "description": "Stub description for example-project.",
     "license": "proprietary",
     "autoload": {
         "psr-0": {

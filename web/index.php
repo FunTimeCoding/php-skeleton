@@ -1,5 +1,5 @@
 <?php
-use ExampleNamespace\AppKernel;
+use Framework\AppKernel;
 use ExampleNamespace\ExampleClass;
 
 require_once(realpath(__DIR__) . '/../vendor/autoload.php');
