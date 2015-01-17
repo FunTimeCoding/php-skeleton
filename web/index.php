@@ -1,6 +1,6 @@
 <?php
-use Example\AppKernel;
-use Example\ExampleClass;
+use ExampleNamespace\AppKernel;
+use ExampleNamespace\ExampleClass;
 
 require_once(realpath(__DIR__) . '/../vendor/autoload.php');
 $app = new AppKernel();

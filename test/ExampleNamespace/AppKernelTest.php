@@ -1,5 +1,5 @@
 <?php
-namespace Example;
+namespace ExampleNamespace;
 
 use PHPUnit_Framework_TestCase;
 

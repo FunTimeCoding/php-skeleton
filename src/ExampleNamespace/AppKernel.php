@@ -1,5 +1,5 @@
 <?php
-namespace Example;
+namespace ExampleNamespace;
 
 use Exception;
 use Whoops\Handler\PlainTextHandler;

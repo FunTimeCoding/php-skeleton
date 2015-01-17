@@ -1,5 +1,5 @@
 <?php
-namespace Example;
+namespace LanguageExample;
 
 use Exception;
 use PHPUnit_Framework_TestCase;
