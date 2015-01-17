@@ -1,7 +1,7 @@
 {
     "name": "funtimecoding/php-skeleton",
     "description": "Stub description for example-project.",
-    "license": "proprietary",
+    "license": "MIT",
     "autoload": {
         "psr-0": {
             "": "src/"
