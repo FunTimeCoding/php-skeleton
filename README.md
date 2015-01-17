@@ -22,7 +22,7 @@ curl -sS https://getcomposer.org/installer | php
 Run tests.
 
 ```sh
-vendor/bin/phpunit
+./phpunit.sh
 ```
 
 Run ant like Jenkins. Requires `ant` and `graphviz` to be installed.
@@ -35,3 +35,4 @@ ant
 ## Important details
 
 * Composer installs executable scripts in `vendor/bin/php` to leave `bin` for the actual project.
+* The script `phpunit.sh` is merely a wrapper intended for ease of use.
