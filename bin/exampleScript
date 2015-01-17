@@ -1,0 +1,17 @@
+#!/usr/bin/env php
+<?php
+
+use Example\Kernel;
+use Whoops\Handler\PlainTextHandler;
+use Whoops\Run;
+
+require_once(realpath(__DIR__) . '/../vendor/autoload.php');
+
+$whoops = new Run();
+$whoops->pushHandler(new PlainTextHandler());
+$whoops->register();
+
+$kernel = new Kernel();
+$exitCode = $kernel->main();
+
+exit($exitCode);
