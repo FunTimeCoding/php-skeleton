@@ -36,3 +36,4 @@ ant
 
 * Composer installs executable scripts in `vendor/bin/php` to leave `bin` for the actual project.
 * The script `phpunit.sh` is merely a wrapper intended for ease of use.
+* The directories `src/LanguageExample` and `test/LanguageExample` are for sharing language specific knowledge.
