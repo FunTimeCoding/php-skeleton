@@ -15,7 +15,7 @@ class AppKernel
 
     public function __construct()
     {
-        $this->exitCode = self::EXIT_CODE_OK;
+        $this->exitCode = static::EXIT_CODE_OK;
     }
 
     private function configureErrorHandler()
@@ -53,7 +53,7 @@ class AppKernel
         $foundRoot = false;
 
         while ($currentDirectory != '/') {
-            $foundRoot = $this->isFileInDirectory(self::PROJECT_ROOT_MARKER_FILE, $currentDirectory);
+            $foundRoot = $this->isFileInDirectory(static::PROJECT_ROOT_MARKER_FILE, $currentDirectory);
 
             if ($foundRoot) {
                 $projectRoot = $currentDirectory;
