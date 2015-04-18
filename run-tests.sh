@@ -1,2 +1,3 @@
-#!/bin/sh
-vendor/bin/phpunit $@
+#!/bin/sh -e
+
+vendor/bin/phpunit "$@"
