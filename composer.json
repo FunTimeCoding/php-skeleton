@@ -13,7 +13,7 @@
         "sebastian/phpcpd": "2.*",
         "pdepend/pdepend": "2.*",
         "phploc/phploc": "2.*",
-        "covex-nn/phpcb": "1.*",
+        "mayflower/php-codebrowser": "1.*",
         "phpmd/phpmd": "2.*",
         "theseer/phpdox": "0.*",
         "behat/behat": "3.*",
