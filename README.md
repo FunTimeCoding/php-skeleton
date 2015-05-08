@@ -19,21 +19,22 @@ curl -sS https://getcomposer.org/installer | php
 ./composer.phar install
 ```
 
-Run tests.
+Run code style check, metrics and tests.
 
 ```sh
-./phpunit.sh
+./run-style-check.sh
+./run-metrics.sh
+./run-tests.sh
 ```
 
-Run ant like Jenkins. Requires `ant` and `graphviz` to be installed.
+Build project like Jenkins.
 
 ```sh
-ant
+./build.sh
 ```
 
 
 ## Important details
 
 * Composer installs executable scripts in `vendor/bin/php` to leave `bin` for the actual project.
-* The script `phpunit.sh` is merely a wrapper intended for ease of use.
 * The directories `src/LanguageExample` and `test/LanguageExample` are for sharing language specific knowledge.

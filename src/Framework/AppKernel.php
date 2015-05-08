@@ -2,9 +2,6 @@
 namespace Framework;
 
 use Exception;
-use Whoops\Handler\PlainTextHandler;
-use Whoops\Handler\PrettyPageHandler;
-use Whoops\Run;
 
 class AppKernel
 {
@@ -18,27 +15,11 @@ class AppKernel
         $this->exitCode = static::EXIT_CODE_OK;
     }
 
-    private function configureErrorHandler()
-    {
-        $whoops = new Run();
-
-        if ('cli' == PHP_SAPI) {
-            $handler = new PlainTextHandler();
-        } else {
-            $handler = new PrettyPageHandler();
-        }
-
-        $whoops->pushHandler($handler);
-        $whoops->register();
-    }
-
     /**
      * @return int
      */
     public function load()
     {
-        $this->configureErrorHandler();
-
         return $this->exitCode;
     }
 
