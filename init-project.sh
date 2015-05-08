@@ -24,7 +24,7 @@ echo "Initials: ${INITIALS}"
 sed -i "" -e "s/\$ec/\$${INITIALS}/g" bin/example-script web/index.php test/ExampleNamespace/ExampleClassTest.php
 sed -i "" -e "s/ExampleClass/${CAMEL}/g" bin/example-script web/index.php src/ExampleNamespace/ExampleClass.php test/ExampleNamespace/ExampleClassTest.php
 sed -i "" -e "s/ExampleNamespace/${CAMEL}/g" bin/example-script web/index.php src/ExampleNamespace/ExampleClass.php test/ExampleNamespace/ExampleClassTest.php
-sed -i "" -e "s/php-skeleton/${DASH}/g" composer.json sonar-project.properties build.xml phpdoc.xml phpdox.xml phpunit.xml phpunit.ci.xml
+sed -i "" -e "s/php-skeleton/${DASH}/g" composer.json sonar-project.properties phpunit.xml phpunit.ci.xml
 sed -i "" -e "s/example-project/${DASH}/g" composer.json
 
 git mv "src/ExampleNamespace" "src/${CAMEL}"
