@@ -1,4 +1,5 @@
 #!/bin/sh
+# TODO: Properly handle the exit code of PMD so that '-e' can be appended to the shebang again.
 
 CI_MODE=0
 
@@ -38,6 +39,7 @@ else
     vendor/bin/phpcs --standard=PSR2 src test
 fi
 
+echo ""
 echo "================================================================================"
 echo ""
 
@@ -49,19 +51,17 @@ fi
 
 echo ""
 echo "================================================================================"
-echo ""
 
 if [ "${CI_MODE}" = "1" ]; then
+    echo ""
     mkdir -p build/pdepend
     vendor/bin/pdepend --jdepend-xml=build/log/jdepend.xml --summary-xml=build/log/jdepend-summary.xml --jdepend-chart=build/pdepend/dependencies.svg --overview-pyramid=build/pdepend/pyramid.svg src,test
+    echo ""
+    echo "================================================================================"
 fi
 
 echo ""
-echo "================================================================================"
-echo ""
-
 echo "Running ShellCheck."
-find . -name '*.sh' -and -not -path '*/vendor/*' -exec shellcheck {} +
-
+find . -name '*.sh' -and -not -path '*/vendor/*' -exec sh -c "shellcheck {} || true" \;
 echo ""
 echo "================================================================================"

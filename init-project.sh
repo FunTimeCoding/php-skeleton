@@ -2,15 +2,10 @@
 # This tool can be used to initialise the template after making a fresh copy to get started quickly.
 # The goal is to make it as easy as possible to create scripts that allow easy testing and continuous integration.
 
-CAMEL=${1}
+CAMEL=$(echo "${1}" | grep -E '^([A-Z][a-z0-9]+){2,}$') || CAMEL=""
 
 if [ "${CAMEL}" = "" ]; then
     echo "Usage: ${0} MyUpperCamelCaseProjectName"
-    exit 1
-fi
-
-if [[ ! ${CAMEL} =~ ^([A-Z][a-z0-9]+){2,}$ ]]; then
-    echo "Project name must be in UpperCamelCase."
     exit 1
 fi
 
@@ -29,10 +24,8 @@ sed -i "" -e "s/example-project/${DASH}/g" composer.json
 
 git mv "src/ExampleNamespace" "src/${CAMEL}"
 git mv "test/ExampleNamespace" "test/${CAMEL}"
-
 git mv "src/${CAMEL}/ExampleClass.php" "src/${CAMEL}/${CAMEL}.php"
 git mv "test/${CAMEL}/ExampleClassTest.php" "test/${CAMEL}/${CAMEL}Test.php"
-
 git mv "bin/example-script" "bin/${INITIALS}"
 
 echo "Done. Files were edited and moved using git. Review those changes. You may also delete this script now."

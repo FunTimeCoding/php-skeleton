@@ -1,6 +1,5 @@
 #!/bin/sh -e
 
-echo "Deleting the build and vendor directories."
+echo "Deleting build and .sonar directory."
 rm -rf build
-rm -rf vendor
 rm -rf .sonar
