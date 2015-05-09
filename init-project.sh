@@ -26,6 +26,6 @@ git mv src/ExampleNamespace "src/${CAMEL}"
 git mv test/ExampleNamespace "test/${CAMEL}"
 git mv "src/${CAMEL}/ExampleClass.php" "src/${CAMEL}/${CAMEL}.php"
 git mv "test/${CAMEL}/ExampleClassTest.php" "test/${CAMEL}/${CAMEL}Test.php"
-git mv bin/example-script" "bin/${INITIALS}"
+git mv bin/example-script "bin/${INITIALS}"
 
 echo "Done. Files were edited and moved using git. Review those changes. You may also delete this script now."
