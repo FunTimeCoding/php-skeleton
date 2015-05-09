@@ -1,7 +1,8 @@
 #!/bin/sh -e
 
 if [ "${WORKSPACE}" = "" ]; then
-    SCRIPT_DIR=$(cd $(dirname ${0}); pwd)
+    DIR=$(dirname "${0}")
+    SCRIPT_DIR=$(cd "${DIR}"; pwd)
     WORKSPACE="${SCRIPT_DIR}"
 fi
 

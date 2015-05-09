@@ -5,5 +5,5 @@ if [ "${1}" = "--ci-mode" ]; then
     mkdir -p build/log
     vendor/bin/phpunit -c phpunit.ci.xml
 else
-    vendor/bin/phpunit "$@"
+    vendor/bin/phpunit --coverage-text "$@"
 fi
