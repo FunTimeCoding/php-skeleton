@@ -15,9 +15,9 @@ echo "Running Mess Detector. Documentation: http://phpmd.org/documentation/index
 
 if [ "${CI_MODE}" = "1" ]; then
     mkdir -p build/log
-    vendor/bin/phpmd src,test xml phpmd.xml --reportfile build/log/pmd-pmd.xml
+    vendor/bin/phpmd src,test xml .phpmd.xml --reportfile build/log/pmd-pmd.xml
 else
-    vendor/bin/phpmd src,test text phpmd.xml
+    vendor/bin/phpmd src,test text .phpmd.xml
 fi
 
 if [ "$?" = "2" ]; then
