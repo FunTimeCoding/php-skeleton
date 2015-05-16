@@ -5,7 +5,7 @@ use Exception;
 use FunTimeCoding\PhpSkeleton\LanguageExample\Calculator;
 use PHPUnit_Framework_TestCase;
 
-class CalculatorTest extends PHPUnit_Framework_Testcase
+class CalculatorTest extends PHPUnit_Framework_TestCase
 {
     public function testAddPositiveNumbers()
     {

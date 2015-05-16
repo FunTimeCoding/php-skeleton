@@ -4,7 +4,7 @@ namespace FunTimeCoding\PhpSkeleton\Test\Integration\LanguageExample;
 use FunTimeCoding\PhpSkeleton\LanguageExample\YamlConfig;
 use PHPUnit_Framework_TestCase;
 
-class YamlConfigTest extends PHPUnit_Framework_Testcase
+class YamlConfigTest extends PHPUnit_Framework_TestCase
 {
     public function testReadConfig()
     {

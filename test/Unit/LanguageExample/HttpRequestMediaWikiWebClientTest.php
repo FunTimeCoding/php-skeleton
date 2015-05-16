@@ -4,7 +4,7 @@ namespace FunTimeCoding\PhpSkeleton\Test\Unit\LanguageExample;
 use FunTimeCoding\PhpSkeleton\LanguageExample\HttpRequestMediaWikiWebClient;
 use PHPUnit_Framework_TestCase;
 
-class HttpRequestMediaWikiWebClientTest extends PHPUnit_Framework_Testcase
+class HttpRequestMediaWikiWebClientTest extends PHPUnit_Framework_TestCase
 {
     public function testExists()
     {

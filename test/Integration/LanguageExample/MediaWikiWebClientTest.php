@@ -7,7 +7,7 @@ use FunTimeCoding\PhpSkeleton\LanguageExample\MediaWikiWebClient;
 use FunTimeCoding\PhpSkeleton\LanguageExample\YamlConfig;
 use PHPUnit_Framework_TestCase;
 
-class MediaWikiWebClientTest extends PHPUnit_Framework_Testcase
+class MediaWikiWebClientTest extends PHPUnit_Framework_TestCase
 {
     public function testLoginWithHttpRequestLibrary()
     {

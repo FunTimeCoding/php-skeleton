@@ -3,7 +3,7 @@ namespace FunTimeCoding\PhpSkeleton\Test\Unit\LanguageExample;
 
 use PHPUnit_Framework_TestCase;
 
-class MediaWikiTestHelperTest extends PHPUnit_Framework_Testcase
+class MediaWikiTestHelperTest extends PHPUnit_Framework_TestCase
 {
     public function testValid()
     {
