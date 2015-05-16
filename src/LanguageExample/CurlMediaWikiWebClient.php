@@ -42,9 +42,8 @@ class CurlMediaWikiWebClient implements MediaWikiWebClient
         $request = $this->createCurlRequest($url);
         curl_setopt($request, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($request, CURLOPT_COOKIEFILE, $this->cookieJar);
-        $body = $this->executeCurlRequest($request);
 
-        return $body;
+        return $this->executeCurlRequest($request);
     }
 
     /**
@@ -104,9 +103,8 @@ class CurlMediaWikiWebClient implements MediaWikiWebClient
         $request = $this->createCurlRequest($url);
         curl_setopt($request, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($request, CURLOPT_COOKIEJAR, $this->cookieJar);
-        $body = $this->executeCurlRequest($request);
 
-        return $body;
+        return $this->executeCurlRequest($request);
     }
 
     /**
@@ -140,9 +138,8 @@ class CurlMediaWikiWebClient implements MediaWikiWebClient
         curl_setopt($request, CURLOPT_COOKIEJAR, $this->cookieJar);
         curl_setopt($request, CURLOPT_COOKIEFILE, $this->cookieJar);
         curl_setopt($request, CURLOPT_FOLLOWLOCATION, 1);
-        $body = $this->executeCurlRequest($request);
 
-        return $body;
+        return $this->executeCurlRequest($request);
     }
 
     /**
