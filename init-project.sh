@@ -21,10 +21,10 @@ sed -i "" -e "s/ExampleNamespace/${CAMEL}/g" bin/example-script web/index.php sr
 sed -i "" -e "s/php-skeleton/${DASH}/g" composer.json sonar-project.properties
 sed -i "" -e "s/example-project/${DASH}/g" composer.json
 
+git mv src/ExampleNamespace/ExampleApplication.php "src/ExampleNamespace/${CAMEL}.php"
+git mv test/Unit/ExampleNamespace/ExampleApplicationTest.php "test/Unit/ExampleNamespace/${CAMEL}Test.php"
 git mv src/ExampleNamespace "src/${CAMEL}"
-git mv test/ExampleNamespace "test/${CAMEL}"
-git mv "src/${CAMEL}/ExampleApplication.php" "src/${CAMEL}/${CAMEL}.php"
-git mv "test/Unit/${CAMEL}/ExampleApplicationTest.php" "test/Unit/${CAMEL}/${CAMEL}Test.php"
+git mv test/Unit/ExampleNamespace "test/Unit/${CAMEL}"
 git mv bin/example-script "bin/${INITIALS}"
 
 echo "Done. Files were edited and moved using git. Review those changes. You may also delete this script now."
