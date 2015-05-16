@@ -1,8 +1,6 @@
 <?php
 namespace FunTimeCoding\PhpSkeleton\LanguageExample;
 
-use DOMDocument;
-use DOMXPath;
 use Exception;
 
 class CurlMediaWikiWebClient implements MediaWikiWebClient
@@ -21,18 +19,75 @@ class CurlMediaWikiWebClient implements MediaWikiWebClient
     }
 
     /**
+     * @param string $page
+     * @return string
+     */
+    public function getPage($page)
+    {
+        $helper = new MediaWikiHelper();
+
+        $body = $this->makeCurlGetRequestAndReadCookies($this->url . '/' . $page);
+        $xpath = $helper->createDomXpathForBody($body);
+
+        return $helper->searchContentInDomXpath($xpath);
+    }
+
+    /**
+     * @internal
+     * @param string $url
+     * @return string
+     */
+    public function makeCurlGetRequestAndReadCookies($url)
+    {
+        $request = $this->createCurlRequest($url);
+        curl_setopt($request, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($request, CURLOPT_COOKIEFILE, $this->cookieJar);
+        $body = $this->executeCurlRequest($request);
+
+        return $body;
+    }
+
+    /**
+     * @internal
+     * @param string $url
+     * @return resource
+     */
+    public function createCurlRequest($url)
+    {
+        $request = curl_init();
+        curl_setopt($request, CURLOPT_URL, $url);
+
+        return $request;
+    }
+
+    /**
+     * @internal
+     * @param resource $request
+     * @return string
+     */
+    public function executeCurlRequest($request)
+    {
+        $body = curl_exec($request);
+        curl_close($request);
+
+        return (string)$body;
+    }
+
+    /**
      * @throws Exception
      */
     public function login()
     {
-        $url = $this->url . '?' . http_build_query($this->getLoginUrlQueryData());
+        $helper = new MediaWikiHelper();
+
+        $url = $this->url . '?' . http_build_query($helper->getLoginUrlQueryData());
         $body = $this->makeCurlGetRequestAndWriteCookies($url);
-        $xpath = $this->createDomXpathForBody($body);
-        $token = $this->searchTokenInDomXpath($xpath);
+        $xpath = $helper->createDomXpathForBody($body);
+        $token = $helper->searchTokenInDomXpath($xpath);
 
         $formData = $this->createFormDataWithToken($token);
         $body = $this->makeCurlPostRequest($url, $formData);
-        $xpath = $this->createDomXpathForBody($body);
+        $xpath = $helper->createDomXpathForBody($body);
 
         if (1 != $xpath->query('//li[@id="pt-logout"]')->length) {
             throw new Exception('Login failed.');
@@ -40,10 +95,11 @@ class CurlMediaWikiWebClient implements MediaWikiWebClient
     }
 
     /**
+     * @internal
      * @param string $url
      * @return string
      */
-    private function makeCurlGetRequestAndWriteCookies($url)
+    public function makeCurlGetRequestAndWriteCookies($url)
     {
         $request = $this->createCurlRequest($url);
         curl_setopt($request, CURLOPT_RETURNTRANSFER, 1);
@@ -55,35 +111,10 @@ class CurlMediaWikiWebClient implements MediaWikiWebClient
 
     /**
      * @internal
-     * @return array
-     */
-    public function getLoginUrlQueryData()
-    {
-        return array(
-            'title' => 'Special:UserLogin',
-            'action' => 'submitlogin',
-            'type' => 'login'
-        );
-    }
-
-    /**
-     * @param string $body
-     * @return DOMXPath
-     */
-    private function createDomXpathForBody($body)
-    {
-        $dom = new DOMDocument();
-        libxml_use_internal_errors(true);
-        $dom->loadHTML($body);
-        libxml_clear_errors();
-        return new DOMXPath($dom);
-    }
-
-    /**
      * @param string $token
      * @return array
      */
-    private function createFormDataWithToken($token)
+    public function createFormDataWithToken($token)
     {
         return array(
             'wpName' => $this->username,
@@ -95,12 +126,23 @@ class CurlMediaWikiWebClient implements MediaWikiWebClient
     }
 
     /**
-     * @param DOMXPath $xpath
+     * @internal
+     * @param string $url
+     * @param array $formData
      * @return string
      */
-    private function searchTokenInDomXpath(DOMXPath $xpath)
+    public function makeCurlPostRequest($url, array $formData)
     {
-        return $xpath->query('//input[@name="wpLoginToken"]/@value')->item(0)->nodeValue;
+        $request = $this->createCurlRequest($url);
+        curl_setopt($request, CURLOPT_POST, count($formData));
+        curl_setopt($request, CURLOPT_POSTFIELDS, http_build_query($formData));
+        curl_setopt($request, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($request, CURLOPT_COOKIEJAR, $this->cookieJar);
+        curl_setopt($request, CURLOPT_COOKIEFILE, $this->cookieJar);
+        curl_setopt($request, CURLOPT_FOLLOWLOCATION, 1);
+        $body = $this->executeCurlRequest($request);
+
+        return $body;
     }
 
     /**
@@ -117,83 +159,5 @@ class CurlMediaWikiWebClient implements MediaWikiWebClient
     public function setUsername($username)
     {
         $this->username = $username;
-    }
-
-    /**
-     * @param DOMXPath $xpath
-     * @return string
-     */
-    private function searchContentInDomXpath(DOMXPath $xpath)
-    {
-        return trim($xpath->query('//div[@id="mw-content-text"]')->item(0)->nodeValue);
-    }
-
-    /**
-     * @param string $page
-     * @return string
-     */
-    public function getPage($page)
-    {
-        $body = $this->makeCurlGetRequestAndReadCookies($this->url . '/' . $page);
-        $xpath = $this->createDomXpathForBody($body);
-
-        return $content = $this->searchContentInDomXpath($xpath);
-    }
-
-    /**
-     * @param string $url
-     * @return resource
-     */
-    private function createCurlRequest($url)
-    {
-        $request = curl_init();
-        curl_setopt($request, CURLOPT_URL, $url);
-
-        return $request;
-    }
-
-    /**
-     * @param resource $request
-     * @return string
-     */
-    private function executeCurlRequest($request)
-    {
-        $body = curl_exec($request);
-        curl_close($request);
-
-        return (string)$body;
-    }
-
-    /**
-     * @param string $url
-     * @param array $formData
-     * @return string
-     */
-    private function makeCurlPostRequest($url, array $formData)
-    {
-        $request = $this->createCurlRequest($url);
-        curl_setopt($request, CURLOPT_POST, count($formData));
-        curl_setopt($request, CURLOPT_POSTFIELDS, http_build_query($formData));
-        curl_setopt($request, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($request, CURLOPT_COOKIEJAR, $this->cookieJar);
-        curl_setopt($request, CURLOPT_COOKIEFILE, $this->cookieJar);
-        curl_setopt($request, CURLOPT_FOLLOWLOCATION, 1);
-        $body = $this->executeCurlRequest($request);
-
-        return $body;
-    }
-
-    /**
-     * @param string $url
-     * @return string
-     */
-    private function makeCurlGetRequestAndReadCookies($url)
-    {
-        $request = $this->createCurlRequest($url);
-        curl_setopt($request, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($request, CURLOPT_COOKIEFILE, $this->cookieJar);
-        $body = $this->executeCurlRequest($request);
-
-        return $body;
     }
 }

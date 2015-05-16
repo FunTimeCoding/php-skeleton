@@ -1,56 +1,16 @@
 <?php
 namespace FunTimeCoding\PhpSkeleton\Test\Unit\LanguageExample;
 
+use FunTimeCoding\PhpSkeleton\LanguageExample\MediaWikiHelper;
 use PHPUnit_Framework_TestCase;
 
 class MediaWikiHelperTest extends PHPUnit_Framework_Testcase
 {
-    public function testValid()
+    public function testQueryData()
     {
-        $helper = new MediaWikiHelper();
-
-        $queryData = array(
-            'title' => 'value_not_tested',
-            'action' => 'value_not_tested',
-            'type' => 'value_not_tested'
-        );
-
-        $this->assertTrue($helper->validateQueryData($queryData));
-    }
-
-    public function testTitleMissing()
-    {
-        $helper = new MediaWikiHelper();
-
-        $actionMissing = array(
-            'action' => 'value_not_tested',
-            'type' => 'value_not_tested'
-        );
-
-        $this->assertFalse($helper->validateQueryData($actionMissing));
-    }
-
-    public function testActionMissing()
-    {
-        $helper = new MediaWikiHelper();
-
-        $actionMissing = array(
-            'title' => 'value_not_tested',
-            'type' => 'value_not_tested'
-        );
-
-        $this->assertFalse($helper->validateQueryData($actionMissing));
-    }
-
-    public function testTypeMissing()
-    {
-        $helper = new MediaWikiHelper();
-
-        $actionMissing = array(
-            'title' => 'value_not_tested',
-            'action' => 'value_not_tested'
-        );
-
-        $this->assertFalse($helper->validateQueryData($actionMissing));
+        $wikiHelper = new MediaWikiHelper();
+        $testHelper = new MediaWikiTestHelper();
+        $queryData = $wikiHelper->getLoginUrlQueryData();
+        $this->assertTrue($testHelper->validateQueryData($queryData));
     }
 }

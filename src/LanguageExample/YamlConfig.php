@@ -19,15 +19,6 @@ class YamlConfig
     }
 
     /**
-     * @param string $key
-     * @return string
-     */
-    public function getValue($key)
-    {
-        return (string)$this->config[$key];
-    }
-
-    /**
      * @param string $path
      * @return string
      */
@@ -39,5 +30,14 @@ class YamlConfig
         }
 
         return (string)$path;
+    }
+
+    /**
+     * @param string $key
+     * @return string
+     */
+    public function getValue($key)
+    {
+        return (string)$this->config[$key];
     }
 }

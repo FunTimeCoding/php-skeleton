@@ -1,8 +1,7 @@
 <?php
 namespace FunTimeCoding\PhpSkeleton\Test\Unit\LanguageExample;
 
-
-class MediaWikiHelper
+class MediaWikiTestHelper
 {
     public function validateQueryData(array $queryData)
     {

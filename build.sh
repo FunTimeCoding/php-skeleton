@@ -59,3 +59,6 @@ rm -rf "${WORKSPACE}/build"
 "${WORKSPACE}/run-style-check.sh" --ci-mode
 "${WORKSPACE}/run-metrics.sh" --ci-mode
 "${WORKSPACE}/run-tests.sh" --ci-mode
+
+# sonar-runner keeps creating this empty directory
+rm -rf "${WORKSPACE}/.sonar"
