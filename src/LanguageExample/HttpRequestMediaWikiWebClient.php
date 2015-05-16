@@ -51,6 +51,7 @@ class HttpRequestMediaWikiWebClient implements MediaWikiWebClient
     }
 
     /**
+     * @internal
      * @return array
      */
     public function getLoginUrlQueryData()

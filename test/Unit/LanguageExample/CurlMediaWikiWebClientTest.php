@@ -11,4 +11,12 @@ class CurlMediaWikiWebClientTest extends PHPUnit_Framework_Testcase
         $client = new CurlMediaWikiWebClient('mediawiki.dev');
         $this->assertNotNull($client);
     }
+
+    public function testQueryData()
+    {
+        $client = new CurlMediaWikiWebClient('mediawiki.dev');
+        $helper = new MediaWikiHelper();
+        $queryData = $client->getLoginUrlQueryData();
+        $this->assertTrue($helper->validateQueryData($queryData));
+    }
 }

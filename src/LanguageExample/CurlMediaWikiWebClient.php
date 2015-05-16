@@ -54,9 +54,10 @@ class CurlMediaWikiWebClient implements MediaWikiWebClient
     }
 
     /**
+     * @internal
      * @return array
      */
-    private function getLoginUrlQueryData()
+    public function getLoginUrlQueryData()
     {
         return array(
             'title' => 'Special:UserLogin',
