@@ -7,7 +7,7 @@ class CurlMediaWikiWebClient implements MediaWikiWebClient
 {
     private $username = '';
     private $password = '';
-    private $url;
+    private $wikiUrl;
     private $cookieJar = '/tmp/php-cookie-jar';
 
     /**
@@ -15,7 +15,7 @@ class CurlMediaWikiWebClient implements MediaWikiWebClient
      */
     public function __construct($domainName)
     {
-        $this->url = 'http://' . $domainName . '/index.php';
+        $this->wikiUrl = 'http://' . $domainName . '/index.php';
     }
 
     /**
@@ -26,7 +26,7 @@ class CurlMediaWikiWebClient implements MediaWikiWebClient
     {
         $helper = new MediaWikiHelper();
 
-        $body = $this->makeCurlGetRequestAndReadCookies($this->url . '/' . $page);
+        $body = $this->makeCurlGetRequestAndReadCookies($this->wikiUrl . '/' . $page);
         $xpath = $helper->createDomXpathForBody($body);
 
         return $helper->searchContentInDomXpath($xpath);
@@ -80,7 +80,7 @@ class CurlMediaWikiWebClient implements MediaWikiWebClient
     {
         $helper = new MediaWikiHelper();
 
-        $url = $this->url . '?' . http_build_query($helper->getLoginUrlQueryData());
+        $url = $this->wikiUrl . '?' . http_build_query($helper->getLoginUrlQueryData());
         $body = $this->makeCurlGetRequestAndWriteCookies($url);
         $xpath = $helper->createDomXpathForBody($body);
         $token = $helper->searchTokenInDomXpath($xpath);
