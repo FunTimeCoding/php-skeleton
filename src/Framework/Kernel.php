@@ -1,9 +1,9 @@
 <?php
-namespace Framework;
+namespace FunTimeCoding\PhpSkeleton\Framework;
 
 use Exception;
 
-class AppKernel
+class Kernel
 {
     const EXIT_CODE_OK = 0;
     const EXIT_CODE_ERROR = 1;

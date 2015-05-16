@@ -1,5 +1,5 @@
 <?php
-namespace LanguageExample;
+namespace FunTimeCoding\PhpSkeleton\LanguageExample;
 
 use Exception;
 

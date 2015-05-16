@@ -16,16 +16,15 @@ echo "Camel: ${CAMEL}"
 echo "Dash: ${DASH}"
 echo "Initials: ${INITIALS}"
 
-sed -i "" -e "s/\$ec/\$${INITIALS}/g" bin/example-script web/index.php test/ExampleNamespace/ExampleClassTest.php
-sed -i "" -e "s/ExampleClass/${CAMEL}/g" bin/example-script web/index.php src/ExampleNamespace/ExampleClass.php test/ExampleNamespace/ExampleClassTest.php
-sed -i "" -e "s/ExampleNamespace/${CAMEL}/g" bin/example-script web/index.php src/ExampleNamespace/ExampleClass.php test/ExampleNamespace/ExampleClassTest.php
-sed -i "" -e "s/php-skeleton/${DASH}/g" composer.json sonar-project.properties phpunit.xml .phpunit.ci.xml
+sed -i "" -e "s/ExampleApplication/${CAMEL}/g" bin/example-script web/index.php src/ExampleNamespace/ExampleApplication.php test/ExampleNamespace/ExampleApplicationTest.php
+sed -i "" -e "s/ExampleNamespace/${CAMEL}/g" bin/example-script web/index.php src/ExampleNamespace/ExampleApplication.php test/ExampleNamespace/ExampleApplicationTest.php
+sed -i "" -e "s/php-skeleton/${DASH}/g" composer.json sonar-project.properties
 sed -i "" -e "s/example-project/${DASH}/g" composer.json
 
 git mv src/ExampleNamespace "src/${CAMEL}"
 git mv test/ExampleNamespace "test/${CAMEL}"
-git mv "src/${CAMEL}/ExampleClass.php" "src/${CAMEL}/${CAMEL}.php"
-git mv "test/${CAMEL}/ExampleClassTest.php" "test/${CAMEL}/${CAMEL}Test.php"
+git mv "src/${CAMEL}/ExampleApplication.php" "src/${CAMEL}/${CAMEL}.php"
+git mv "test/Unit/${CAMEL}/ExampleApplicationTest.php" "test/Unit/${CAMEL}/${CAMEL}Test.php"
 git mv bin/example-script "bin/${INITIALS}"
 
 echo "Done. Files were edited and moved using git. Review those changes. You may also delete this script now."

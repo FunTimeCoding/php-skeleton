@@ -1,7 +1,8 @@
 <?php
-namespace LanguageExample;
+namespace FunTimeCoding\PhpSkeleton\Test\Unit\LanguageExample;
 
 use Exception;
+use FunTimeCoding\PhpSkeleton\LanguageExample\Calculator;
 use PHPUnit_Framework_TestCase;
 
 class CalculatorTest extends PHPUnit_Framework_Testcase

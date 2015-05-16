@@ -1,7 +1,7 @@
 <?php
-namespace ExampleNamespace;
+namespace FunTimeCoding\PhpSkeleton\ExampleNamespace;
 
-class ExampleClass
+class ExampleApplication
 {
     public function main()
     {

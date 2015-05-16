@@ -1,11 +1,13 @@
 #!/usr/bin/env php
 <?php
-use Framework\AppKernel;
-use ExampleNamespace\ExampleClass;
+namespace FunTimeCoding\PhpSkeleton\Bin;
+
+use FunTimeCoding\PhpSkeleton\Framework\Kernel;
+use FunTimeCoding\PhpSkeleton\ExampleNamespace\ExampleApplication;
 
 require_once(realpath(__DIR__) . '/../vendor/autoload.php');
-$app = new AppKernel();
-$app->load();
+$kernel = new Kernel();
+$kernel->load();
 
-$ec = new ExampleClass();
-$ec->main();
+$application = new ExampleApplication();
+$application->main();

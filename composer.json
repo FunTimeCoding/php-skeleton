@@ -3,9 +3,10 @@
     "description": "Stub description for example-project.",
     "license": "MIT",
     "autoload": {
-        "psr-0": {
-            "": "src/"
-        }
+        "psr-4": {"FunTimeCoding\\PhpSkeleton\\": "src/"}
+    },
+    "autoload-dev": {
+        "psr-4": {"FunTimeCoding\\PhpSkeleton\\Test\\": "test/"}
     },
     "require-dev": {
         "phpunit/phpunit": "4.*",

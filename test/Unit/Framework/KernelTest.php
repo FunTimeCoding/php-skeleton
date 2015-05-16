@@ -1,26 +1,27 @@
 <?php
-namespace Framework;
+namespace FunTimeCoding\PhpSkeleton\Test\Unit\Framework;
 
+use FunTimeCoding\PhpSkeleton\Framework\Kernel;
 use PHPUnit_Framework_TestCase;
 
-class AppKernelTest extends PHPUnit_Framework_Testcase
+class KernelTest extends PHPUnit_Framework_Testcase
 {
     public function testLoadReturnsZero()
     {
-        $kernel = new AppKernel();
+        $kernel = new Kernel();
         $this->assertSame(0, $kernel->load());
     }
 
     public function testGetProjectRoot()
     {
-        $kernel = new AppKernel();
+        $kernel = new Kernel();
         $projectRoot = $kernel->getProjectRoot();
-        $this->assertNotSame('', $projectRoot);
+        $this->assertNotEmpty($projectRoot);
     }
 
     public function testCommandLineCallOfIndex()
     {
-        $kernel = new AppKernel();
+        $kernel = new Kernel();
         $projectRoot = $kernel->getProjectRoot();
 
         $command = 'php ' . $projectRoot . '/web/index.php';
