@@ -9,7 +9,9 @@ class KernelTest extends PHPUnit_Framework_TestCase
     public function testGetProjectRoot()
     {
         $kernel = new Kernel();
+
         $projectRoot = $kernel->getProjectRoot();
+
         $this->assertNotEmpty($projectRoot);
     }
 

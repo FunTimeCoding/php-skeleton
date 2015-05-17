@@ -9,6 +9,7 @@ class KernelTest extends PHPUnit_Framework_TestCase
     public function testNormalExitCode()
     {
         $kernel = new Kernel();
+
         $this->assertSame(0, $kernel->load());
     }
 }

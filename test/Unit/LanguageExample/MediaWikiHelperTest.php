@@ -10,7 +10,9 @@ class MediaWikiHelperTest extends PHPUnit_Framework_TestCase
     {
         $wikiHelper = new MediaWikiHelper();
         $testHelper = new MediaWikiTestHelper();
+
         $queryData = $wikiHelper->getLoginUrlQueryData();
+
         $this->assertTrue($testHelper->validateQueryData($queryData));
     }
 }
