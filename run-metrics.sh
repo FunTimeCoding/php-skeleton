@@ -5,6 +5,7 @@ if [ "${1}" = "--ci-mode" ]; then
     mkdir -p build/log
     vendor/bin/phploc --count-tests src test | tee build/log/phploc.txt
     sonar-runner | tee build/log/sonar-runner.log
+    rm -rf .sonar
 else
     vendor/bin/phploc --count-tests src test
 fi
