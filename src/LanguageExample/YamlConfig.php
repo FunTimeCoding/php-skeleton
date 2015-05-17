@@ -22,7 +22,7 @@ class YamlConfig
      * @param string $path
      * @return string
      */
-    function expandTilde($path)
+    public function expandTilde($path)
     {
         if (function_exists('posix_getuid') && strpos($path, '~') !== false) {
             $info = posix_getpwuid(posix_getuid());

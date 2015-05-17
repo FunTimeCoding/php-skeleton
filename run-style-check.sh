@@ -20,9 +20,11 @@ else
     vendor/bin/phpmd src,test text .phpmd.xml
 fi
 
-if [ "$?" = "2" ]; then
+CODE="$?"
+
+if [ "${CODE}" = "2" ]; then
     echo "Violations occurred."
-elif [ "$?" = "1" ]; then
+elif [ "${CODE}" = "1" ]; then
     echo "An error occured."
 else
     echo "No mess detected."

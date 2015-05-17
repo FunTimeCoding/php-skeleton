@@ -6,27 +6,27 @@ use Exception;
 class Calculator
 {
     /**
-     * @param int|float|double $a
-     * @param int|float|double $b
-     * @return int|float|double
+     * @param int|float|double $augend
+     * @param int|float|double $addend
+     * @return int|float|double sum
      */
-    public function add($a, $b)
+    public function add($augend, $addend)
     {
-        return $a + $b;
+        return $augend + $addend;
     }
 
     /**
-     * @param int|float|double $a
-     * @param int|float|double $b
-     * @return int|float|double
+     * @param int|float|double $dividend
+     * @param int|float|double $divisor
+     * @return int|float|double quotient
      * @throws Exception
      */
-    public function div($a, $b)
+    public function div($dividend, $divisor)
     {
-        if ($b == 0) {
+        if ($divisor == 0) {
             throw new Exception('Division by zero.');
         }
 
-        return $a / $b;
+        return $dividend / $divisor;
     }
 }

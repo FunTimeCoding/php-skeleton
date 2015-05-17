@@ -68,7 +68,7 @@ class MetricsTest extends PHPUnit_Framework_TestCase
         return substr($haystack, -$length) === $needle;
     }
 
-    function startsWith($haystack, $needle)
+    public function startsWith($haystack, $needle)
     {
         $length = strlen($needle);
 
