@@ -14,7 +14,7 @@ What do those directories in this project mean?
 * build - Build directory in which `ant` puts it's results.
 
 You may leave some of those directories out if they don't apply to the purpose of this skeleton.
-Some directories may also have differnt names according to language and package specifications. Those have priority over this document.
+Some directories may also have different names according to language and package specifications. Those have priority over this document.
 
 
 ## Configs
