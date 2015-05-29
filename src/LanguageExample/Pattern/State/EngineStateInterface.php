@@ -4,7 +4,7 @@ namespace FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\State;
 /**
  * This could also be an abstract class instead of an interface. The state pattern would still be valid.
  */
-interface EngineState
+interface EngineStateInterface
 {
     /**
      * @param EngineStateContext $context

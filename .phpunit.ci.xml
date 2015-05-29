@@ -18,9 +18,9 @@
         </testsuite>
     </testsuites>
     <filter>
-        <whitelist>
-            <directory>src</directory>
-        </whitelist>
+        <blacklist>
+            <directory suffix="Test.php">test</directory>
+        </blacklist>
     </filter>
     <logging>
         <log type="junit" target="build/log/junit.xml"/>

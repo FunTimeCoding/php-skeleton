@@ -2,19 +2,12 @@
 namespace FunTimeCoding\PhpSkeleton\Test\Unit\LanguageExample\Pattern\Observer;
 
 use FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\State\EngineStateContext;
-use FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\State\StateOff;
-use FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\State\StateRunning;
+use FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\State\OffState;
+use FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\State\RunningState;
 use PHPUnit_Framework_TestCase;
 
 class EngineStateContextText extends PHPUnit_Framework_TestCase
 {
-    public function testCanInstantiate()
-    {
-        $context = new EngineStateContext();
-
-        $this->assertNotNull($context);
-    }
-
     /**
      * @outputBuffering enabled
      */
@@ -23,7 +16,7 @@ class EngineStateContextText extends PHPUnit_Framework_TestCase
         $context = new EngineStateContext();
         $context->start();
 
-        $this->assertAttributeEquals(new StateRunning(), 'state', $context);
+        $this->assertAttributeEquals(new RunningState(), 'state', $context);
         $this->expectOutputString('Engine started.');
     }
 
@@ -37,7 +30,7 @@ class EngineStateContextText extends PHPUnit_Framework_TestCase
 
         $context->stop();
 
-        $this->assertAttributeEquals(new StateOff(), 'state', $context);
+        $this->assertAttributeEquals(new OffState(), 'state', $context);
         $this->expectOutputString('Engine started.Engine stopped.');
     }
 
@@ -45,17 +38,17 @@ class EngineStateContextText extends PHPUnit_Framework_TestCase
     {
         $context = new EngineStateContext();
 
-        $context->setState(new StateRunning());
+        $context->setState(new RunningState());
 
-        $this->assertAttributeEquals(new StateRunning(), 'state', $context);
+        $this->assertAttributeEquals(new RunningState(), 'state', $context);
     }
 
     public function testSetStateToOff()
     {
         $context = new EngineStateContext();
 
-        $context->setState(new StateOff());
+        $context->setState(new OffState());
 
-        $this->assertAttributeEquals(new StateOff(), 'state', $context);
+        $this->assertAttributeEquals(new OffState(), 'state', $context);
     }
 }

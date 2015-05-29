@@ -3,14 +3,14 @@ namespace FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\State;
 
 use Exception;
 
-class StateOff implements EngineState
+class OffState implements EngineStateInterface
 {
     /**
      * @param EngineStateContext $context
      */
     public function start(EngineStateContext $context)
     {
-        $context->setState(new StateRunning());
+        $context->setState(new RunningState());
         echo 'Engine started.';
     }
 

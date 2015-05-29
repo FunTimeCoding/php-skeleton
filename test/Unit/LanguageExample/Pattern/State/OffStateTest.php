@@ -3,30 +3,23 @@ namespace FunTimeCoding\PhpSkeleton\Test\Unit\LanguageExample\Pattern\Observer;
 
 use Exception;
 use FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\State\EngineStateContext;
-use FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\State\StateOff;
-use FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\State\StateRunning;
+use FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\State\OffState;
+use FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\State\RunningState;
 use PHPUnit_Framework_TestCase;
 
-class StateOffTest extends PHPUnit_Framework_TestCase
+class OffStateTest extends PHPUnit_Framework_TestCase
 {
-    public function testCanInstantiate()
-    {
-        $state = new StateOff();
-
-        $this->assertNotNull($state);
-    }
-
     /**
      * @outputBuffering enabled
      */
     public function testStart()
     {
-        $state = new StateOff();
+        $state = new OffState();
         $context = new EngineStateContext();
 
         $state->start($context);
 
-        $this->assertAttributeEquals(new StateRunning(), 'state', $context);
+        $this->assertAttributeEquals(new RunningState(), 'state', $context);
         $this->expectOutputString('Engine started.');
     }
 
@@ -36,7 +29,7 @@ class StateOffTest extends PHPUnit_Framework_TestCase
      */
     public function testStop()
     {
-        $state = new StateOff();
+        $state = new OffState();
         $context = new EngineStateContext();
 
         $state->stop($context);

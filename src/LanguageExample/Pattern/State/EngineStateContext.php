@@ -4,19 +4,19 @@ namespace FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\State;
 class EngineStateContext
 {
     /**
-     * @var EngineState
+     * @var EngineStateInterface
      */
     private $state;
 
     public function __construct()
     {
-        $this->state = new StateOff();
+        $this->state = new OffState();
     }
 
     /**
-     * @param EngineState $state
+     * @param EngineStateInterface $state
      */
-    public function setState(EngineState $state)
+    public function setState(EngineStateInterface $state)
     {
         $this->state = $state;
     }
