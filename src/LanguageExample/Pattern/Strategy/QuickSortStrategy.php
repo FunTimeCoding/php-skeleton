@@ -11,7 +11,7 @@ class QuickSortStrategy implements SortStrategyInterface
     {
         $size = count($elements);
 
-        return $result = $this->quickSort($elements, 0, $size - 1);
+        return $this->quickSort($elements, 0, $size - 1);
     }
 
     /**

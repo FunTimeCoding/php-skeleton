@@ -35,9 +35,8 @@ class MergeSortStrategy implements SortStrategyInterface
 
         $left = $this->mergeSort($left);
         $right = $this->mergeSort($right);
-        $data = $this->merge($left, $right);
 
-        return $data;
+        return $this->merge($left, $right);
     }
 
     /**
@@ -59,9 +58,9 @@ class MergeSortStrategy implements SortStrategyInterface
                 } else {
                     $result[] = array_shift($right);
                 }
-            } else if (count($left) > 0) {
+            } elseif (count($left) > 0) {
                 $result[] = array_shift($left);
-            } else if (count($right) > 0) {
+            } elseif (count($right) > 0) {
                 $result[] = array_shift($right);
             }
         }
