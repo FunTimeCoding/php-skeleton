@@ -42,7 +42,7 @@ class YamlVisitor implements VisitorInterface
     {
         $result = '';
 
-        for ($i = 0; $i < $number; $i++) {
+        for ($spaces = 0; $spaces < $number; $spaces++) {
             $result .= ' ';
         }
 
