@@ -5,6 +5,7 @@ CI_MODE=0
 
 if [ "${1}" = "--ci-mode" ]; then
     shift
+    mkdir -p build/log
     CI_MODE=1
 fi
 
@@ -14,7 +15,6 @@ echo ""
 echo "Running Mess Detector. Documentation: http://phpmd.org/documentation/index.html"
 
 if [ "${CI_MODE}" = "1" ]; then
-    mkdir -p build/log
     vendor/bin/phpmd src,test xml .phpmd.xml --reportfile build/log/pmd-pmd.xml
 else
     vendor/bin/phpmd src,test text .phpmd.xml
@@ -65,5 +65,16 @@ fi
 echo ""
 echo "Running ShellCheck."
 find . -name '*.sh' -and -not -path '*/vendor/*' -exec sh -c "shellcheck {} || true" \;
+echo ""
+echo "================================================================================"
+echo ""
+
+echo "Running PHP-CS-Fixer."
+if [ "${CI_MODE}" = "1" ]; then
+    vendor/bin/php-cs-fixer fix . --dry-run | tee build/log/php-cs-fixer.txt
+else
+    vendor/bin/php-cs-fixer fix . --dry-run
+fi
+
 echo ""
 echo "================================================================================"
