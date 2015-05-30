@@ -7,7 +7,7 @@ namespace FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\Bridge;
  */
 interface SwitchBridgeInterface
 {
-    public function on();
+    public function turnOn();
 
-    public function off();
+    public function turnOff();
 }

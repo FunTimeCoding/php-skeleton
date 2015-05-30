@@ -14,7 +14,7 @@ class LightSwitchTest extends PHPUnit_Framework_TestCase
     {
         $switch = new LightSwitch();
 
-        $switch->on();
+        $switch->turnOn();
 
         $this->expectOutputString('Light on.');
     }
@@ -26,7 +26,7 @@ class LightSwitchTest extends PHPUnit_Framework_TestCase
     {
         $switch = new LightSwitch();
 
-        $switch->off();
+        $switch->turnOff();
 
         $this->expectOutputString('Light off.');
     }

@@ -14,7 +14,7 @@ class ComputerSwitchTest extends PHPUnit_Framework_TestCase
     {
         $switch = new ComputerSwitch();
 
-        $switch->on();
+        $switch->turnOn();
 
         $this->expectOutputString('Computer on.');
     }
@@ -26,7 +26,7 @@ class ComputerSwitchTest extends PHPUnit_Framework_TestCase
     {
         $switch = new ComputerSwitch();
 
-        $switch->off();
+        $switch->turnOff();
 
         $this->expectOutputString('Computer off.');
     }
