@@ -4,7 +4,7 @@ namespace FunTimeCoding\PhpSkeleton\Test\Unit\LanguageExample\Pattern\Observer;
 
 use Exception;
 use FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\State\EngineStateContext;
-use FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\State\OffState;
+use FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\State\StoppedState;
 use FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\State\RunningState;
 use PHPUnit_Framework_TestCase;
 
@@ -32,7 +32,7 @@ class RunningStateTest extends PHPUnit_Framework_TestCase
 
         $state->stop($context);
 
-        $this->assertAttributeEquals(new OffState(), 'state', $context);
+        $this->assertAttributeEquals(new StoppedState(), 'state', $context);
         $this->expectOutputString('Engine stopped.');
     }
 }

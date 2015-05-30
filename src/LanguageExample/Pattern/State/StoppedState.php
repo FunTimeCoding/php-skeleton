@@ -4,7 +4,7 @@ namespace FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\State;
 
 use Exception;
 
-class OffState implements EngineStateInterface
+class StoppedState implements EngineStateInterface
 {
     /**
      * @param EngineStateContext $context

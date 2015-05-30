@@ -11,7 +11,7 @@ class EngineStateContext
 
     public function __construct()
     {
-        $this->state = new OffState();
+        $this->state = new StoppedState();
     }
 
     /**

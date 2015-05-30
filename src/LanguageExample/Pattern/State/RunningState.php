@@ -21,7 +21,7 @@ class RunningState implements EngineStateInterface
      */
     public function stop(EngineStateContext $context)
     {
-        $context->setState(new OffState());
+        $context->setState(new StoppedState());
         echo 'Engine stopped.';
     }
 }
