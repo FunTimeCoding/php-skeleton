@@ -1,6 +1,6 @@
 <?php
 
-namespace FunTimeCoding\PhpSkeleton\test\Integration\Framework;
+namespace FunTimeCoding\PhpSkeleton\Test\Integration\Framework;
 
 use FunTimeCoding\PhpSkeleton\Framework\Kernel;
 use PHPUnit_Framework_TestCase;

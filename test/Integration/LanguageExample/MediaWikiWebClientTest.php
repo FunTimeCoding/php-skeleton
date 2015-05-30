@@ -1,6 +1,6 @@
 <?php
 
-namespace FunTimeCoding\PhpSkeleton\test\Integration\LanguageExample;
+namespace FunTimeCoding\PhpSkeleton\Test\Integration\LanguageExample;
 
 use FunTimeCoding\PhpSkeleton\LanguageExample\CurlMediaWikiWebClient;
 use FunTimeCoding\PhpSkeleton\LanguageExample\HttpRequestMediaWikiWebClient;

@@ -1,6 +1,6 @@
 <?php
 
-namespace FunTimeCoding\PhpSkeleton\test\Unit\LanguageExample\Pattern\Observer;
+namespace FunTimeCoding\PhpSkeleton\Test\Unit\LanguageExample\Pattern\Observer;
 
 use FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\Observer\ConcreteObserver;
 use FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\Observer\Subject;

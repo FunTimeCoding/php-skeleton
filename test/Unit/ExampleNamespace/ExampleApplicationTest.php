@@ -1,6 +1,6 @@
 <?php
 
-namespace FunTimeCoding\PhpSkeleton\test\Unit\ExampleNamespace;
+namespace FunTimeCoding\PhpSkeleton\Test\Unit\ExampleNamespace;
 
 use FunTimeCoding\PhpSkeleton\ExampleNamespace\ExampleApplication;
 use PHPUnit_Framework_TestCase;

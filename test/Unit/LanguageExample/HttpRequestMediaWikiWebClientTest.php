@@ -1,6 +1,6 @@
 <?php
 
-namespace FunTimeCoding\PhpSkeleton\test\Unit\LanguageExample;
+namespace FunTimeCoding\PhpSkeleton\Test\Unit\LanguageExample;
 
 use FunTimeCoding\PhpSkeleton\LanguageExample\HttpRequestMediaWikiWebClient;
 use PHPUnit_Framework_TestCase;
