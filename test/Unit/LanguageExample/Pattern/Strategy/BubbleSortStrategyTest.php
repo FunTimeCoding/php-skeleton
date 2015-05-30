@@ -1,5 +1,6 @@
 <?php
-namespace FunTimeCoding\PhpSkeleton\Test\Unit\LanguageExample\Pattern\Strategy;
+
+namespace FunTimeCoding\PhpSkeleton\test\Unit\LanguageExample\Pattern\Strategy;
 
 use FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\Strategy\BubbleSortStrategy;
 use PHPUnit_Framework_TestCase;

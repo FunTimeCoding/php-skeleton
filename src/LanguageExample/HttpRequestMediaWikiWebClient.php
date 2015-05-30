@@ -1,4 +1,5 @@
 <?php
+
 namespace FunTimeCoding\PhpSkeleton\LanguageExample;
 
 use Exception;
@@ -15,18 +16,19 @@ class HttpRequestMediaWikiWebClient implements MediaWikiWebClient
      */
     public function __construct($domainName)
     {
-        $this->url = 'http://' . $domainName . '/index.php';
+        $this->url = 'http://'.$domainName.'/index.php';
     }
 
     /**
      * @param string $page
+     *
      * @return string
      */
     public function getPage($page)
     {
         $helper = new MediaWikiHelper();
 
-        $request = new HttpRequest($this->url . '/' . $page, HttpRequest::METH_GET);
+        $request = new HttpRequest($this->url.'/'.$page, HttpRequest::METH_GET);
         $request->enableCookies();
         $request->send();
         $body = $request->getResponseBody();
@@ -55,7 +57,7 @@ class HttpRequestMediaWikiWebClient implements MediaWikiWebClient
         $formData = $this->createFormDataWithToken($token);
         $request->addPostFields($formData);
         $response = $request->send();
-        $location = $response->getHeader("Location");
+        $location = $response->getHeader('Location');
 
         $request = new HttpRequest($location, HttpRequest::METH_GET);
         $request->send();
@@ -69,7 +71,9 @@ class HttpRequestMediaWikiWebClient implements MediaWikiWebClient
 
     /**
      * @internal
+     *
      * @param string $token
+     *
      * @return array
      */
     public function createFormDataWithToken($token)
@@ -79,7 +83,7 @@ class HttpRequestMediaWikiWebClient implements MediaWikiWebClient
             'wpPassword' => $this->password,
             'wpLoginAttempt' => 'Log in',
             'wpLoginToken' => $token,
-            'wpRemember' => '1'
+            'wpRemember' => '1',
         );
     }
 

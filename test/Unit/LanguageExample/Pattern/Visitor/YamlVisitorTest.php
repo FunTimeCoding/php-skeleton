@@ -1,5 +1,6 @@
 <?php
-namespace FunTimeCoding\PhpSkeleton\Test\Unit\LanguageExample\Pattern\Visitor;
+
+namespace FunTimeCoding\PhpSkeleton\test\Unit\LanguageExample\Pattern\Visitor;
 
 use FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\Visitor\Node;
 use FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\Visitor\YamlVisitor;
@@ -18,7 +19,7 @@ class YamlVisitorTest extends PHPUnit_Framework_TestCase
 
         $node->accept($visitor);
 
-        $this->expectOutputString('root: MyValue' . PHP_EOL);
+        $this->expectOutputString('root: MyValue'.PHP_EOL);
     }
 
     /**
@@ -33,6 +34,6 @@ class YamlVisitorTest extends PHPUnit_Framework_TestCase
 
         $node->accept($visitor);
 
-        $this->expectOutputString('root:' . PHP_EOL . '    leaf' . PHP_EOL);
+        $this->expectOutputString('root:'.PHP_EOL.'    leaf'.PHP_EOL);
     }
 }

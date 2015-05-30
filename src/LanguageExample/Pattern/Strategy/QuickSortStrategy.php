@@ -1,10 +1,12 @@
 <?php
+
 namespace FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\Strategy;
 
 class QuickSortStrategy implements SortStrategyInterface
 {
     /**
      * @param int[] $elements
+     *
      * @return int[]
      */
     public function sort(array $elements)
@@ -16,15 +18,16 @@ class QuickSortStrategy implements SortStrategyInterface
 
     /**
      * @param int[] $elements
-     * @param int $left
-     * @param int $right
+     * @param int   $left
+     * @param int   $right
+     *
      * @return int[]
      */
     private function quickSort(array $elements, $left, $right)
     {
         $leftTemp = $left;
         $rightTemp = $right;
-        $separator = $elements[(int)floor(($left + $right) / 2)];
+        $separator = $elements[(int) floor(($left + $right) / 2)];
 
         while ($leftTemp <= $rightTemp) {
             while ($elements[$leftTemp] < $separator) {

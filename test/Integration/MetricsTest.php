@@ -1,4 +1,5 @@
 <?php
+
 namespace FunTimeCoding\PhpSkeleton\Test\Integration\LanguageExample;
 
 use DirectoryIterator;
@@ -15,7 +16,7 @@ class MetricsTest extends PHPUnit_Framework_TestCase
         // Note the lower case c in Testcase. It should be 'PHPUnit_Framework_TestCase'.
 
         $kernel = new Kernel();
-        $testDirectory = $kernel->getProjectRoot() . DIRECTORY_SEPARATOR . 'test';
+        $testDirectory = $kernel->getProjectRoot().DIRECTORY_SEPARATOR.'test';
         $this->assertStringStartsWith('/', $testDirectory);
 
         $files = array();
@@ -47,12 +48,12 @@ class MetricsTest extends PHPUnit_Framework_TestCase
                 }
 
                 if (!$found) {
-                    $this->fail('No line starts with \'class\' in ' . $file);
+                    $this->fail('No line starts with \'class\' in '.$file);
                 }
 
                 fclose($handle);
             } else {
-                $this->fail('Could not read ' . $file);
+                $this->fail('Could not read '.$file);
             }
         }
     }

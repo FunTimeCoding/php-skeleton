@@ -1,4 +1,5 @@
 <?php
+
 namespace FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\Visitor;
 
 class XmlVisitor implements VisitorInterface
@@ -15,18 +16,18 @@ class XmlVisitor implements VisitorInterface
 
         if (0 == $size) {
             if ('' == $value) {
-                echo '<' . $name . '/>';
+                echo '<'.$name.'/>';
             } else {
-                echo '<' . $name . '>' . $value . '</' . $name . '>';
+                echo '<'.$name.'>'.$value.'</'.$name.'>';
             }
         } else {
-            echo '<' . $name . '>';
+            echo '<'.$name.'>';
 
             foreach ($children as $child) {
                 $child->accept($this);
             }
 
-            echo '</' . $name . '>';
+            echo '</'.$name.'>';
         }
     }
 }

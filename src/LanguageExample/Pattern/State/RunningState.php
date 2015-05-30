@@ -1,4 +1,5 @@
 <?php
+
 namespace FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\State;
 
 use Exception;
@@ -7,6 +8,7 @@ class RunningState implements EngineStateInterface
 {
     /**
      * @param EngineStateContext $context
+     *
      * @throws Exception
      */
     public function start(EngineStateContext $context)

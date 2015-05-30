@@ -1,10 +1,12 @@
 <?php
+
 namespace FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\Strategy;
 
 class MergeSortStrategy implements SortStrategyInterface
 {
     /**
      * @param int[] $elements
+     *
      * @return int[]
      */
     public function sort(array $elements)
@@ -14,6 +16,7 @@ class MergeSortStrategy implements SortStrategyInterface
 
     /**
      * @param int[] $elements
+     *
      * @return int[]
      */
     private function mergeSort(array $elements)
@@ -23,7 +26,7 @@ class MergeSortStrategy implements SortStrategyInterface
         }
 
         $left = $right = array();
-        $middle = (int)round(count($elements) / 2);
+        $middle = (int) round(count($elements) / 2);
 
         for ($cursor = 0; $cursor < $middle; ++$cursor) {
             $left[] = $elements[$cursor];
@@ -42,6 +45,7 @@ class MergeSortStrategy implements SortStrategyInterface
     /**
      * @param int[] $left
      * @param int[] $right
+     *
      * @return int[]
      */
     private function merge(array $left, array $right)

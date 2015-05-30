@@ -1,4 +1,5 @@
 <?php
+
 namespace FunTimeCoding\PhpSkeleton\LanguageExample;
 
 use Exception;
@@ -15,18 +16,19 @@ class CurlMediaWikiWebClient implements MediaWikiWebClient
      */
     public function __construct($domainName)
     {
-        $this->wikiUrl = 'http://' . $domainName . '/index.php';
+        $this->wikiUrl = 'http://'.$domainName.'/index.php';
     }
 
     /**
      * @param string $page
+     *
      * @return string
      */
     public function getPage($page)
     {
         $helper = new MediaWikiHelper();
 
-        $body = $this->makeCurlGetRequestAndReadCookies($this->wikiUrl . '/' . $page);
+        $body = $this->makeCurlGetRequestAndReadCookies($this->wikiUrl.'/'.$page);
         $xpath = $helper->createDomXpathForBody($body);
 
         return $helper->searchContentInDomXpath($xpath);
@@ -34,7 +36,9 @@ class CurlMediaWikiWebClient implements MediaWikiWebClient
 
     /**
      * @internal
+     *
      * @param string $url
+     *
      * @return string
      */
     public function makeCurlGetRequestAndReadCookies($url)
@@ -48,7 +52,9 @@ class CurlMediaWikiWebClient implements MediaWikiWebClient
 
     /**
      * @internal
+     *
      * @param string $url
+     *
      * @return resource
      */
     public function createCurlRequest($url)
@@ -61,7 +67,9 @@ class CurlMediaWikiWebClient implements MediaWikiWebClient
 
     /**
      * @internal
+     *
      * @param resource $request
+     *
      * @return string
      */
     public function executeCurlRequest($request)
@@ -69,7 +77,7 @@ class CurlMediaWikiWebClient implements MediaWikiWebClient
         $body = curl_exec($request);
         curl_close($request);
 
-        return (string)$body;
+        return (string) $body;
     }
 
     /**
@@ -79,7 +87,7 @@ class CurlMediaWikiWebClient implements MediaWikiWebClient
     {
         $helper = new MediaWikiHelper();
 
-        $url = $this->wikiUrl . '?' . http_build_query($helper->getLoginUrlQueryData());
+        $url = $this->wikiUrl.'?'.http_build_query($helper->getLoginUrlQueryData());
         $body = $this->makeCurlGetRequestAndWriteCookies($url);
         $xpath = $helper->createDomXpathForBody($body);
         $token = $helper->searchTokenInDomXpath($xpath);
@@ -95,7 +103,9 @@ class CurlMediaWikiWebClient implements MediaWikiWebClient
 
     /**
      * @internal
+     *
      * @param string $url
+     *
      * @return string
      */
     public function makeCurlGetRequestAndWriteCookies($url)
@@ -109,7 +119,9 @@ class CurlMediaWikiWebClient implements MediaWikiWebClient
 
     /**
      * @internal
+     *
      * @param string $token
+     *
      * @return array
      */
     public function createFormDataWithToken($token)
@@ -119,14 +131,16 @@ class CurlMediaWikiWebClient implements MediaWikiWebClient
             'wpPassword' => $this->password,
             'wpLoginAttempt' => 'Log in',
             'wpLoginToken' => $token,
-            'wpRemember' => '1'
+            'wpRemember' => '1',
         );
     }
 
     /**
      * @internal
+     *
      * @param string $url
-     * @param array $formData
+     * @param array  $formData
+     *
      * @return string
      */
     public function makeCurlPostRequest($url, array $formData)

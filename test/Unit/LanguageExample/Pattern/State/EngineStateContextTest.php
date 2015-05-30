@@ -1,4 +1,5 @@
 <?php
+
 namespace FunTimeCoding\PhpSkeleton\Test\Unit\LanguageExample\Pattern\Observer;
 
 use FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\State\EngineStateContext;
@@ -6,7 +7,7 @@ use FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\State\OffState;
 use FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\State\RunningState;
 use PHPUnit_Framework_TestCase;
 
-class EngineStateContextText extends PHPUnit_Framework_TestCase
+class EngineStateContextTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @outputBuffering enabled

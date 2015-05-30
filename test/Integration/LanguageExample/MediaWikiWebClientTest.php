@@ -1,5 +1,6 @@
 <?php
-namespace FunTimeCoding\PhpSkeleton\Test\Integration\LanguageExample;
+
+namespace FunTimeCoding\PhpSkeleton\test\Integration\LanguageExample;
 
 use FunTimeCoding\PhpSkeleton\LanguageExample\CurlMediaWikiWebClient;
 use FunTimeCoding\PhpSkeleton\LanguageExample\HttpRequestMediaWikiWebClient;
@@ -21,7 +22,7 @@ class MediaWikiWebClientTest extends PHPUnit_Framework_TestCase
         $clients = array($httpRequestClient, $curlClient);
 
         foreach ($clients as $client) {
-            /** @var MediaWikiWebClient $client */
+            /* @var MediaWikiWebClient $client */
             $client->setUsername($username);
             $client->setPassword($password);
             $client->login();

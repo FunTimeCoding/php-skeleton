@@ -1,4 +1,5 @@
 <?php
+
 namespace FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\Strategy;
 
 class SortContext
@@ -26,6 +27,7 @@ class SortContext
 
     /**
      * @param array $elements
+     *
      * @return array
      */
     public function sort(array $elements)

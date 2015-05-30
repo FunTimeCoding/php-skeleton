@@ -1,4 +1,5 @@
 <?php
+
 namespace FunTimeCoding\PhpSkeleton\LanguageExample;
 
 use Symfony\Component\Yaml\Parser;
@@ -20,6 +21,7 @@ class YamlConfig
 
     /**
      * @param string $path
+     *
      * @return string
      */
     public function expandTilde($path)
@@ -29,15 +31,16 @@ class YamlConfig
             $path = str_replace('~', $info['dir'], $path);
         }
 
-        return (string)$path;
+        return (string) $path;
     }
 
     /**
      * @param string $key
+     *
      * @return string
      */
     public function getValue($key)
     {
-        return (string)$this->config[$key];
+        return (string) $this->config[$key];
     }
 }

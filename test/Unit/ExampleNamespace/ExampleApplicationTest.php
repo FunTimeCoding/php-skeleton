@@ -1,5 +1,6 @@
 <?php
-namespace FunTimeCoding\PhpSkeleton\Test\Unit\ExampleNamespace;
+
+namespace FunTimeCoding\PhpSkeleton\test\Unit\ExampleNamespace;
 
 use FunTimeCoding\PhpSkeleton\ExampleNamespace\ExampleApplication;
 use PHPUnit_Framework_TestCase;
@@ -15,6 +16,6 @@ class ExampleApplicationTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame(0, $app->main());
 
-        $this->expectOutputString('hello world' . PHP_EOL);
+        $this->expectOutputString('hello world'.PHP_EOL);
     }
 }

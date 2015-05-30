@@ -1,4 +1,5 @@
 <?php
+
 namespace FunTimeCoding\PhpSkeleton\LanguageExample;
 
 use Exception;
@@ -22,6 +23,7 @@ interface MediaWikiWebClient
 
     /**
      * @param string $page
+     *
      * @return string
      */
     public function getPage($page);

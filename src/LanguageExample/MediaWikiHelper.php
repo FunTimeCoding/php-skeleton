@@ -1,4 +1,5 @@
 <?php
+
 namespace FunTimeCoding\PhpSkeleton\LanguageExample;
 
 use DOMDocument;
@@ -14,12 +15,13 @@ class MediaWikiHelper
         return array(
             'title' => 'Special:UserLogin',
             'action' => 'submitlogin',
-            'type' => 'login'
+            'type' => 'login',
         );
     }
 
     /**
      * @param string $body
+     *
      * @return DOMXPath
      */
     public function createDomXpathForBody($body)
@@ -32,9 +34,9 @@ class MediaWikiHelper
         return new DOMXPath($dom);
     }
 
-
     /**
      * @param DOMXPath $xpath
+     *
      * @return string
      */
     public function searchTokenInDomXpath(DOMXPath $xpath)
@@ -44,6 +46,7 @@ class MediaWikiHelper
 
     /**
      * @param DOMXPath $xpath
+     *
      * @return string
      */
     public function searchContentInDomXpath(DOMXPath $xpath)

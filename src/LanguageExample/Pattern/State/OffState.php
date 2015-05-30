@@ -1,4 +1,5 @@
 <?php
+
 namespace FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\State;
 
 use Exception;
@@ -16,6 +17,7 @@ class OffState implements EngineStateInterface
 
     /**
      * @param EngineStateContext $context
+     *
      * @throws Exception
      */
     public function stop(EngineStateContext $context)

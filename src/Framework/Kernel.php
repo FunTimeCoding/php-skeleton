@@ -1,4 +1,5 @@
 <?php
+
 namespace FunTimeCoding\PhpSkeleton\Framework;
 
 use Exception;
@@ -25,6 +26,7 @@ class Kernel
 
     /**
      * @return string
+     *
      * @throws Exception
      */
     public function getProjectRoot()
@@ -41,7 +43,7 @@ class Kernel
                 break;
             }
 
-            $currentDirectory = realpath($currentDirectory . DIRECTORY_SEPARATOR . '../');
+            $currentDirectory = realpath($currentDirectory.DIRECTORY_SEPARATOR.'../');
         }
 
         if (!$foundRoot) {
@@ -54,6 +56,7 @@ class Kernel
     /**
      * @param string $fileName
      * @param string $directory
+     *
      * @return bool
      */
     private function isFileInDirectory($fileName, $directory)

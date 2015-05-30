@@ -1,5 +1,6 @@
 <?php
-namespace FunTimeCoding\PhpSkeleton\Test\Unit\LanguageExample;
+
+namespace FunTimeCoding\PhpSkeleton\test\Unit\LanguageExample;
 
 use Exception;
 use FunTimeCoding\PhpSkeleton\LanguageExample\Calculator;

@@ -1,5 +1,6 @@
 <?php
-namespace FunTimeCoding\PhpSkeleton\Test\Unit\LanguageExample;
+
+namespace FunTimeCoding\PhpSkeleton\test\Unit\LanguageExample;
 
 use DOMDocument;
 use DOMXPath;
@@ -22,7 +23,7 @@ class MediaWikiHelperTest extends PHPUnit_Framework_TestCase
     {
         $helper = new MediaWikiHelper();
         $token = 'MyToken';
-        $html = '<form><input name="wpLoginToken" value="' . $token . '"></form>';
+        $html = '<form><input name="wpLoginToken" value="'.$token.'"></form>';
         $dom = new DOMDocument();
         $dom->loadHTML($html);
         $xpath = new DOMXPath($dom);
@@ -36,7 +37,7 @@ class MediaWikiHelperTest extends PHPUnit_Framework_TestCase
     {
         $helper = new MediaWikiHelper();
         $content = 'MyContent';
-        $html = '<div id="mw-content-text">' . $content . '</div>';
+        $html = '<div id="mw-content-text">'.$content.'</div>';
         $dom = new DOMDocument();
         $dom->loadHTML($html);
         $xpath = new DOMXPath($dom);

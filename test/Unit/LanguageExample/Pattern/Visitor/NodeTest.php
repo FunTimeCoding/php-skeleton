@@ -1,5 +1,6 @@
 <?php
-namespace FunTimeCoding\PhpSkeleton\Test\Unit\LanguageExample\Pattern\Visitor;
+
+namespace FunTimeCoding\PhpSkeleton\test\Unit\LanguageExample\Pattern\Visitor;
 
 use FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\Visitor\Node;
 use PHPUnit_Framework_TestCase;

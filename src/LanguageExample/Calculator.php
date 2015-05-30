@@ -1,4 +1,5 @@
 <?php
+
 namespace FunTimeCoding\PhpSkeleton\LanguageExample;
 
 use Exception;
@@ -6,9 +7,10 @@ use Exception;
 class Calculator
 {
     /**
-     * @param int|float|double $augend
-     * @param int|float|double $addend
-     * @return int|float|double sum
+     * @param int|float $augend
+     * @param int|float $addend
+     *
+     * @return int|float sum
      */
     public function add($augend, $addend)
     {
@@ -16,9 +18,11 @@ class Calculator
     }
 
     /**
-     * @param int|float|double $dividend
-     * @param int|float|double $divisor
-     * @return int|float|double quotient
+     * @param int|float $dividend
+     * @param int|float $divisor
+     *
+     * @return int|float quotient
+     *
      * @throws Exception
      */
     public function div($dividend, $divisor)

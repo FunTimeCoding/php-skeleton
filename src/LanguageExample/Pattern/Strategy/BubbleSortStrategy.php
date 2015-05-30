@@ -1,10 +1,12 @@
 <?php
+
 namespace FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\Strategy;
 
 class BubbleSortStrategy implements SortStrategyInterface
 {
     /**
      * @param int[] $elements
+     *
      * @return int[]
      */
     public function sort(array $elements)
@@ -24,8 +26,8 @@ class BubbleSortStrategy implements SortStrategyInterface
 
     /**
      * @param int[] $elements
-     * @param int $leftElement
-     * @param int $rightElement
+     * @param int   $leftElement
+     * @param int   $rightElement
      */
     private function swap(array &$elements, $leftElement, $rightElement)
     {

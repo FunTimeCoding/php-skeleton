@@ -1,11 +1,11 @@
 <?php
+
 namespace FunTimeCoding\PhpSkeleton\LanguageExample\Pattern\Visitor;
 
 interface NodeInterface
 {
     /**
      * @param VisitorInterface $visitor
-     * @return void
      */
     public function accept(VisitorInterface $visitor);
 
