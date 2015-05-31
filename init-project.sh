@@ -18,6 +18,7 @@ echo "Initials: ${INITIALS}"
 
 find bin src test web -type f | xargs sed -i "" "s/ExampleApplication/${CAMEL}/g"
 find bin src test web -type f | xargs sed -i "" "s/ExampleNamespace/${CAMEL}/g"
+find bin src test web composer.json -type f | xargs sed -i "" "s/PhpSkeleton/${CAMEL}/g"
 sed -i "" -e "s/php-skeleton/${DASH}/g" composer.json sonar-project.properties
 sed -i "" -e "s/example-project/${DASH}/g" composer.json
 
