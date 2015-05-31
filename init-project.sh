@@ -16,8 +16,8 @@ echo "Camel: ${CAMEL}"
 echo "Dash: ${DASH}"
 echo "Initials: ${INITIALS}"
 
-sed -i "" -e "s/ExampleApplication/${CAMEL}/g" bin/example-script web/index.php src/ExampleNamespace/ExampleApplication.php test/Unit/ExampleNamespace/ExampleApplicationTest.php
-sed -i "" -e "s/ExampleNamespace/${CAMEL}/g" bin/example-script web/index.php src/ExampleNamespace/ExampleApplication.php test/Unit/ExampleNamespace/ExampleApplicationTest.php
+find bin src test web -type f | xargs sed -i "" "s/ExampleApplication/${CAMEL}/g"
+find bin src test web -type f | xargs sed -i "" "s/ExampleNamespace/${CAMEL}/g"
 sed -i "" -e "s/php-skeleton/${DASH}/g" composer.json sonar-project.properties
 sed -i "" -e "s/example-project/${DASH}/g" composer.json
 
