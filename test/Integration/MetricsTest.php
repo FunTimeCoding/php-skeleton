@@ -3,7 +3,6 @@
 namespace FunTimeCoding\PhpSkeleton\Test\Integration\LanguageExample;
 
 use DirectoryIterator;
-use FunTimeCoding\PhpSkeleton\Framework\Kernel;
 use PHPUnit_Framework_TestCase;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
