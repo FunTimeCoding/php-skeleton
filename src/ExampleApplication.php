@@ -1,6 +1,6 @@
 <?php
 
-namespace FunTimeCoding\PhpSkeleton\ExampleNamespace;
+namespace FunTimeCoding\PhpSkeleton;
 
 class ExampleApplication
 {

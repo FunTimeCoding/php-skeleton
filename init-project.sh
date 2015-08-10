@@ -11,21 +11,15 @@ fi
 
 DASH=$(echo "${CAMEL}" | sed -E 's/([A-Za-z0-9])([A-Z])/\1-\2/g' | tr '[:upper:]' '[:lower:]')
 INITIALS=$(echo "${CAMEL}" | sed 's/\([A-Z]\)[a-z]*/\1/g' | tr '[:upper:]' '[:lower:]' )
-
-echo "Camel: ${CAMEL}"
-echo "Dash: ${DASH}"
-echo "Initials: ${INITIALS}"
-
+echo "CAMEL: ${CAMEL}"
+echo "DASH: ${DASH}"
+echo "INITIALS: ${INITIALS}"
 find bin src test web -type f | xargs sed -i "" "s/ExampleApplication/${CAMEL}/g"
-find bin src test web -type f | xargs sed -i "" "s/ExampleNamespace/${CAMEL}/g"
+find bin src test web -type f | xargs sed -i "" "s/${CAMEL}/g"
 find bin src test web composer.json README.md -type f | xargs sed -i "" "s/PhpSkeleton/${CAMEL}/g"
 sed -i "" -e "s/php-skeleton/${DASH}/g" composer.json sonar-project.properties
 sed -i "" -e "s/example-project/${DASH}/g" composer.json
-
-git mv src/ExampleNamespace/ExampleApplication.php "src/ExampleNamespace/${CAMEL}.php"
-git mv test/Unit/ExampleNamespace/ExampleApplicationTest.php "test/Unit/ExampleNamespace/${CAMEL}Test.php"
-git mv src/ExampleNamespace "src/${CAMEL}"
-git mv test/Unit/ExampleNamespace "test/Unit/${CAMEL}"
+git mv src/ExampleApplication.php "src/${CAMEL}.php"
+git mv test/Unit/ExampleApplicationTest.php "test/Unit/${CAMEL}Test.php"
 git mv bin/example-script "bin/${INITIALS}"
-
 echo "Done. Files were edited and moved using git. Review those changes. You may also delete this script now."

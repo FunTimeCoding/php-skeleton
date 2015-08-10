@@ -1,8 +1,8 @@
 <?php
 
-namespace FunTimeCoding\PhpSkeleton\Test\Unit\ExampleNamespace;
+namespace FunTimeCoding\PhpSkeleton\Test\Unit;
 
-use FunTimeCoding\PhpSkeleton\ExampleNamespace\ExampleApplication;
+use FunTimeCoding\PhpSkeleton\ExampleApplication;
 use PHPUnit_Framework_TestCase;
 
 class ExampleApplicationTest extends PHPUnit_Framework_TestCase
