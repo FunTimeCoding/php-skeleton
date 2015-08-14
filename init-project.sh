@@ -28,5 +28,6 @@ find . \( -not -path '*/.git/*' -and -not -path '*/.idea/*' -and -not -path '*/b
 git mv src/PhpSkeleton.php "src/${CAMEL}.php"
 git mv test/Unit/PhpSkeletonTest.php "test/Unit/${CAMEL}Test.php"
 git mv bin/ps "bin/${INITIALS}"
+composer dump-autoload
 rm init-project.sh
 echo "Done. Files were edited and moved using git. Review those changes."
