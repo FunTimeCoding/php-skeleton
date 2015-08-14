@@ -23,8 +23,8 @@ INITIALS=$(echo "${CAMEL}" | ${SED} 's/\([A-Z]\)[a-z]*/\1/g' | tr '[:upper:]' '[
 echo "CAMEL: ${CAMEL}"
 echo "DASH: ${DASH}"
 echo "INITIALS: ${INITIALS}"
-find . \( -not -path '*/.git/*' -and -not -path '*/.idea/*' -and -not -path '*/build/*' -and -not -path '*/vendor/*' \) -type f -exec sh -c '${1} -i -e "s/PhpSkeleton/${2}/g" ${3}' '_' "${SED}" "${CAMEL}" '{}' \;
-find . \( -not -path '*/.git/*' -and -not -path '*/.idea/*' -and -not -path '*/build/*' -and -not -path '*/vendor/*' \) -type f -exec sh -c '${1} -i -e "s/php-skeleton/${2}/g" ${3}' '_' "${SED}" "${DASH}" '{}' \;
+find -E . -type f ! -regex '^.*/(build|vendor|\.git|\.idea)/.*$' -exec sh -c '${1} -i -e "s/PhpSkeleton/${2}/g" ${3}' '_' "${SED}" "${CAMEL}" '{}' \;
+find -E . -type f ! -regex '^.*/(build|vendor|\.git|\.idea)/.*$' -exec sh -c '${1} -i -e "s/php-skeleton/${2}/g" ${3}' '_' "${SED}" "${DASH}" '{}' \;
 git mv src/PhpSkeleton.php "src/${CAMEL}.php"
 git mv test/Unit/PhpSkeletonTest.php "test/Unit/${CAMEL}Test.php"
 git mv bin/ps "bin/${INITIALS}"
