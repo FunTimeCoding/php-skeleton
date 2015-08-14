@@ -23,9 +23,10 @@ INITIALS=$(echo "${CAMEL}" | ${SED} 's/\([A-Z]\)[a-z]*/\1/g' | tr '[:upper:]' '[
 echo "CAMEL: ${CAMEL}"
 echo "DASH: ${DASH}"
 echo "INITIALS: ${INITIALS}"
-find bin src test web -type f -exec sh -c "${SED} -i -e 's/PhpSkeleton/${CAMEL}/g' ${1}" '_' '{}' \;
+find bin src test web -type f -exec sh -c '${1} -i -e "s/PhpSkeleton/${2}/g" ${3}' '_' "${SED}" "${CAMEL}" '{}' \;
 ${SED} -i -e "s/php-skeleton/${DASH}/g" composer.json sonar-project.properties
 git mv src/PhpSkeleton.php "src/${CAMEL}.php"
 git mv test/Unit/PhpSkeletonTest.php "test/Unit/${CAMEL}Test.php"
 git mv bin/ps "bin/${INITIALS}"
-echo "Done. Files were edited and moved using git. Review those changes. You may also delete this script now."
+rm init-project.sh
+echo "Done. Files were edited and moved using git. Review those changes."
