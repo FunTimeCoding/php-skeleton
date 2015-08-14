@@ -5,7 +5,7 @@
 CAMEL=$(echo "${1}" | grep -E '^([A-Z][a-z0-9]+){2,}$') || CAMEL=""
 
 if [ "${CAMEL}" = "" ]; then
-    echo "Usage: ${0} MyUpperCamelCaseProjectName"
+    echo "Usage: ${0} UpperCamelCaseName"
 
     exit 1
 fi
