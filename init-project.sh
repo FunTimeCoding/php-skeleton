@@ -23,8 +23,7 @@ INITIALS=$(echo "${CAMEL}" | ${SED} 's/\([A-Z]\)[a-z]*/\1/g' | tr '[:upper:]' '[
 echo "CAMEL: ${CAMEL}"
 echo "DASH: ${DASH}"
 echo "INITIALS: ${INITIALS}"
-find -E . -type f ! -regex '^.*/(build|vendor|\.git|\.idea)/.*$' -exec sh -c '${1} -i -e "s/PhpSkeleton/${2}/g" ${3}' '_' "${SED}" "${CAMEL}" '{}' \;
-find -E . -type f ! -regex '^.*/(build|vendor|\.git|\.idea)/.*$' -exec sh -c '${1} -i -e "s/php-skeleton/${2}/g" ${3}' '_' "${SED}" "${DASH}" '{}' \;
+find -E . -type f ! -regex '^.*/(build|vendor|\.git|\.idea)/.*$' -exec sh -c '${1} -i -e "s/PhpSkeleton/${2}/g" -e "s/php-skeleton/${3}/g" ${4}' '_' "${SED}" "${CAMEL}" "${DASH}" '{}' \;
 git mv src/PhpSkeleton.php "src/${CAMEL}.php"
 git mv test/Unit/PhpSkeletonTest.php "test/Unit/${CAMEL}Test.php"
 git mv bin/ps "bin/${INITIALS}"
