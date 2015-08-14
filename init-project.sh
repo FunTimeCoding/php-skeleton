@@ -6,20 +6,26 @@ CAMEL=$(echo "${1}" | grep -E '^([A-Z][a-z0-9]+){2,}$') || CAMEL=""
 
 if [ "${CAMEL}" = "" ]; then
     echo "Usage: ${0} MyUpperCamelCaseProjectName"
+
     exit 1
 fi
 
-DASH=$(echo "${CAMEL}" | sed -E 's/([A-Za-z0-9])([A-Z])/\1-\2/g' | tr '[:upper:]' '[:lower:]')
-INITIALS=$(echo "${CAMEL}" | sed 's/\([A-Z]\)[a-z]*/\1/g' | tr '[:upper:]' '[:lower:]' )
+OS=$(uname)
+
+if [ "${OS}" = "Darwin" ]; then
+    SED="gsed"
+else
+    SED="sed"
+fi
+
+DASH=$(echo "${CAMEL}" | ${SED} -E 's/([A-Za-z0-9])([A-Z])/\1-\2/g' | tr '[:upper:]' '[:lower:]')
+INITIALS=$(echo "${CAMEL}" | ${SED} 's/\([A-Z]\)[a-z]*/\1/g' | tr '[:upper:]' '[:lower:]' )
 echo "CAMEL: ${CAMEL}"
 echo "DASH: ${DASH}"
 echo "INITIALS: ${INITIALS}"
-find bin src test web -type f | xargs sed -i "" "s/ExampleApplication/${CAMEL}/g"
-find bin src test web -type f | xargs sed -i "" "s/${CAMEL}/g"
-find bin src test web composer.json README.md -type f | xargs sed -i "" "s/PhpSkeleton/${CAMEL}/g"
-sed -i "" -e "s/php-skeleton/${DASH}/g" composer.json sonar-project.properties
-sed -i "" -e "s/example-project/${DASH}/g" composer.json
-git mv src/ExampleApplication.php "src/${CAMEL}.php"
-git mv test/Unit/ExampleApplicationTest.php "test/Unit/${CAMEL}Test.php"
-git mv bin/example-script "bin/${INITIALS}"
+find bin src test web -type f -exec sh -c "${SED} -i -e 's/PhpSkeleton/${CAMEL}/g' ${1}" '_' '{}' \;
+${SED} -i -e "s/php-skeleton/${DASH}/g" composer.json sonar-project.properties
+git mv src/PhpSkeleton.php "src/${CAMEL}.php"
+git mv test/Unit/PhpSkeletonTest.php "test/Unit/${CAMEL}Test.php"
+git mv bin/ps "bin/${INITIALS}"
 echo "Done. Files were edited and moved using git. Review those changes. You may also delete this script now."

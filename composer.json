@@ -1,6 +1,6 @@
 {
     "name": "funtimecoding/php-skeleton",
-    "description": "Stub description for example-project.",
+    "description": "Stub description for php-skeleton.",
     "license": "MIT",
     "autoload": {
         "psr-4": {"FunTimeCoding\\PhpSkeleton\\": "src/"}

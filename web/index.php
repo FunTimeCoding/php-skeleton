@@ -2,9 +2,9 @@
 
 namespace FunTimeCoding\PhpSkeleton\Web;
 
-use FunTimeCoding\PhpSkeleton\ExampleNamespace\ExampleApplication;
+use FunTimeCoding\PhpSkeleton\PhpSkeleton;
 
 require_once realpath(__DIR__).'/../vendor/autoload.php';
 
-$application = new ExampleApplication();
+$application = new PhpSkeleton();
 $application->main();

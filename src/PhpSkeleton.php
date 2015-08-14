@@ -2,14 +2,14 @@
 
 namespace FunTimeCoding\PhpSkeleton;
 
-class ExampleApplication
+class PhpSkeleton
 {
     /**
      * @return int
      */
     public function main()
     {
-        echo 'hello world'.PHP_EOL;
+        echo 'Hello friend.'.PHP_EOL;
 
         return 0;
     }
