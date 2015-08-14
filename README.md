@@ -6,7 +6,7 @@
 Run scripts.
 
 ```sh
-bin/example-script
+bin/ps
 ```
 
 
