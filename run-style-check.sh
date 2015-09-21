@@ -63,7 +63,7 @@ fi
 echo ""
 
 if [ "$(command -v shellcheck || true)" = "" ]; then
-    "Skip ShellCheck because it is not installed."
+    echo "Skip ShellCheck because it is not installed."
 else
     echo "Run ShellCheck."
     find . -name '*.sh' -and -not -path '*/vendor/*' -exec sh -c 'shellcheck ${1} || true' '_' '{}' \;
