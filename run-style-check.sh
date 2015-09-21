@@ -11,7 +11,7 @@ fi
 #     12345678901234567890123456789012345678901234567890123456789012345678901234567890
 echo "================================================================================"
 echo ""
-echo "Running Mess Detector. Documentation: http://phpmd.org/documentation/index.html"
+echo "Run Mess Detector. Documentation: http://phpmd.org/documentation/index.html"
 CODE="0"
 
 if [ "${CI_MODE}" = "1" ]; then
@@ -31,7 +31,7 @@ fi
 echo ""
 echo "================================================================================"
 echo ""
-echo "Running Code Sniffer."
+echo "Run Code Sniffer."
 
 if [ "${CI_MODE}" = "1" ]; then
     vendor/bin/phpcs --report=checkstyle --report-file=build/log/checkstyle-result.xml --standard=PSR2 src test
@@ -61,13 +61,19 @@ if [ "${CI_MODE}" = "1" ]; then
 fi
 
 echo ""
-echo "Running ShellCheck."
-find . -name '*.sh' -and -not -path '*/vendor/*' -exec sh -c 'shellcheck ${1} || true' '_' '{}' \;
+
+if [ "$(command -v shellcheck || true)" = "" ]; then
+    "Skip ShellCheck because it is not installed."
+else
+    echo "Run ShellCheck."
+    find . -name '*.sh' -and -not -path '*/vendor/*' -exec sh -c 'shellcheck ${1} || true' '_' '{}' \;
+fi
+
 echo ""
 echo "================================================================================"
 echo ""
 
-echo "Running PHP-CS-Fixer."
+echo "Run PHP-CS-Fixer."
 if [ "${CI_MODE}" = "1" ]; then
     vendor/bin/php-cs-fixer fix . --dry-run | tee build/log/php-cs-fixer.txt
 else
