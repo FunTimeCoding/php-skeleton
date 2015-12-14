@@ -23,7 +23,7 @@ fi
 if [ "${CODE}" = "2" ]; then
     echo "Violations occurred."
 elif [ "${CODE}" = "1" ]; then
-    echo "An error occured."
+    echo "An error occurred."
 else
     echo "No mess detected."
 fi
