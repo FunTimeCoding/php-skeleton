@@ -11,8 +11,7 @@ class MetricsTest extends PHPUnit_Framework_TestCase
 {
     public function testInheritanceCapitalization()
     {
-        // Iterate over all *Test.php and find 'PHPUnit_Framework_Testcase', which do not get detected by phploc.
-        // Note the lower case c in Testcase. It should be 'PHPUnit_Framework_TestCase'.
+        // Find wrongly spelled TestCase with a lower capital c. Causes problems with phploc.
 
         $testDirectory = realpath(__DIR__.DIRECTORY_SEPARATOR.'..');
         $this->assertStringStartsWith('/', $testDirectory);
