@@ -1,7 +1,7 @@
 # PhpSkeleton
 
 
-## Operation
+## Usage
 
 Run scripts.
 
