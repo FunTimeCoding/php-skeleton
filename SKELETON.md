@@ -8,7 +8,7 @@ This document explains project skeleton conventions.
 Unified directories for all projects. Create them only if necessary.
 
 * bin - Script entry points.
-* lib - The actual project code.
+* src - Project code written in PHP.
 * test - Unit tests for the project code.
 * doc - Documentation files.
 * build - Files, executables and reports generated during build.
