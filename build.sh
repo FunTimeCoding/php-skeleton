@@ -52,7 +52,7 @@ COMPOSER_BIN="composer.phar"
 COMPOSER_PATH="${WORKSPACE}/${COMPOSER_BIN}"
 
 if [ ! -f "${COMPOSER_PATH}" ]; then
-    curl -sS https://getcomposer.org/installer | php -- --install-dir="${WORKSPACE}" --filename="${COMPOSER_BIN}"
+    curl -sS https://getcomposer.org/installer | php -- --install-dir="${WORKSPACE}" --filename="${COMPOSER_BIN}" --disable-tls
 fi
 
 "${COMPOSER_PATH}" selfupdate
