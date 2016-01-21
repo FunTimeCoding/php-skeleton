@@ -24,6 +24,7 @@ DASH=$(echo "${CAMEL}" | ${SED} -E 's/([A-Za-z0-9])([A-Z])/\1-\2/g' | tr '[:uppe
 INITIALS=$(echo "${CAMEL}" | ${SED} 's/\([A-Z]\)[a-z]*/\1/g' | tr '[:upper:]' '[:lower:]')
 echo "DASH: ${DASH}"
 echo "INITIALS: ${INITIALS}"
+# shellcheck disable=SC2016
 ${FIND} . -type f -regextype posix-extended ! -regex '^.*/(build|vendor|\.git|\.idea)/.*$' -exec sh -c '${1} -i -e "s/PhpSkeleton/${2}/g" -e "s/php-skeleton/${3}/g" -e "s/bin\/ps/bin\/${4}/g" ${5}' '_' "${SED}" "${CAMEL}" "${DASH}" "${INITIALS}" '{}' \;
 git mv src/PhpSkeleton.php "src/${CAMEL}.php"
 git mv test/Unit/PhpSkeletonTest.php "test/Unit/${CAMEL}Test.php"
