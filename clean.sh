@@ -1,13 +1,12 @@
 #!/bin/sh -e
 
-echo "Deleting cached and generated files."
-DIR=$(dirname "${0}")
-SCRIPT_DIR=$(cd "${DIR}"; pwd)
+DIRECTORY=$(dirname "${0}")
+SCRIPT_DIRECTORY=$(cd "${DIRECTORY}"; pwd)
 FILES="build"
 
 for FILE in ${FILES}; do
     if [ -e "${FILE}" ]; then
         echo "rm -rf ${FILE}"
-        rm -rf "${SCRIPT_DIR:?}/${FILE}"
+        rm -rf "${SCRIPT_DIRECTORY:?}/${FILE}"
     fi
 done
