@@ -1,5 +1,11 @@
 #!/bin/sh -e
 
+if [ "$(command -v shellcheck || true)" = "" ]; then
+    echo "Command not found: shellcheck"
+
+    exit 1
+fi
+
 CONTINUOUS_INTEGRATION_MODE=false
 FIX_STYLE=false
 
@@ -67,11 +73,12 @@ if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
 fi
 
 echo
+echo "Run ShellCheck."
 
-if [ "$(command -v shellcheck || true)" = "" ]; then
-    echo "Skip ShellCheck because it is not installed."
+if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
+    # shellcheck disable=SC2016
+    find . -name '*.sh' -and -not -path '*/vendor/*' -exec sh -c 'shellcheck ${1} || true' '_' '{}' \; | tee build/log/shellcheck.txt
 else
-    echo "Run ShellCheck."
     # shellcheck disable=SC2016
     find . -name '*.sh' -and -not -path '*/vendor/*' -exec sh -c 'shellcheck ${1} || true' '_' '{}' \;
 fi
