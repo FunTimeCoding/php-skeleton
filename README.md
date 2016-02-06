@@ -1,18 +1,21 @@
 # PhpSkeleton
 
-
 ## Usage
 
-Run scripts.
+This section explains how to use this project.
+
+Run the main entry point program.
 
 ```sh
 bin/ps
 ```
 
 
-## Testing
+## Development
 
-Install test tools.
+This section explains how to use scripts that are intended to ease the development of this project.
+
+Install develoment tools.
 
 ```sh
 curl -sS https://getcomposer.org/installer | php
@@ -27,7 +30,7 @@ Run code style check, metrics and tests.
 ./run-tests.sh
 ```
 
-Build project like Jenkins.
+Build the project like Jenkins.
 
 ```sh
 ./build.sh
