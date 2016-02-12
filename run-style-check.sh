@@ -32,8 +32,10 @@ else
     vendor/bin/phpmd src,test text .phpmd.xml || RETURN_CODE="${?}"
 fi
 
+echo
+
 if [ "${RETURN_CODE}" = "2" ]; then
-    echo "Violations occurred."
+    echo "Violations detected."
 elif [ "${RETURN_CODE}" = "1" ]; then
     echo "An error occurred."
 else
@@ -44,11 +46,18 @@ echo
 echo "================================================================================"
 echo
 echo "Run Code Sniffer."
+RETURN_CODE="0"
 
 if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
-    vendor/bin/phpcs --report=checkstyle --report-file=build/log/checkstyle-result.xml --standard=PSR2 src test
+    vendor/bin/phpcs --report=checkstyle --report-file=build/log/checkstyle-result.xml --standard=PSR2 src test || RETURN_CODE="${?}"
 else
-    vendor/bin/phpcs --standard=PSR2 src test
+    vendor/bin/phpcs --standard=PSR2 src test || RETURN_CODE="${?}"
+fi
+
+if [ "${RETURN_CODE}" = "0" ]; then
+    echo "No smells detected."
+else
+    echo "Code smells detected."
 fi
 
 echo
