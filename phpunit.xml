@@ -17,8 +17,8 @@
         </testsuite>
     </testsuites>
     <filter>
-        <blacklist>
-            <directory suffix="Test.php">test</directory>
-        </blacklist>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src</directory>
+        </whitelist>
     </filter>
 </phpunit>
