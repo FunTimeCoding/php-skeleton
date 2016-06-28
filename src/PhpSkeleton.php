@@ -1,5 +1,4 @@
 <?php
-
 namespace FunTimeCoding\PhpSkeleton;
 
 class PhpSkeleton

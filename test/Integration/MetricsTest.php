@@ -1,5 +1,4 @@
 <?php
-
 namespace FunTimeCoding\PhpSkeleton\Test\Integration\LanguageExample;
 
 use DirectoryIterator;

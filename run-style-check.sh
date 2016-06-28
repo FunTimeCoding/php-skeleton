@@ -99,10 +99,10 @@ echo "Dry-run PHP-CS-Fixer."
 
 if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
     FOUND_CONCERNS=false
-    vendor/bin/php-cs-fixer fix . --dry-run | tee build/log/php-cs-fixer.txt || FOUND_CONCERNS=true
+    vendor/bin/php-cs-fixer fix . --dry-run --config-file .phpcs.php | tee build/log/php-cs-fixer.txt || FOUND_CONCERNS=true
 else
     FOUND_CONCERNS=false
-    vendor/bin/php-cs-fixer fix . --dry-run || FOUND_CONCERNS=true
+    vendor/bin/php-cs-fixer fix . --dry-run --config-file .phpcs.php || FOUND_CONCERNS=true
 
     if [ "${FOUND_CONCERNS}" = true ]; then
         if [ "${FIX_STYLE}" = true ]; then

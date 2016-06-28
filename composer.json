@@ -15,6 +15,6 @@
         "pdepend/pdepend": "2.*",
         "phploc/phploc": "2.*",
         "phpmd/phpmd": "2.*",
-        "fabpot/php-cs-fixer": "1.*"
+        "friendsofphp/php-cs-fixer": "1.*"
     }
 }
