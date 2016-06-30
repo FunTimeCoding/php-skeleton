@@ -107,7 +107,7 @@ else
     if [ "${FOUND_CONCERNS}" = true ]; then
         if [ "${FIX_STYLE}" = true ]; then
             echo "Now really run PHP-CS-Fixer."
-            vendor/bin/php-cs-fixer fix . || true
+            vendor/bin/php-cs-fixer fix . --config-file .phpcs.php || true
         fi
     fi
 fi
