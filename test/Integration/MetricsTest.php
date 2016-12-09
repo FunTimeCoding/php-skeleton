@@ -16,7 +16,7 @@ class MetricsTest extends PHPUnit_Framework_TestCase
         $this->assertStringStartsWith('/', $testDirectory);
         $this->assertEquals('test', basename($testDirectory));
 
-        $files = array();
+        $files = [];
         $directoryIterator = new RecursiveDirectoryIterator($testDirectory, RecursiveDirectoryIterator::SKIP_DOTS);
         $iteratorIterator = new RecursiveIteratorIterator($directoryIterator, RecursiveIteratorIterator::SELF_FIRST);
         foreach ($iteratorIterator as $item) {
