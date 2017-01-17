@@ -38,7 +38,7 @@ cp sonar-project.properties "${TARGET_PROJECT}"
 cp composer.json "${TARGET_PROJECT}"
 cp phpunit.xml "${TARGET_PROJECT}"
 cp .gitignore "${TARGET_PROJECT}"
-cp .phpcs.php "${TARGET_PROJECT}"
+cp .php_cs.php "${TARGET_PROJECT}"
 cp .phpmd.xml "${TARGET_PROJECT}"
 cp .phpunit.ci.xml "${TARGET_PROJECT}"
 cd "${TARGET_PROJECT}" || exit 1
