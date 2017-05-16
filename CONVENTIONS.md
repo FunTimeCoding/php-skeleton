@@ -36,14 +36,21 @@ Unified files and scripts for all projects. All mentioned scripts have the argum
 
 ### Camel Case Convention
 
-Upper case every word, no separation of words.
-Keep abbreviations capitalized.
-Streamline names with irregular capital letters to have only one at the beginning.
+Upper case every word.
+No spaces between words.
+Lowercase abbreviations.
+Prefer full words over abbreviations.
+Normalize spelling by breaking down conjoined words.
+Replace special characters and digits for letters.
 
 ```
-Camel Case Convention, camel case convention => CamelCaseConvention
-XML Library => XMLLibrary
-GitLab => Gitlab
+Camel Case Convention => CamelCaseConvention
+camel case convention => CamelCaseConvention
+XML Library => XmlLibrary
+XMLLibrary => XmlLibrary
+MultiwordName => MultiWordName
+multiwordname => MultiWordName
+$pecialN4me => SpecialName
 ```
 
 
