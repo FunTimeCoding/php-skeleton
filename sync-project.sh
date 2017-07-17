@@ -34,6 +34,7 @@ fi
 
 cp ./*.md "${TARGET_PROJECT}"
 cp ./*.sh "${TARGET_PROJECT}"
+cp dict/*.dic "${TARGET_PROJECT}/dict"
 cp sonar-project.properties "${TARGET_PROJECT}"
 cp composer.json "${TARGET_PROJECT}"
 cp phpunit.xml "${TARGET_PROJECT}"

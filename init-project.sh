@@ -10,14 +10,14 @@ if [ "${CAMEL}" = "" ]; then
     exit 1
 fi
 
-OPERATING_SYSTEM=$(uname)
+SYSTEM=$(uname)
 
-if [ "${OPERATING_SYSTEM}" = "Linux" ]; then
-    SED="sed"
-    FIND="find"
+if [ "${SYSTEM}" = Darwin ]; then
+    SED=gsed
+    FIND=gfind
 else
-    SED="gsed"
-    FIND="gfind"
+    SED=sed
+    FIND=find
 fi
 
 DASH=$(echo "${CAMEL}" | ${SED} -E 's/([A-Za-z0-9])([A-Z])/\1-\2/g' | tr '[:upper:]' '[:lower:]')
