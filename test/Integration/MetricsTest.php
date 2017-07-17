@@ -2,11 +2,11 @@
 namespace FunTimeCoding\PhpSkeleton\Test\Integration\LanguageExample;
 
 use DirectoryIterator;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
-class MetricsTest extends PHPUnit_Framework_TestCase
+class MetricsTest extends TestCase
 {
     public function testInheritanceCapitalization()
     {

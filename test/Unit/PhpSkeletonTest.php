@@ -2,9 +2,9 @@
 namespace FunTimeCoding\PhpSkeleton\Test\Unit;
 
 use FunTimeCoding\PhpSkeleton\PhpSkeleton;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class PhpSkeletonTest extends PHPUnit_Framework_TestCase
+class PhpSkeletonTest extends TestCase
 {
     /**
      * @outputBuffering enabled

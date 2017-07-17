@@ -3,9 +3,9 @@ namespace FunTimeCoding\PhpSkeleton\Test\Unit\LanguageExample;
 
 use Exception;
 use FunTimeCoding\PhpSkeleton\LanguageExample\Calculator;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class CalculatorTest extends PHPUnit_Framework_TestCase
+class CalculatorTest extends TestCase
 {
     public function testAddPositiveNumbers()
     {
