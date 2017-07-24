@@ -28,5 +28,6 @@ ${FIND} . -type f -regextype posix-extended ! -regex '^.*/(build|vendor|\.git|\.
 git mv src/PhpSkeleton.php src/"${CAMEL}".php
 git mv test/Unit/PhpSkeletonTest.php test/Unit/"${CAMEL}"Test.php
 git mv bin/ps bin/"${INITIALS}"
-./composer.phar dump-autoload
+# TODO: What if composer.phar is not downloaded yet?
+#./composer.phar dump-autoload
 echo "Done. Files were edited and moved. Review those changes."
