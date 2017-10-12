@@ -1,11 +1,5 @@
 #!/bin/sh -e
 
-if [ "$(command -v shellcheck || true)" = "" ]; then
-    echo "Command not found: shellcheck"
-
-    exit 1
-fi
-
 CONTINUOUS_INTEGRATION_MODE=false
 
 if [ "${1}" = --ci-mode ]; then

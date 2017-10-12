@@ -1,51 +1,52 @@
 #!/bin/sh -e
 
-TARGET_PROJECT="${1}"
+TARGET="${1}"
 
-if [ "${TARGET_PROJECT}" = "" ]; then
-    echo "Usage: ${0} TARGET_PROJECT"
-
-    exit 1
-fi
-
-if [ ! -d "${TARGET_PROJECT}" ]; then
-    echo "Target directory ${TARGET_PROJECT} does not exist."
+if [ "${TARGET}" = "" ]; then
+    echo "Usage: ${0} TARGET"
 
     exit 1
 fi
 
-CAMEL=$(head -n1 "${TARGET_PROJECT}"/README.md | awk '{ print $2 }' | grep -E '^([A-Z]+[a-z0-9]*){2,}$') || CAMEL=""
+if [ ! -d "${TARGET}" ]; then
+    echo "Target directory ${TARGET} does not exist."
+
+    exit 1
+fi
+
+CAMEL=$(head -n1 "${TARGET}/README.md" | awk '{ print $2 }' | grep --extended-regexp '^([A-Z]+[a-z0-9]*){2,}$') || CAMEL=""
 
 if [ "${CAMEL}" = "" ]; then
-    echo "Could not determine the projects name in ${TARGET_PROJECT}."
+    echo "Could not determine the projects name in ${TARGET}."
 
     exit 1
 fi
 
-OPERATING_SYSTEM=$(uname)
+SYSTEM=$(uname)
 
-if [ "${OPERATING_SYSTEM}" = "Linux" ]; then
-    FIND="find"
-    SED="sed"
+if [ "${SYSTEM}" = Darwin ]; then
+    FIND=gfind
+    SED=gsed
 else
-    FIND="gfind"
-    SED="gsed"
+    FIND=find
+    SED=sed
 fi
 
-cp ./*.md "${TARGET_PROJECT}"
-cp ./*.sh "${TARGET_PROJECT}"
-cp dict/*.dic "${TARGET_PROJECT}/dict"
-cp sonar-project.properties "${TARGET_PROJECT}"
-cp composer.json "${TARGET_PROJECT}"
-cp phpunit.xml "${TARGET_PROJECT}"
-cp .gitignore "${TARGET_PROJECT}"
-cp .php_cs.php "${TARGET_PROJECT}"
-cp .phpmd.xml "${TARGET_PROJECT}"
-cp .phpunit.ci.xml "${TARGET_PROJECT}"
-cd "${TARGET_PROJECT}" || exit 1
-DASH=$(echo "${CAMEL}" | ${SED} -E 's/([A-Za-z0-9])([A-Z])/\1-\2/g' | tr '[:upper:]' '[:lower:]')
+cp ./*.md "${TARGET}"
+cp ./*.sh "${TARGET}"
+cp dict/*.dic "${TARGET}/dict"
+cp doc/*.md "${TARGET}/doc"
+cp sonar-project.properties "${TARGET}"
+cp composer.json "${TARGET}"
+cp phpunit.xml "${TARGET}"
+cp .gitignore "${TARGET}"
+cp .php_cs.php "${TARGET}"
+cp .phpmd.xml "${TARGET}"
+cp .phpunit.ci.xml "${TARGET}"
+cd "${TARGET}" || exit 1
+DASH=$(echo "${CAMEL}" | ${SED} --regexp-extended 's/([A-Za-z0-9])([A-Z])/\1-\2/g' | tr '[:upper:]' '[:lower:]')
 INITIALS=$(echo "${CAMEL}" | ${SED} 's/\([A-Z]\)[a-z]*/\1/g' | tr '[:upper:]' '[:lower:]')
 rm init-project.sh sync-project.sh
 # shellcheck disable=SC2016
-${FIND} . -type f -regextype posix-extended ! -regex '^.*/(build|vendor|\.git|\.idea)/.*$' -exec sh -c '${1} -i -e "s/PhpSkeleton/${2}/g" -e "s/php-skeleton/${3}/g" -e "s/bin\/ps/bin\/${4}/g" "${5}"' '_' "${SED}" "${CAMEL}" "${DASH}" "${INITIALS}" '{}' \;
-echo "Done. Files were copied to ${TARGET_PROJECT} and modified. Review those changes."
+${FIND} . -type f -regextype posix-extended ! -regex '^.*/(build|vendor|\.git|\.idea)/.*$' -exec sh -c '${1} --in-place --expression "s/PhpSkeleton/${2}/g" --expression "s/php-skeleton/${3}/g" --expression "s/bin\/ps/bin\/${4}/g" "${5}"' '_' "${SED}" "${CAMEL}" "${DASH}" "${INITIALS}" '{}' \;
+echo "Done. Files were copied to ${TARGET} and modified. Review those changes."

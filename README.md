@@ -18,16 +18,15 @@ This section explains how to use scripts that are intended to ease the developme
 Install development tools.
 
 ```sh
-curl -sS https://getcomposer.org/installer | php
-./composer.phar install
+composer install
 ```
 
 Run code style check, metrics and tests.
 
 ```sh
-./run-style-check.sh
-./run-metrics.sh
-./run-tests.sh
+./style-check.sh
+./metrics.sh
+./tests.sh
 ```
 
 Build the project like Jenkins.
