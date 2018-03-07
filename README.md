@@ -24,15 +24,15 @@ composer install
 Run code style check, metrics and tests.
 
 ```sh
-./style-check.sh
-./metrics.sh
-./tests.sh
+script/style-check.sh
+script/metrics.sh
+script/test.sh
 ```
 
 Build the project like Jenkins.
 
 ```sh
-./build.sh
+script/build.sh
 ```
 
 

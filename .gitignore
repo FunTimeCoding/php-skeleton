@@ -1,3 +1,4 @@
 build
 vendor
+tmp
 .php_cs.cache

@@ -8,17 +8,24 @@ use RecursiveIteratorIterator;
 
 class MetricsTest extends TestCase
 {
+    /**
+     * Find wrongly capitalized TestCase with a lower case c, which causes problems with phploc.
+     */
     public function testInheritanceCapitalization()
     {
-        // Find wrongly spelled TestCase with a lower capital c. Causes problems with phploc.
-
-        $testDirectory = realpath(__DIR__.DIRECTORY_SEPARATOR.'..');
+        $testDirectory = realpath(__DIR__ . DIRECTORY_SEPARATOR . '..');
         $this->assertStringStartsWith('/', $testDirectory);
         $this->assertEquals('test', basename($testDirectory));
-
         $files = [];
-        $directoryIterator = new RecursiveDirectoryIterator($testDirectory, RecursiveDirectoryIterator::SKIP_DOTS);
-        $iteratorIterator = new RecursiveIteratorIterator($directoryIterator, RecursiveIteratorIterator::SELF_FIRST);
+        $directoryIterator = new RecursiveDirectoryIterator(
+            $testDirectory,
+            RecursiveDirectoryIterator::SKIP_DOTS
+        );
+        $iteratorIterator = new RecursiveIteratorIterator(
+            $directoryIterator,
+            RecursiveIteratorIterator::SELF_FIRST
+        );
+
         foreach ($iteratorIterator as $item) {
             /** @var DirectoryIterator $item */
             if ($item->isFile()) {
@@ -32,25 +39,25 @@ class MetricsTest extends TestCase
         foreach ($files as $file) {
             $handle = fopen($file, 'r');
 
-            if ($handle) {
+            if ($handle != false) {
                 $found = false;
+
                 while (($line = fgets($handle)) !== false) {
                     if ($this->startsWith($line, 'class ')) {
                         $found = true;
-                        $line = trim($line);
-                        $this->assertStringEndsWith(' extends PHPUnit_Framework_TestCase', $line);
+                        $this->assertStringEndsWith(' extends TestCase', trim($line));
 
                         break;
                     }
                 }
 
-                if (!$found) {
-                    $this->fail('No line starts with \'class\' in '.$file);
+                if ($found == false) {
+                    $this->fail('No line starts with \'class\' in ' . $file);
                 }
 
                 fclose($handle);
             } else {
-                $this->fail('Could not read '.$file);
+                $this->fail('Could not read ' . $file);
             }
         }
     }
@@ -68,8 +75,6 @@ class MetricsTest extends TestCase
 
     public function startsWith($haystack, $needle)
     {
-        $length = strlen($needle);
-
-        return substr($haystack, 0, $length) === $needle;
+        return substr($haystack, 0, strlen($needle)) === $needle;
     }
 }
