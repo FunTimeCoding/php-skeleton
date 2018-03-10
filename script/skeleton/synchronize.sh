@@ -33,7 +33,6 @@ else
 fi
 
 cp ./*.md "${TARGET}"
-cp ./*.py "${TARGET}"
 mkdir -p "${TARGET}/documentation"
 cp -R documentation/* "${TARGET}/documentation"
 mkdir -p "${TARGET}/script"
