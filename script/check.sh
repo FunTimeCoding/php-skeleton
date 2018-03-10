@@ -21,9 +21,11 @@ EXCLUDE_FILTER='^.*\/(build|tmp|vendor|\.git|\.vagrant|\.idea)\/.*$'
 MARKDOWN_FILES=$(${FIND} . -type f -name '*.md' -regextype posix-extended ! -regex "${EXCLUDE_FILTER}")
 BLACKLIST=""
 DICTIONARY=en_US
+mkdir -p tmp
+cat documentation/dictionary/*.dic > tmp/combined.dic
 
 for FILE in ${MARKDOWN_FILES}; do
-    WORDS=$(hunspell -d "${DICTIONARY}" -p documentation/dictionary/php-skeleton.dic -l "${FILE}" | sort | uniq)
+    WORDS=$(hunspell -d "${DICTIONARY}" -p tmp/combined.dic -l "${FILE}" | sort | uniq)
 
     if [ ! "${WORDS}" = "" ]; then
         echo "${FILE}"
@@ -50,7 +52,7 @@ done
 TEX_FILES=$(${FIND} . -type f -name '*.tex' -regextype posix-extended ! -regex "${EXCLUDE_FILTER}")
 
 for FILE in ${TEX_FILES}; do
-    WORDS=$(hunspell -d "${DICTIONARY}" -p documentation/dictionary/php-skeleton.dic -l -t "${FILE}")
+    WORDS=$(hunspell -d "${DICTIONARY}" -p tmp/combined.dic -l -t "${FILE}")
 
     if [ ! "${WORDS}" = "" ]; then
         echo "${FILE}"
