@@ -1,5 +1,5 @@
 <?php
-namespace FunTimeCoding\PhpSkeleton\Test\Integration\LanguageExample;
+namespace FunTimeCoding\PhpSkeleton\Test\Integration;
 
 use DirectoryIterator;
 use PHPUnit\Framework\TestCase;

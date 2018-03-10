@@ -1,11 +1,5 @@
 #!/bin/sh -e
 
-if [ "${1}" = --help ]; then
-    echo "Usage: ${0} [--ci-mode]"
-
-    exit 0
-fi
-
 CONCERN_FOUND=false
 CONTINUOUS_INTEGRATION_MODE=false
 
@@ -99,7 +93,9 @@ else
 
     if [ ! "${SHELL_SCRIPT_CONCERNS}" = "" ]; then
         CONCERN_FOUND=true
-        echo "(WARNING) Shell script concerns:"
+        echo
+        echo "(WARNING) shellcheck concerns found."
+        echo
         echo "${SHELL_SCRIPT_CONCERNS}"
     fi
 fi
@@ -114,7 +110,7 @@ if [ ! "${EMPTY_FILES}" = "" ]; then
         echo "${EMPTY_FILES}" > build/log/empty-files.txt
     else
         echo
-        echo "(WARNING) Empty files:"
+        echo "(WARNING) Empty files found."
         echo
         echo "${EMPTY_FILES}"
     fi
@@ -128,7 +124,7 @@ if [ ! "${TO_DOS}" = "" ]; then
         echo "${TO_DOS}" > build/log/to-dos.txt
     else
         echo
-        echo "(NOTICE) To dos:"
+        echo "(NOTICE) To dos found."
         echo
         echo "${TO_DOS}"
     fi
@@ -142,7 +138,7 @@ if [ ! "${SHELLCHECK_IGNORES}" = "" ]; then
         echo "${SHELLCHECK_IGNORES}" > build/log/shellcheck-ignores.txt
     else
         echo
-        echo "(NOTICE) Shellcheck ignores:"
+        echo "(NOTICE) Shellcheck ignores found."
         echo
         echo "${SHELLCHECK_IGNORES}"
     fi
@@ -159,10 +155,29 @@ fi
 # 0 means no mess detected.
 if [ "${RETURN_CODE}" = 2 ]; then
     CONCERN_FOUND=true
-    echo "Violations detected."
+    echo
+    echo "(WARNING) Mess detector violations found."
+    echo
 elif [ "${RETURN_CODE}" = 1 ]; then
     CONCERN_FOUND=true
-    echo "An error occurred."
+    echo
+    echo "(CRITICAL) Mess detector error occurred."
+    echo
+fi
+
+if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
+    vendor/bin/phpstan analyse --no-progress --errorFormat checkstyle --level max src test web > build/log/checkstyle-phpstan.xml
+else
+    OUTPUT=$(vendor/bin/phpstan analyse --no-progress --no-ansi --level max src test web)
+    echo "${OUTPUT}" | grep --quiet "No errors" && FOUND=false || FOUND=true
+
+    if [ "${FOUND}" = true ]; then
+        CONCERN_FOUND=true
+        echo
+        echo "(WARNING) PhpStan concerns found."
+        echo
+        echo "${OUTPUT}"
+    fi
 fi
 
 RETURN_CODE=0
@@ -175,8 +190,12 @@ fi
 
 if [ ! "${RETURN_CODE}" = 0 ]; then
     CONCERN_FOUND=true
-    echo "Code smells detected."
+    echo
+    echo "Code sniffer concerns found."
+    echo
 fi
+
+echo
 
 if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
     vendor/bin/phpcpd --log-pmd build/log/pmd-cpd.xml src test
@@ -189,12 +208,12 @@ if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
     vendor/bin/pdepend --jdepend-xml=build/log/jdepend.xml --summary-xml=build/log/jdepend-summary.xml --jdepend-chart=build/pdepend/dependencies.svg --overview-pyramid=build/pdepend/pyramid.svg src,test
 fi
 
-PHP_CS_FIXER="vendor/bin/php-cs-fixer --no-ansi fix --config .php_cs.php"
+echo
 
 if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
-    ${PHP_CS_FIXER} --dry-run | tee build/log/php-cs-fixer.txt
+    vendor/bin/php-cs-fixer --no-ansi fix --config .php_cs.php --dry-run | tee build/log/php-cs-fixer.txt
 else
-    ${PHP_CS_FIXER}
+    vendor/bin/php-cs-fixer --no-ansi fix --config .php_cs.php
 fi
 
 if [ "${CONCERN_FOUND}" = true ]; then
