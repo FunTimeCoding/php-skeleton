@@ -44,6 +44,7 @@ cp .gitignore "${TARGET}"
 cp .php_cs.php "${TARGET}"
 cp .phpmd.xml "${TARGET}"
 cp .phpunit.ci.xml "${TARGET}"
+cp .phpstan.neon "${TARGET}"
 cd "${TARGET}" || exit 1
 rm -rf script/skeleton
 DASH=$(echo "${NAME}" | ${SED} --regexp-extended 's/([A-Za-z0-9])([A-Z])/\1-\2/g' | tr '[:upper:]' '[:lower:]')
