@@ -11,3 +11,6 @@ getcomposer
 phpstan
 phpmd
 shellcheck
+Debian
+virtualbox
+PhpSkeleton
