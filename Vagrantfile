@@ -15,7 +15,8 @@ Vagrant.configure('2') do |config|
   end
 
   if not File.exist?('tmp/hostname.txt')
-    File.write('tmp/hostname.txt', "ps\n")
+    hostname = 'ps'
+    File.write('tmp/hostname.txt', hostname + "\n")
   end
 
   config.vm.network :public_network, bridge: bridge
