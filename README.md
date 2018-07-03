@@ -1,10 +1,21 @@
 # PhpSkeleton
 
+## Setup
+
+This section explains how to install and uninstall the project.
+
+Install project dependencies.
+
+```sh
+script/setup.sh
+```
+
+
 ## Usage
 
-This section explains how to use this project.
+This section explains how to use the project.
 
-Run the main entry point program.
+Run the main program.
 
 ```sh
 bin/ps
@@ -13,12 +24,24 @@ bin/ps
 
 ## Development
 
-This section explains how to use scripts that are intended to ease the development of this project.
+This section explains how to improve the project.
 
-Install development tools.
+Configure Git on Windows before cloning. This avoids problems with Vagrant and VirtualBox.
 
 ```sh
-composer install
+git config --global core.autocrlf input
+```
+
+Create the development virtual machine on Linux and Darwin.
+
+```sh
+script/vagrant/create.sh
+```
+
+Create the development virtual machine on Windows.
+
+```bat
+script\vagrant\create.bat
 ```
 
 Run code style check, metrics and tests.
@@ -29,14 +52,8 @@ script/metrics.sh
 script/test.sh
 ```
 
-Build the project like Jenkins.
+Build project.
 
 ```sh
 script/build.sh
 ```
-
-
-## Important details
-
-* Composer installs executable scripts in `vendor/bin/php` to leave `bin` for the actual project.
-* The directories `src/LanguageExample` and `test/LanguageExample` are for sharing language specific knowledge.

@@ -1,5 +1,16 @@
 #!/bin/sh -e
 
+DIRECTORY=$(dirname "${0}")
+SCRIPT_DIRECTORY=$(cd "${DIRECTORY}" || exit 1; pwd)
+# shellcheck source=/dev/null
+. "${SCRIPT_DIRECTORY}/../lib/common.sh"
+
+if [ "${1}" = --help ]; then
+    echo "Usage: ${0} [--ci-mode]"
+
+    exit 0
+fi
+
 CONCERN_FOUND=false
 CONTINUOUS_INTEGRATION_MODE=false
 
@@ -17,9 +28,8 @@ else
     FIND='find'
 fi
 
-EXCLUDE_FILTER='^.*\/(build|tmp|vendor|\.git|\.vagrant|\.idea)\/.*$'
-MARKDOWN_FILES=$(${FIND} . -type f -name '*.md' -regextype posix-extended ! -regex "${EXCLUDE_FILTER}")
-BLACKLIST=""
+MARKDOWN_FILES=$(${FIND} . -regextype posix-extended -name '*.md' ! -regex "${EXCLUDE_FILTER}" -printf '%P\n')
+BLACKLIST=''
 DICTIONARY=en_US
 mkdir -p tmp
 cat documentation/dictionary/*.dic > tmp/combined.dic
@@ -27,7 +37,7 @@ cat documentation/dictionary/*.dic > tmp/combined.dic
 for FILE in ${MARKDOWN_FILES}; do
     WORDS=$(hunspell -d "${DICTIONARY}" -p tmp/combined.dic -l "${FILE}" | sort | uniq)
 
-    if [ ! "${WORDS}" = "" ]; then
+    if [ ! "${WORDS}" = '' ]; then
         echo "${FILE}"
 
         for WORD in ${WORDS}; do
@@ -49,12 +59,12 @@ for FILE in ${MARKDOWN_FILES}; do
     fi
 done
 
-TEX_FILES=$(${FIND} . -type f -name '*.tex' -regextype posix-extended ! -regex "${EXCLUDE_FILTER}")
+TEX_FILES=$(${FIND} . -regextype posix-extended -name '*.tex' ! -regex "${EXCLUDE_FILTER}" -printf '%P\n')
 
 for FILE in ${TEX_FILES}; do
     WORDS=$(hunspell -d "${DICTIONARY}" -p tmp/combined.dic -l -t "${FILE}")
 
-    if [ ! "${WORDS}" = "" ]; then
+    if [ ! "${WORDS}" = '' ]; then
         echo "${FILE}"
 
         for WORD in ${WORDS}; do
@@ -83,7 +93,7 @@ for FILE in ${TEX_FILES}; do
 done
 
 if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
-    FILES=$(${FIND} . -name '*.sh' -regextype posix-extended ! -regex "${EXCLUDE_FILTER}" -printf '%P\n')
+    FILES=$(${FIND} . -regextype posix-extended -name '*.sh' ! -regex "${EXCLUDE_FILTER}" -printf '%P\n')
 
     for FILE in ${FILES}; do
         FILE_REPLACED=$(echo "${FILE}" | sed 's/\//-/g')
@@ -93,54 +103,52 @@ else
     # shellcheck disable=SC2016
     SHELL_SCRIPT_CONCERNS=$(${FIND} . -name '*.sh' -regextype posix-extended ! -regex "${EXCLUDE_FILTER}" -exec sh -c 'shellcheck ${1} || true' '_' '{}' \;)
 
-    if [ ! "${SHELL_SCRIPT_CONCERNS}" = "" ]; then
+    if [ ! "${SHELL_SCRIPT_CONCERNS}" = '' ]; then
         CONCERN_FOUND=true
-        echo
-        echo "(WARNING) shellcheck concerns found."
-        echo
+        echo "(WARNING) Shell script concerns:"
         echo "${SHELL_SCRIPT_CONCERNS}"
     fi
 fi
 
 # shellcheck disable=SC2016
-EMPTY_FILES=$(${FIND} . -empty -regextype posix-extended ! -regex "${EXCLUDE_FILTER}")
+EMPTY_FILES=$(${FIND} . -regextype posix-extended -type f -empty ! -regex "${EXCLUDE_FILTER}")
 
-if [ ! "${EMPTY_FILES}" = "" ]; then
+if [ ! "${EMPTY_FILES}" = '' ]; then
     CONCERN_FOUND=true
 
     if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
         echo "${EMPTY_FILES}" > build/log/empty-files.txt
     else
         echo
-        echo "(WARNING) Empty files found."
+        echo "(WARNING) Empty files:"
         echo
         echo "${EMPTY_FILES}"
     fi
 fi
 
 # shellcheck disable=SC2016
-TO_DOS=$(${FIND} . -regextype posix-extended -type f -and ! -regex "${EXCLUDE_FILTER}" -exec sh -c 'grep -Hrn TODO "${1}" | grep -v "${2}"' '_' '{}' '${0}' \;)
+TO_DOS=$(${FIND} . -regextype posix-extended -type f ! -regex "${EXCLUDE_FILTER}" -exec sh -c 'grep -Hrn TODO "${1}" | grep -v "${2}"' '_' '{}' '${0}' \;)
 
-if [ ! "${TO_DOS}" = "" ]; then
+if [ ! "${TO_DOS}" = '' ]; then
     if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
         echo "${TO_DOS}" > build/log/to-dos.txt
     else
         echo
-        echo "(NOTICE) To dos found."
+        echo "(NOTICE) To dos:"
         echo
         echo "${TO_DOS}"
     fi
 fi
 
 # shellcheck disable=SC2016
-SHELLCHECK_IGNORES=$(${FIND} . -regextype posix-extended -type f -and ! -regex "${EXCLUDE_FILTER}" -exec sh -c 'grep -Hrn "# shellcheck" "${1}" | grep -v "${2}"' '_' '{}' '${0}' \;)
+SHELLCHECK_IGNORES=$(${FIND} . -regextype posix-extended -type f ! -regex "${EXCLUDE_FILTER}" -exec sh -c 'grep -Hrn "# shellcheck" "${1}" | grep -v "${2}"' '_' '{}' '${0}' \;)
 
-if [ ! "${SHELLCHECK_IGNORES}" = "" ]; then
+if [ ! "${SHELLCHECK_IGNORES}" = '' ]; then
     if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
         echo "${SHELLCHECK_IGNORES}" > build/log/shellcheck-ignores.txt
     else
         echo
-        echo "(NOTICE) Shellcheck ignores found."
+        echo "(NOTICE) Shellcheck ignores:"
         echo
         echo "${SHELLCHECK_IGNORES}"
     fi
@@ -227,8 +235,10 @@ else
 fi
 
 if [ "${CONCERN_FOUND}" = true ]; then
-    echo
-    echo "Concern(s) of category WARNING found." >&2
+    if [ "${CONTINUOUS_INTEGRATION_MODE}" = false ]; then
+        echo
+        echo "Concern(s) of category WARNING found." >&2
+    fi
 
     exit 2
 fi
