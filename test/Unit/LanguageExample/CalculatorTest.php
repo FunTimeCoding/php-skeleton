@@ -7,41 +7,44 @@ use PHPUnit\Framework\TestCase;
 
 class CalculatorTest extends TestCase
 {
-    public function testAddPositiveNumbers()
+    public function testAddPositiveNumbers(): void
     {
-        $calc = new Calculator();
+        $calculator = new Calculator();
 
-        $result = $calc->add(1, 2);
+        $result = $calculator->add(1, 2);
 
-        $this->assertEquals(3, $result);
+        self::assertEquals(3, $result);
     }
 
-    public function testAddNegativeNumbers()
+    public function testAddNegativeNumbers(): void
     {
-        $calc = new Calculator();
+        $calculator = new Calculator();
 
-        $result = $calc->add(-1, -2);
+        $result = $calculator->add(-1, -2);
 
-        $this->assertEquals(-3, $result);
+        self::assertEquals(-3, $result);
     }
 
-    public function testDivideEqualNumbers()
+    /**
+     * @throws Exception
+     */
+    public function testDivideEqualNumbers(): void
     {
-        $calc = new Calculator();
+        $calculator = new Calculator();
 
-        $result = $calc->div(2, 2);
+        $result = $calculator->divide(2, 2);
 
-        $this->assertEquals(1, $result);
+        self::assertEquals(1, $result);
     }
 
     /**
      * @expectedException Exception
      * @expectedExceptionMessage Division by zero.
      */
-    public function testDivideByZero()
+    public function testDivideByZero(): void
     {
-        $calc = new Calculator();
+        $calculator = new Calculator();
 
-        $calc->div(2, 0);
+        $calculator->divide(2, 0);
     }
 }

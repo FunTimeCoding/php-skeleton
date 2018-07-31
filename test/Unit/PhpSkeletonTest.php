@@ -9,12 +9,12 @@ class PhpSkeletonTest extends TestCase
     /**
      * @outputBuffering enabled
      */
-    public function testMainMethod()
+    public function testMainMethod(): void
     {
         $application = new PhpSkeleton();
 
-        $this->assertSame(0, $application->main());
+        self::assertSame(0, $application->main());
 
-        $this->expectOutputString('Hello friend.'.PHP_EOL);
+        $this->expectOutputString('Hello friend.' . PHP_EOL);
     }
 }

@@ -234,6 +234,21 @@ else
     vendor/bin/php-cs-fixer --no-ansi fix --config .php_cs.php
 fi
 
+echo
+RETURN_CODE=0
+
+if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
+    vendor/bin/phan --output-mode checkstyle | tee build/log/checkstyle-phan.xml || RETURN_CODE="${?}"
+else
+    vendor/bin/phan || RETURN_CODE="${?}"
+fi
+
+if [ ! "${RETURN_CODE}" = 0 ]; then
+    CONCERN_FOUND=true
+    echo "Phan concerns found."
+    echo
+fi
+
 if [ "${CONCERN_FOUND}" = true ]; then
     if [ "${CONTINUOUS_INTEGRATION_MODE}" = false ]; then
         echo

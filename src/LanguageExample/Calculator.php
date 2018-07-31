@@ -5,26 +5,19 @@ use Exception;
 
 class Calculator
 {
-    /**
-     * @param int|float $augend
-     * @param int|float $addend
-     *
-     * @return int|float sum
-     */
-    public function add($augend, $addend)
+    public function add(float $augend, float $addend): float
     {
         return $augend + $addend;
     }
 
     /**
-     * @param int|float $dividend
-     * @param int|float $divisor
+     * @param float $dividend
+     * @param float $divisor
      *
-     * @return int|float quotient
-     *
+     * @return float
      * @throws Exception
      */
-    public function div($dividend, $divisor)
+    public function divide(float $dividend, float $divisor): float
     {
         if ($divisor == 0) {
             throw new Exception('Division by zero.');
