@@ -26,6 +26,6 @@
         "phpstan/phpstan": "0.*",
         "phpstan/phpstan-strict-rules": "0.*",
         "phpstan/phpstan-phpunit": "0.*",
-        "phan/phan": "0.*"
+        "phan/phan": "1.*"
     }
 }
