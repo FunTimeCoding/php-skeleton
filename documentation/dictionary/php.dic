@@ -1,2 +1,6 @@
 docblock
 printf
+ruleset
+rulesets
+unusedcode
+codesize
