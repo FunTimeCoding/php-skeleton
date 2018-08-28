@@ -44,12 +44,12 @@ Create the development virtual machine on Windows.
 script\vagrant\create.bat
 ```
 
-Run code style check, metrics and tests.
+Run tests, style check and metrics.
 
 ```sh
+script/test.sh
 script/style-check.sh
 script/metrics.sh
-script/test.sh
 ```
 
 Build project.
