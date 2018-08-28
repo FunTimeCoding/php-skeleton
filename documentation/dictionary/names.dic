@@ -1,6 +1,9 @@
+FunTimeCoding
 Reitzel
 virtualbox
 debian
+shellcheck
+netcat
 FunTimeCoding
 squizlabs
 codesniffer
@@ -12,7 +15,6 @@ friendsofphp
 getcomposer
 phpstan
 phpmd
-shellcheck
 Debian
 PhpSkeleton
 Sury
