@@ -162,7 +162,8 @@ fi
 RETURN_CODE=0
 
 if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
-    vendor/bin/phpmd src,test html .phpmd.xml --reportfile build/log/phpmd.html || RETURN_CODE="${?}"
+    mkdir -p build/log/phpmd
+    vendor/bin/phpmd src,test html .phpmd.xml --reportfile build/log/phpmd/inded.html || RETURN_CODE="${?}"
 else
     OUTPUT=$(vendor/bin/phpmd src,test text .phpmd.xml) || RETURN_CODE="${?}"
 fi
