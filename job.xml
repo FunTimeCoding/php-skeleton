@@ -1,14 +1,14 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description></description>
+  <description/>
   <keepDependencies>false</keepDependencies>
   <properties/>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@3.9.1">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
-        <url>https://github.com/FunTimeCoding/php-skeleton.git</url>
+        <url>git@github.com:FunTimeCoding/php-skeleton.git</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
@@ -47,32 +47,32 @@
       <allowEmptyResults>false</allowEmptyResults>
     </hudson.tasks.junit.JUnitResultArchiver>
     <hudson.plugins.checkstyle.CheckStylePublisher plugin="checkstyle@3.50">
-      <healthy></healthy>
-      <unHealthy></unHealthy>
+      <healthy/>
+      <unHealthy/>
       <thresholdLimit>low</thresholdLimit>
       <pluginName>[CHECKSTYLE] </pluginName>
-      <defaultEncoding></defaultEncoding>
+      <defaultEncoding/>
       <canRunOnFailed>true</canRunOnFailed>
       <usePreviousBuildAsReference>false</usePreviousBuildAsReference>
       <useStableBuildAsReference>false</useStableBuildAsReference>
       <useDeltaValues>false</useDeltaValues>
       <thresholds plugin="analysis-core@1.95">
-        <unstableTotalAll></unstableTotalAll>
-        <unstableTotalHigh></unstableTotalHigh>
-        <unstableTotalNormal></unstableTotalNormal>
-        <unstableTotalLow></unstableTotalLow>
-        <unstableNewAll></unstableNewAll>
-        <unstableNewHigh></unstableNewHigh>
-        <unstableNewNormal></unstableNewNormal>
-        <unstableNewLow></unstableNewLow>
-        <failedTotalAll></failedTotalAll>
-        <failedTotalHigh></failedTotalHigh>
-        <failedTotalNormal></failedTotalNormal>
-        <failedTotalLow></failedTotalLow>
-        <failedNewAll></failedNewAll>
-        <failedNewHigh></failedNewHigh>
-        <failedNewNormal></failedNewNormal>
-        <failedNewLow></failedNewLow>
+        <unstableTotalAll/>
+        <unstableTotalHigh/>
+        <unstableTotalNormal/>
+        <unstableTotalLow/>
+        <unstableNewAll/>
+        <unstableNewHigh/>
+        <unstableNewNormal/>
+        <unstableNewLow/>
+        <failedTotalAll/>
+        <failedTotalHigh/>
+        <failedTotalNormal/>
+        <failedTotalLow/>
+        <failedNewAll/>
+        <failedNewHigh/>
+        <failedNewNormal/>
+        <failedNewLow/>
       </thresholds>
       <shouldDetectModules>false</shouldDetectModules>
       <dontComputeNew>true</dontComputeNew>
@@ -82,11 +82,11 @@
     <htmlpublisher.HtmlPublisher plugin="htmlpublisher@1.16">
       <reportTargets>
         <htmlpublisher.HtmlPublisherTarget>
-          <reportName>Mess Report</reportName>
-          <reportDir>build/log/phpmd</reportDir>
+          <reportName>Mess Detector Report</reportName>
+          <reportDir>build/log/mess_detector</reportDir>
           <reportFiles>index.html</reportFiles>
           <alwaysLinkToLastBuild>false</alwaysLinkToLastBuild>
-          <reportTitles></reportTitles>
+          <reportTitles/>
           <keepAll>false</keepAll>
           <allowMissing>false</allowMissing>
           <includes>**/*</includes>
