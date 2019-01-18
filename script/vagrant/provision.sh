@@ -16,6 +16,8 @@ apt-get --quiet 2 install neovim multitail htop git tree
 # Dependencies for check.sh.
 apt-get --quiet 2 install hunspell shellcheck
 
+apt-get --quiet 2 install devscripts ruby-ronn
+
 apt-get --quiet 2 install php-cli php-fpm php-xdebug php-xml php-mbstring php-zip
 cp /vagrant/configuration/xdebug.ini /etc/php/7.2/mods-available/xdebug.ini
 systemctl restart php7.2-fpm
