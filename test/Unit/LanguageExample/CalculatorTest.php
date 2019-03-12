@@ -1,7 +1,7 @@
 <?php
 namespace FunTimeCoding\PhpSkeleton\Test\Unit\LanguageExample;
 
-use Exception;
+use FunTimeCoding\PhpSkeleton\RuntimeException;
 use FunTimeCoding\PhpSkeleton\LanguageExample\Calculator;
 use PHPUnit\Framework\TestCase;
 
@@ -26,7 +26,7 @@ class CalculatorTest extends TestCase
     }
 
     /**
-     * @throws Exception
+     * @throws RuntimeException
      */
     public function testDivideEqualNumbers(): void
     {
@@ -38,7 +38,7 @@ class CalculatorTest extends TestCase
     }
 
     /**
-     * @expectedException Exception
+     * @expectedException RuntimeException
      * @expectedExceptionMessage Division by zero.
      */
     public function testDivideByZero(): void

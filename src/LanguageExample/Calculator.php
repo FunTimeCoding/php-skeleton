@@ -1,7 +1,7 @@
 <?php
 namespace FunTimeCoding\PhpSkeleton\LanguageExample;
 
-use Exception;
+use FunTimeCoding\PhpSkeleton\RuntimeException;
 
 class Calculator
 {
@@ -15,12 +15,12 @@ class Calculator
      * @param float $divisor
      *
      * @return float
-     * @throws Exception
+     * @throws RuntimeException
      */
     public function divide(float $dividend, float $divisor): float
     {
-        if ($divisor == 0) {
-            throw new Exception('Division by zero.');
+        if ($divisor === 0.0) {
+            throw new RuntimeException('Division by zero.');
         }
 
         return $dividend / $divisor;
