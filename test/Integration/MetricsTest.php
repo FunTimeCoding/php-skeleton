@@ -38,9 +38,9 @@ class MetricsTest extends TestCase
         }
 
         foreach ($files as $file) {
-            $handle = fopen($file, 'r');
+            $handle = fopen($file, 'rb');
 
-            if ($handle != false) {
+            if ($handle !== false) {
                 $found = false;
 
                 while (($line = fgets($handle)) !== false) {
@@ -52,7 +52,7 @@ class MetricsTest extends TestCase
                     }
                 }
 
-                if ($found == false) {
+                if ($found === false) {
                     self::fail('No line starts with \'class\' in ' . $file);
                 }
 
@@ -67,7 +67,7 @@ class MetricsTest extends TestCase
     {
         $length = strlen($needle);
 
-        if ($length == 0) {
+        if ($length === 0) {
             return true;
         }
 
@@ -76,6 +76,6 @@ class MetricsTest extends TestCase
 
     public function startsWith(string $haystack, string $needle): bool
     {
-        return substr($haystack, 0, strlen($needle)) === $needle;
+        return strpos($haystack, $needle) === 0;
     }
 }

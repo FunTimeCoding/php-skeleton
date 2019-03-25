@@ -1,6 +1,12 @@
 build
 tmp
 .vagrant
+debian/files
+debian/debhelper-build-stamp
+debian/php-skeleton
+debian/php-skeleton.substvars
+documentation/man/*.1
+.scannerwork
 vendor
 composer.phar
 .php_cs.cache

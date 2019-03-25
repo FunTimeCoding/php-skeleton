@@ -11,5 +11,13 @@ fi
 script/check.sh --ci-mode
 script/measure.sh --ci-mode
 script/test.sh --ci-mode
-# TODO: Finish implementation, then uncomment.
+
+# TODO: Package for Debian.
+#SYSTEM=$(uname)
+#
+#if [ "${SYSTEM}" = Linux ]; then
+#    script/debian/package.sh
+#fi
+
+# TODO: Finish implementation.
 #script/docker/build.sh

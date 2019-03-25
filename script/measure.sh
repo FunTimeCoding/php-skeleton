@@ -1,5 +1,16 @@
 #!/bin/sh -e
 
+DIRECTORY=$(dirname "${0}")
+SCRIPT_DIRECTORY=$(cd "${DIRECTORY}" || exit 1; pwd)
+# shellcheck source=/dev/null
+. "${SCRIPT_DIRECTORY}/../lib/project.sh"
+
+if [ "${1}" = --help ]; then
+    echo "Usage: ${0} [--ci-mode]"
+
+    exit 0
+fi
+
 SYSTEM=$(uname)
 
 if [ "${SYSTEM}" = Darwin ]; then
@@ -35,8 +46,16 @@ if [ "${1}" = --ci-mode ]; then
 
     mkdir -p build/log
     vendor/bin/phploc --count-tests src test | tee build/log/phploc.log
-    sonar-runner | "${TEE}" build/log/sonar-runner.log
-    rm -rf .sonar
+
+    if [ -f "${HOME}/.sonar-qube-tools.sh" ]; then
+        # shellcheck source=/dev/null
+        . "${HOME}/.sonar-qube-tools.sh"
+        sonar-scanner "-Dsonar.projectKey=${PROJECT_NAME}" -Dsonar.sources=. "-Dsonar.host.url=${SONAR_SERVER}" "-Dsonar.login=${SONAR_LOGIN}" '-Dsonar.exclusions=build/**,tmp/**' | "${TEE}" build/log/sonar-runner.log
+    else
+        echo "SonarQube configuration missing."
+
+        exit 1
+    fi
 else
     vendor/bin/phploc --count-tests src test
 fi
