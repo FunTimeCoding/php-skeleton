@@ -9,7 +9,7 @@ Ansible
 devops
 AnsibleVagrantRootUser
 AnsibleVagrantUser
-FunTimeCoding
+Qube
 squizlabs
 codesniffer
 phpcpd
@@ -19,9 +19,6 @@ phpmd
 friendsofphp
 getcomposer
 phpstan
-phpmd
-Debian
-PhpSkeleton
 Sury
 php
 Phan

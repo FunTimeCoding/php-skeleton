@@ -25,9 +25,6 @@ class CalculatorTest extends TestCase
         self::assertEquals(-3, $result);
     }
 
-    /**
-     * @throws RuntimeException
-     */
     public function testDivideEqualNumbers(): void
     {
         $calculator = new Calculator();
@@ -37,13 +34,12 @@ class CalculatorTest extends TestCase
         self::assertEquals(1, $result);
     }
 
-    /**
-     * @expectedException RuntimeException
-     * @expectedExceptionMessage Division by zero.
-     */
     public function testDivideByZero(): void
     {
         $calculator = new Calculator();
+
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Division by zero.');
 
         $calculator->divide(2, 0);
     }
