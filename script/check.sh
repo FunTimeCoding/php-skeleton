@@ -24,8 +24,12 @@ SYSTEM=$(uname)
 
 if [ "${SYSTEM}" = Darwin ]; then
     FIND='gfind'
+    UNIQ='guniq'
+    SED='gsed'
 else
     FIND='find'
+    UNIQ='uniq'
+    SED='sed'
 fi
 
 MARKDOWN_FILES=$(${FIND} . -regextype posix-extended -name '*.md' ! -regex "${EXCLUDE_FILTER}" -printf '%P\n')
@@ -40,7 +44,7 @@ else
 fi
 
 for FILE in ${MARKDOWN_FILES}; do
-    WORDS=$(hunspell -d "${DICTIONARY}" -p tmp/combined.dic -l "${FILE}" | sort | uniq)
+    WORDS=$(hunspell -d "${DICTIONARY}" -p tmp/combined.dic -l "${FILE}" | sort | ${UNIQ})
 
     if [ ! "${WORDS}" = '' ]; then
         echo "${FILE}"
@@ -101,7 +105,7 @@ if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
     FILES=$(${FIND} . -regextype posix-extended -name '*.sh' ! -regex "${EXCLUDE_FILTER}" -printf '%P\n')
 
     for FILE in ${FILES}; do
-        FILE_REPLACED=$(echo "${FILE}" | sed 's/\//-/g')
+        FILE_REPLACED=$(echo "${FILE}" | ${SED} 's/\//-/g')
         shellcheck --format checkstyle "${FILE}" > "build/log/checkstyle-${FILE_REPLACED}.xml" || true
     done
 else
@@ -145,7 +149,7 @@ if [ ! "${TO_DOS}" = '' ]; then
     fi
 fi
 
-DUPLICATE_WORDS=$(cat documentation/dictionary/** | sort | uniq -cd)
+DUPLICATE_WORDS=$(cat documentation/dictionary/** | ${SED} '/^$/d' | sort | ${UNIQ} -cd)
 
 if [ ! "${DUPLICATE_WORDS}" = '' ]; then
     CONCERN_FOUND=true
@@ -155,7 +159,6 @@ if [ ! "${DUPLICATE_WORDS}" = '' ]; then
     else
         echo
         echo "(WARNING) Duplicate words:"
-        echo
         echo "${DUPLICATE_WORDS}"
     fi
 fi
