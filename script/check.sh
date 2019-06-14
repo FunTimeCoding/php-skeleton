@@ -264,15 +264,38 @@ fi
 echo
 RETURN_CODE=0
 
+if [ ! "${PHPBREW_PHP}" = '' ]; then
+    phpbrew ext disable xdebug
+fi
+
 if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
     vendor/bin/phan --output-mode checkstyle | tee build/log/checkstyle-phan.xml || RETURN_CODE="${?}"
 else
     vendor/bin/phan || RETURN_CODE="${?}"
 fi
 
+if [ ! "${PHPBREW_PHP}" = '' ]; then
+    phpbrew ext enable xdebug
+fi
+
 if [ ! "${RETURN_CODE}" = 0 ]; then
     CONCERN_FOUND=true
     echo "Phan concerns found."
+    echo
+fi
+
+echo
+RETURN_CODE=0
+
+if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
+    vendor/bin/psalm --no-progress --report=build/log/psalm.txt || RETURN_CODE="${?}"
+else
+    vendor/bin/psalm --no-progress || RETURN_CODE="${?}"
+fi
+
+if [ ! "${RETURN_CODE}" = 0 ]; then
+    CONCERN_FOUND=true
+    echo "Psalm concerns found."
     echo
 fi
 
