@@ -59,6 +59,7 @@ cp .php_cs.php "${TARGET}"
 cp .phpmd.xml "${TARGET}"
 cp .phpunit.ci.xml "${TARGET}"
 cp .phpstan.neon "${TARGET}"
+cp .phpbrewrc "${TARGET}"
 cd "${TARGET}" || exit 1
 echo "${NAME}" | grep --quiet 'Skeleton$' && IS_SKELETON=true || IS_SKELETON=false
 
