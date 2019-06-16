@@ -8,6 +8,30 @@ use RecursiveIteratorIterator;
 
 class MetricsTest extends TestCase
 {
+    public static function collectFiles(string $testDirectory): array
+    {
+        $files = [];
+        $iteratorIterator = new RecursiveIteratorIterator(
+            new RecursiveDirectoryIterator(
+                $testDirectory,
+                RecursiveDirectoryIterator::SKIP_DOTS
+            ),
+            RecursiveIteratorIterator::SELF_FIRST
+        );
+
+        foreach ($iteratorIterator as $item) {
+            /** @var \DirectoryIterator $item */
+            if ($item->isFile()) {
+                $filename = $item->getFilename();
+                if (self::endsWith($filename, 'Test.php')) {
+                    $files[] = $item->getPathname();
+                }
+            }
+        }
+
+        return $files;
+    }
+
     /**
      * Find wrongly capitalized TestCase with a lower case c, which causes problems with phploc.
      * @throws Exception
@@ -17,34 +41,15 @@ class MetricsTest extends TestCase
         $testDirectory = '' . realpath(__DIR__ . DIRECTORY_SEPARATOR . '..');
         self::assertStringStartsWith('/', $testDirectory);
         self::assertEquals('test', basename($testDirectory));
-        $files = [];
-        $directoryIterator = new RecursiveDirectoryIterator(
-            $testDirectory,
-            RecursiveDirectoryIterator::SKIP_DOTS
-        );
-        $iteratorIterator = new RecursiveIteratorIterator(
-            $directoryIterator,
-            RecursiveIteratorIterator::SELF_FIRST
-        );
 
-        foreach ($iteratorIterator as $item) {
-            /** @var \DirectoryIterator $item */
-            if ($item->isFile()) {
-                $filename = $item->getFilename();
-                if ($this->endsWith($filename, 'Test.php')) {
-                    $files[] = $item->getPathname();
-                }
-            }
-        }
-
-        foreach ($files as $file) {
+        foreach (self::collectFiles($testDirectory) as $file) {
             $handle = fopen($file, 'rb');
 
             if ($handle !== false) {
                 $found = false;
 
                 while (($line = fgets($handle)) !== false) {
-                    if ($this->startsWith('' . $line, 'class ')) {
+                    if (self::startsWith('' . $line, 'class ')) {
                         $found = true;
                         self::assertStringEndsWith(' extends TestCase', trim('' . $line));
 
@@ -63,7 +68,7 @@ class MetricsTest extends TestCase
         }
     }
 
-    public function endsWith(string $haystack, string $needle): bool
+    public static function endsWith(string $haystack, string $needle): bool
     {
         $length = strlen($needle);
 
@@ -74,7 +79,7 @@ class MetricsTest extends TestCase
         return substr($haystack, -$length) === $needle;
     }
 
-    public function startsWith(string $haystack, string $needle): bool
+    public static function startsWith(string $haystack, string $needle): bool
     {
         return strpos($haystack, $needle) === 0;
     }
