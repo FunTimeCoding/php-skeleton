@@ -3,12 +3,9 @@ namespace FunTimeCoding\PhpSkeleton;
 
 class PhpSkeleton
 {
-    /**
-     * @return int
-     */
-    public function main()
+    public function main(): int
     {
-        echo 'Hello friend.'.PHP_EOL;
+        echo 'Hello friend.' . PHP_EOL;
 
         return 0;
     }
