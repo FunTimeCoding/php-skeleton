@@ -11,10 +11,18 @@ class WebTest extends TestCase
      */
     private static $process;
 
+    /**
+     * @var string
+     */
+    private static $authority;
+
     public static function setUpBeforeClass(): void
     {
+        $portFinder = new Process(['script/find-unused-port.py']);
+        $portFinder->run();
+        self::$authority = 'localhost:' . trim($portFinder->getOutput());
         self::$process = new Process(
-            ['php', '-S', 'localhost:8080', '-t', 'web']
+            ['php', '-S', self::$authority, '-t', 'web']
         );
         self::$process->start();
         usleep(100000);
@@ -29,7 +37,7 @@ class WebTest extends TestCase
     {
         $this->assertEquals(
             'Hello friend.' . PHP_EOL,
-            file_get_contents('http://localhost:8080')
+            file_get_contents('http://' . self::$authority)
         );
     }
 }
