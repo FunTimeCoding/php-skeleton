@@ -1,6 +1,7 @@
 <?php
 namespace FunTimeCoding\PhpSkeleton\Test\Integration;
 
+use DirectoryIterator;
 use Exception;
 use PHPUnit\Framework\TestCase;
 use RecursiveDirectoryIterator;
@@ -20,7 +21,7 @@ class MetricsTest extends TestCase
         );
 
         foreach ($iteratorIterator as $item) {
-            /** @var \DirectoryIterator $item */
+            /** @var DirectoryIterator $item */
             if ($item->isFile()) {
                 $filename = $item->getFilename();
                 if (self::endsWith($filename, 'Test.php')) {
