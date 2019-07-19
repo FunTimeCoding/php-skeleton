@@ -288,9 +288,9 @@ echo
 RETURN_CODE=0
 
 if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
-    vendor/bin/psalm --no-progress --report=build/log/psalm.txt || RETURN_CODE="${?}"
+    vendor/bin/psalm --no-progress --show-info=false --report=build/log/psalm.txt || RETURN_CODE="${?}"
 else
-    vendor/bin/psalm --no-progress || RETURN_CODE="${?}"
+    vendor/bin/psalm --no-progress --show-info=false || RETURN_CODE="${?}"
 fi
 
 if [ ! "${RETURN_CODE}" = 0 ]; then

@@ -35,7 +35,7 @@ class WebTest extends TestCase
 
     public function testIndex(): void
     {
-        $this->assertEquals(
+        $this::assertEquals(
             'Hello friend.' . PHP_EOL,
             file_get_contents('http://' . self::$authority)
         );

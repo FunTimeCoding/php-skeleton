@@ -49,6 +49,7 @@ return [
         'bin',
         'web',
         'vendor/phpunit/phpunit/src',
+        'vendor/symfony/process',
     ],
     'analyzed_file_extensions' => ['php'],
     'exclude_analysis_directory_list' => [
