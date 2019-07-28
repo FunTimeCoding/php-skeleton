@@ -3,7 +3,7 @@
 use Phan\Issue;
 
 return [
-    'target_php_version' => null,
+    'target_php_version' => '7.3',
     'allow_missing_properties' => false,
     'null_casts_as_any_type' => false,
     'null_casts_as_array' => false,
@@ -44,11 +44,13 @@ return [
     'exclude_file_regex' => '@^vendor/.*/(tests?|Tests?)/@',
     'processes' => 1,
     'directory_list' => [
-        'test',
-        'src',
-        'bin',
-        'web',
-        'vendor/phpunit/phpunit/src',
+        'test/',
+        'src/',
+        'bin/',
+        'web/',
+        # TODO: These should not have to be in here?
+        'vendor/phpunit/phpunit/src/',
+        'vendor/symfony/process/',
     ],
     'analyzed_file_extensions' => ['php'],
     'exclude_analysis_directory_list' => [

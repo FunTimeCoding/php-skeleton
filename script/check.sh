@@ -211,10 +211,10 @@ fi
 RETURN_CODE=0
 
 if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
-    vendor/bin/phpstan analyse --configuration .phpstan.neon --no-progress --error-format checkstyle --level max src test web > build/log/checkstyle-phpstan.xml || RETURN_CODE="${?}"
+    vendor/bin/phpstan analyse --configuration .phpstan.neon --no-progress --memory-limit 1G --error-format checkstyle --level max src test web > build/log/checkstyle-phpstan.xml || RETURN_CODE="${?}"
     # TODO: What to do with this return code?
 else
-    OUTPUT=$(vendor/bin/phpstan analyse --configuration .phpstan.neon --no-progress --no-ansi --level max src test web) && FOUND=false || FOUND=true
+    OUTPUT=$(vendor/bin/phpstan analyse --configuration .phpstan.neon --no-progress --memory-limit 1G --no-ansi --level max src test web) && FOUND=false || FOUND=true
 
     if [ "${FOUND}" = true ]; then
         echo
@@ -264,18 +264,14 @@ fi
 echo
 RETURN_CODE=0
 
-if [ ! "${PHPBREW_PHP}" = '' ]; then
-    phpbrew ext disable xdebug
-fi
+# TODO: Remove this and upgrade phan once the php-ast package is available in version 1.0 or higher.
+export PHAN_SUPPRESS_AST_UPGRADE_NOTICE=1
+export PHAN_DISABLE_XDEBUG_WARN=1
 
 if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
     vendor/bin/phan --output-mode checkstyle | tee build/log/checkstyle-phan.xml || RETURN_CODE="${?}"
 else
     vendor/bin/phan || RETURN_CODE="${?}"
-fi
-
-if [ ! "${PHPBREW_PHP}" = '' ]; then
-    phpbrew ext enable xdebug
 fi
 
 if [ ! "${RETURN_CODE}" = 0 ]; then
@@ -288,9 +284,9 @@ echo
 RETURN_CODE=0
 
 if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
-    vendor/bin/psalm --no-progress --report=build/log/psalm.txt || RETURN_CODE="${?}"
+    vendor/bin/psalm --no-progress --show-info=false --report=build/log/psalm.txt || RETURN_CODE="${?}"
 else
-    vendor/bin/psalm --no-progress || RETURN_CODE="${?}"
+    vendor/bin/psalm --no-progress --show-info=false || RETURN_CODE="${?}"
 fi
 
 if [ ! "${RETURN_CODE}" = 0 ]; then

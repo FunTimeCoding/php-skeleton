@@ -9,6 +9,25 @@ use RecursiveIteratorIterator;
 
 class MetricsTest extends TestCase
 {
+    public static function isFile(DirectoryIterator $iterator): bool
+    {
+        return $iterator->isFile();
+    }
+
+    public static function getFileName(DirectoryIterator $iterator): string
+    {
+        return $iterator->getFilename();
+    }
+
+    public static function getPathName(DirectoryIterator $iterator): string
+    {
+        return $iterator->getPathname();
+    }
+
+    /**
+     * @param string $testDirectory
+     * @return string[]
+     */
     public static function collectFiles(string $testDirectory): array
     {
         $files = [];
@@ -21,11 +40,11 @@ class MetricsTest extends TestCase
         );
 
         foreach ($iteratorIterator as $item) {
-            /** @var DirectoryIterator $item */
-            if ($item->isFile()) {
-                $filename = $item->getFilename();
+            if (self::isFile($item)) {
+                $filename = self::getFileName($item);
+
                 if (self::endsWith($filename, 'Test.php')) {
-                    $files[] = $item->getPathname();
+                    $files[] = self::getPathName($item);
                 }
             }
         }
