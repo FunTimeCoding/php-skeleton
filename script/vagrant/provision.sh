@@ -34,7 +34,7 @@ elif [ "${CODENAME}" = stretch ]; then
     usermod --append --groups adm vagrant
 
     # Download Composer manually because the Debian package depends on PHP 7.0.
-    wget --no-verbose --output-document /usr/local/bin/composer https://getcomposer.org/download/1.8.6/composer.phar
+    wget --no-verbose --output-document /usr/local/bin/composer https://getcomposer.org/download/1.9.0/composer.phar
     chmod +x /usr/local/bin/composer
 elif [ "${CODENAME}" = buster ]; then
     apt-get --quiet 2 install neovim multitail htop tree git shellcheck hunspell devscripts ruby-ronn dos2unix ansible
