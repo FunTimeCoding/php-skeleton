@@ -27,7 +27,7 @@ elif [ "${CODENAME}" = stretch ]; then
     systemctl restart php7.3-fpm
 
     apt-get --quiet 2 install nginx-light curl
-    cp /vagrant/configuration/site.conf /etc/nginx/sites-available/default
+    cp /vagrant/configuration/site.txt /etc/nginx/sites-available/default
     systemctl restart nginx
 
     # Let vagrant user read web server logs.
