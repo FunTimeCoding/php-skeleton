@@ -3,7 +3,7 @@
 DIRECTORY=$(dirname "${0}")
 SCRIPT_DIRECTORY=$(cd "${DIRECTORY}" || exit 1; pwd)
 # shellcheck source=/dev/null
-. "${SCRIPT_DIRECTORY}/../../lib/project.sh"
+. "${SCRIPT_DIRECTORY}/../../configuration/project.sh"
 TARGET="${1}"
 
 if [ "${TARGET}" = '' ]; then
@@ -43,12 +43,8 @@ mkdir -p "${TARGET}/script"
 cp -R script/* "${TARGET}/script"
 mkdir -p "${TARGET}/debian"
 cp -R debian/* "${TARGET}/debian"
-mkdir -p "${TARGET}/lib"
-cp lib/project.sh "${TARGET}/lib"
 mkdir -p "${TARGET}/configuration"
 cp configuration/* "${TARGET}/configuration"
-mkdir -p "${TARGET}/.phan"
-cp .phan/config.php "${TARGET}/.phan/config.php"
 cp .gitignore "${TARGET}"
 cp playbook.yaml "${TARGET}"
 cp Vagrantfile "${TARGET}"
@@ -63,6 +59,8 @@ cp .phpmd.xml "${TARGET}"
 cp .phpunit.ci.xml "${TARGET}"
 cp .phpstan.neon "${TARGET}"
 cp .phpbrewrc "${TARGET}"
+mkdir -p "${TARGET}/.phan"
+cp .phan/config.php "${TARGET}/.phan/config.php"
 cd "${TARGET}" || exit 1
 echo "${NAME}" | grep --quiet 'Skeleton$' && IS_SKELETON=true || IS_SKELETON=false
 
@@ -72,6 +70,10 @@ fi
 
 DASH=$(echo "${NAME}" | ${SED} --regexp-extended 's/([A-Za-z0-9])([A-Z])/\1-\2/g' | tr '[:upper:]' '[:lower:]')
 INITIALS=$(echo "${NAME}" | ${SED} 's/\([A-Z]\)[a-z]*/\1/g' | tr '[:upper:]' '[:lower:]')
+UNDERSCORE=$(echo "${DASH}" | ${SED} --regexp-extended 's/-/_/g')
 # shellcheck disable=SC2016
-${FIND} . -regextype posix-extended -type f ! -regex "${EXCLUDE_FILTER}" -exec sh -c '${1} --in-place --expression "s/PhpSkeleton/${2}/g" --expression "s/php-skeleton/${3}/g" "${4}"' '_' "${SED}" "${NAME}" "${DASH}" '{}' \;
-${SED} --in-place --expression "s/bin\/ps/bin\/${INITIALS}/g" --expression "s/'ps'/'${INITIALS}'/g" README.md Vagrantfile Dockerfile
+# TODO: Delete after testing the include way works throughout all projects.
+#${FIND} . -regextype posix-extended -type f ! -regex "${EXCLUDE_FILTER}" -exec sh -c '${1} --in-place --expression "s/PhpSkeleton/${2}/g" --expression "s/php-skeleton/${3}/g" --expression "s/php_skeleton/${4}/g" "${5}"' '_' "${SED}" "${NAME}" "${DASH}" "${UNDERSCORE}" '{}' \;
+${FIND} . -regextype posix-extended -type f -regex "${INCLUDE_FILTER}" -exec sh -c '${1} --in-place --expression "s/PhpSkeleton/${2}/g" --expression "s/php-skeleton/${3}/g" --expression "s/php_skeleton/${4}/g" "${5}"' '_' "${SED}" "${NAME}" "${DASH}" "${UNDERSCORE}" '{}' \;
+# shellcheck disable=SC1117
+${SED} --in-place --expression "s/bin\/ps/bin\/${INITIALS}/g" README.md Dockerfile
