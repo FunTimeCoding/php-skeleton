@@ -1,25 +1,25 @@
 <?php
 namespace FunTimeCoding\PhpSkeleton\Test\Integration;
 
-use DirectoryIterator;
 use Exception;
 use PHPUnit\Framework\TestCase;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
+use SplFileInfo;
 
 class MetricsTest extends TestCase
 {
-    public static function isFile(DirectoryIterator $iterator): bool
+    public static function isFile(SplFileInfo $iterator): bool
     {
         return $iterator->isFile();
     }
 
-    public static function getFileName(DirectoryIterator $iterator): string
+    public static function getFileName(SplFileInfo $iterator): string
     {
         return $iterator->getFilename();
     }
 
-    public static function getPathName(DirectoryIterator $iterator): string
+    public static function getPathName(SplFileInfo $iterator): string
     {
         return $iterator->getPathname();
     }
@@ -40,6 +40,7 @@ class MetricsTest extends TestCase
         );
 
         foreach ($iteratorIterator as $item) {
+            /** @var SplFileInfo $item */
             if (self::isFile($item)) {
                 $filename = self::getFileName($item);
 
