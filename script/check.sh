@@ -190,9 +190,9 @@ fi
 RETURN_CODE=0
 
 if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
-    vendor/bin/phpcs --report=checkstyle --report-file=build/log/checkstyle-result.xml --standard=PSR2 src test || RETURN_CODE="${?}"
+    vendor/bin/phpcs --report=checkstyle --report-file=build/log/checkstyle-result.xml --standard=Doctrine src test || RETURN_CODE="${?}"
 else
-    vendor/bin/phpcs --standard=PSR2 src test || RETURN_CODE="${?}"
+    vendor/bin/phpcs --standard=Doctrine src test || RETURN_CODE="${?}"
 fi
 
 if [ ! "${RETURN_CODE}" = 0 ]; then
@@ -253,6 +253,21 @@ fi
 if [ ! "${RETURN_CODE}" = 0 ]; then
     CONCERN_FOUND=true
     echo "Psalm concerns found."
+    echo
+fi
+
+echo
+RETURN_CODE=0
+
+if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
+    vendor/bin/infection --no-progress --no-ansi || RETURN_CODE="${?}"
+else
+    vendor/bin/infection --no-progress || RETURN_CODE="${?}"
+fi
+
+if [ ! "${RETURN_CODE}" = 0 ]; then
+    CONCERN_FOUND=true
+    echo "Infection concerns found."
     echo
 fi
 

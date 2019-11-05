@@ -1,23 +1,22 @@
 <?php
+
+declare(strict_types=1);
+
 namespace FunTimeCoding\PhpSkeleton\LanguageExample;
 
 use FunTimeCoding\PhpSkeleton\RuntimeException;
 
 class Calculator
 {
-    public function add(float $augend, float $addend): float
+    public function add(float $augend, float $addend) : float
     {
         return $augend + $addend;
     }
 
     /**
-     * @param float $dividend
-     * @param float $divisor
-     *
-     * @return float
      * @throws RuntimeException
      */
-    public function divide(float $dividend, float $divisor): float
+    public function divide(float $dividend, float $divisor) : float
     {
         if ($divisor === 0.0) {
             throw new RuntimeException('Division by zero.');

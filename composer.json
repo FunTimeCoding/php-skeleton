@@ -30,6 +30,7 @@
         "phan/phan": "1.*",
         "vimeo/psalm": "3.*",
         "infection/infection": "0.*",
-        "roave/security-advisories": "dev-master"
+        "roave/security-advisories": "dev-master",
+        "doctrine/coding-standard": "6.*"
     }
 }

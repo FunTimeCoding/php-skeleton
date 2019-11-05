@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace FunTimeCoding\PhpSkeleton\Test\Integration;
 
 use Exception;
@@ -9,26 +12,27 @@ use SplFileInfo;
 
 class MetricsTest extends TestCase
 {
-    public static function isFile(SplFileInfo $iterator): bool
+    public static function isFile(SplFileInfo $iterator) : bool
     {
         return $iterator->isFile();
     }
 
-    public static function getFileName(SplFileInfo $iterator): string
+    public static function getFileName(SplFileInfo $iterator) : string
     {
         return $iterator->getFilename();
     }
 
-    public static function getPathName(SplFileInfo $iterator): string
+    public static function getPathName(SplFileInfo $iterator) : string
     {
         return $iterator->getPathname();
     }
 
     /**
      * @param string $testDirectory
+     *
      * @return string[]
      */
-    public static function collectFiles(string $testDirectory): array
+    public static function collectFiles(string $testDirectory) : array
     {
         $files = [];
         $iteratorIterator = new RecursiveIteratorIterator(
@@ -57,7 +61,7 @@ class MetricsTest extends TestCase
      * Find wrongly capitalized TestCase with a lower case c, which causes problems with phploc.
      * @throws Exception
      */
-    public function testInheritanceCapitalization(): void
+    public function testInheritanceCapitalization() : void
     {
         $testDirectory = '' . realpath(__DIR__ . DIRECTORY_SEPARATOR . '..');
         self::assertStringStartsWith('/', $testDirectory);
@@ -89,7 +93,7 @@ class MetricsTest extends TestCase
         }
     }
 
-    public static function endsWith(string $haystack, string $needle): bool
+    public static function endsWith(string $haystack, string $needle) : bool
     {
         $length = strlen($needle);
 
@@ -100,7 +104,7 @@ class MetricsTest extends TestCase
         return substr($haystack, -$length) === $needle;
     }
 
-    public static function startsWith(string $haystack, string $needle): bool
+    public static function startsWith(string $haystack, string $needle) : bool
     {
         return strpos($haystack, $needle) === 0;
     }
