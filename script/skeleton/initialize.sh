@@ -37,4 +37,9 @@ git mv src/PhpSkeleton.php "src/${NAME}.php"
 git mv test/Unit/PhpSkeletonTest.php "test/Unit/${NAME}Test.php"
 git mv bin/ps "bin/${INITIALS}"
 echo "# This dictionary file is for domain language." > "documentation/dictionary/${DASH}.dic"
-composer dump-autoload
+
+if [ -f composer.phar ]; then
+    php composer.phar dump-autoload
+else
+    composer dump-autoload
+fi
