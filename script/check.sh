@@ -289,6 +289,9 @@ fi
 # TODO: This finds that php is unused. Why?
 #script/php/unused.sh
 
+# TODO: Wait for dependency tracker to leave alpha status.
+#script/php/track-dependencies.sh
+
 if [ "${CONCERN_FOUND}" = true ]; then
     echo
     echo "Warning level concern(s) found." >&2
