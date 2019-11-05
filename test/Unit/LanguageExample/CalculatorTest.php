@@ -1,13 +1,16 @@
 <?php
+
+declare(strict_types=1);
+
 namespace FunTimeCoding\PhpSkeleton\Test\Unit\LanguageExample;
 
-use FunTimeCoding\PhpSkeleton\RuntimeException;
 use FunTimeCoding\PhpSkeleton\LanguageExample\Calculator;
+use FunTimeCoding\PhpSkeleton\RuntimeException;
 use PHPUnit\Framework\TestCase;
 
 class CalculatorTest extends TestCase
 {
-    public function testAddPositiveNumbers(): void
+    public function testAddPositiveNumbers() : void
     {
         $calculator = new Calculator();
 
@@ -16,7 +19,7 @@ class CalculatorTest extends TestCase
         self::assertEquals(3, $result);
     }
 
-    public function testAddNegativeNumbers(): void
+    public function testAddNegativeNumbers() : void
     {
         $calculator = new Calculator();
 
@@ -25,7 +28,7 @@ class CalculatorTest extends TestCase
         self::assertEquals(-3, $result);
     }
 
-    public function testDivideEqualNumbers(): void
+    public function testDivideEqualNumbers() : void
     {
         $calculator = new Calculator();
 
@@ -34,7 +37,7 @@ class CalculatorTest extends TestCase
         self::assertEquals(1, $result);
     }
 
-    public function testDivideByZero(): void
+    public function testDivideByZero() : void
     {
         $calculator = new Calculator();
 

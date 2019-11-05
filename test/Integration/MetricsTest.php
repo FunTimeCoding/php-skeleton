@@ -9,6 +9,16 @@ use PHPUnit\Framework\TestCase;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use SplFileInfo;
+use const DIRECTORY_SEPARATOR;
+use function basename;
+use function fclose;
+use function fgets;
+use function fopen;
+use function realpath;
+use function strlen;
+use function strpos;
+use function substr;
+use function trim;
 
 class MetricsTest extends TestCase
 {
@@ -28,13 +38,12 @@ class MetricsTest extends TestCase
     }
 
     /**
-     * @param string $testDirectory
-     *
      * @return string[]
      */
     public static function collectFiles(string $testDirectory) : array
     {
         $files = [];
+
         $iteratorIterator = new RecursiveIteratorIterator(
             new RecursiveDirectoryIterator(
                 $testDirectory,
@@ -45,13 +54,17 @@ class MetricsTest extends TestCase
 
         foreach ($iteratorIterator as $item) {
             /** @var SplFileInfo $item */
-            if (self::isFile($item)) {
-                $filename = self::getFileName($item);
-
-                if (self::endsWith($filename, 'Test.php')) {
-                    $files[] = self::getPathName($item);
-                }
+            if (! self::isFile($item)) {
+                continue;
             }
+
+            $filename = self::getFileName($item);
+
+            if (! self::endsWith($filename, 'Test.php')) {
+                continue;
+            }
+
+            $files[] = self::getPathName($item);
         }
 
         return $files;
@@ -59,6 +72,7 @@ class MetricsTest extends TestCase
 
     /**
      * Find wrongly capitalized TestCase with a lower case c, which causes problems with phploc.
+     *
      * @throws Exception
      */
     public function testInheritanceCapitalization() : void

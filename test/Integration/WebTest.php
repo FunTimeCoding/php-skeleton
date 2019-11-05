@@ -6,17 +6,17 @@ namespace FunTimeCoding\PhpSkeleton\Test\Integration;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Process\Process;
+use const PHP_EOL;
+use function file_get_contents;
+use function trim;
+use function usleep;
 
 class WebTest extends TestCase
 {
-    /**
-     * @var Process
-     */
+    /** @var Process */
     private static $process;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private static $authority;
 
     public static function setUpBeforeClass() : void
@@ -24,6 +24,7 @@ class WebTest extends TestCase
         $portFinder = new Process(['script/find-unused-port.py']);
         $portFinder->run();
         self::$authority = 'localhost:' . trim($portFinder->getOutput());
+
         self::$process = new Process(
             ['php', '-S', self::$authority, '-t', 'web']
         );

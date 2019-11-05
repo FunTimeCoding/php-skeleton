@@ -6,6 +6,7 @@ namespace FunTimeCoding\PhpSkeleton\Test\Unit;
 
 use FunTimeCoding\PhpSkeleton\PhpSkeleton;
 use PHPUnit\Framework\TestCase;
+use const PHP_EOL;
 
 class PhpSkeletonTest extends TestCase
 {
