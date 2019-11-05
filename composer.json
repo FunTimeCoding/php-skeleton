@@ -31,6 +31,7 @@
         "vimeo/psalm": "3.*",
         "infection/infection": "0.*",
         "roave/security-advisories": "dev-master",
-        "doctrine/coding-standard": "6.*"
+        "doctrine/coding-standard": "6.*",
+        "maglnet/composer-require-checker": "2.*"
     }
 }

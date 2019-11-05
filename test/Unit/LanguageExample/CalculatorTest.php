@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace FunTimeCoding\PhpSkeleton\Test\Unit\LanguageExample;
 
 use FunTimeCoding\PhpSkeleton\LanguageExample\Calculator;
-use FunTimeCoding\PhpSkeleton\RuntimeException;
+use FunTimeCoding\PhpSkeleton\DivisionByZero;
 use PHPUnit\Framework\TestCase;
 
 class CalculatorTest extends TestCase
@@ -41,8 +41,7 @@ class CalculatorTest extends TestCase
     {
         $calculator = new Calculator();
 
-        $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage('Division by zero.');
+        $this->expectException(DivisionByZero::class);
 
         $calculator->divide(2, 0);
     }

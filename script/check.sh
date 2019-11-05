@@ -271,6 +271,21 @@ if [ ! "${RETURN_CODE}" = 0 ]; then
     echo
 fi
 
+echo
+RETURN_CODE=0
+
+if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
+    vendor/bin/composer-require-checker --no-ansi || RETURN_CODE="${?}"
+else
+    vendor/bin/composer-require-checker || RETURN_CODE="${?}"
+fi
+
+if [ ! "${RETURN_CODE}" = 0 ]; then
+    CONCERN_FOUND=true
+    echo "Require checker concerns found."
+    echo
+fi
+
 if [ "${CONCERN_FOUND}" = true ]; then
     echo
     echo "Warning level concern(s) found." >&2
