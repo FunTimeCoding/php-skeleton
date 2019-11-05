@@ -286,6 +286,9 @@ if [ ! "${RETURN_CODE}" = 0 ]; then
     echo
 fi
 
+# TODO: This finds that php is unused. Why?
+#script/php/unused.sh
+
 if [ "${CONCERN_FOUND}" = true ]; then
     echo
     echo "Warning level concern(s) found." >&2

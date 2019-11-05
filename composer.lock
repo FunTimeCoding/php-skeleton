@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3a4c4ea688f6a53ff5f2bfa63882d760",
+    "content-hash": "34a6d347e12f2db515282e96f9704b82",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1828,6 +1828,67 @@
             ],
             "description": "A tool to automatically fix PHP code style",
             "time": "2019-11-03T13:31:09+00:00"
+        },
+        {
+            "name": "icanhazstring/composer-unused",
+            "version": "0.6.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/icanhazstring/composer-unused.git",
+                "reference": "88b59a0672b5f80ac7d4d9aaf595da4256d7b237"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/icanhazstring/composer-unused/zipball/88b59a0672b5f80ac7d4d9aaf595da4256d7b237",
+                "reference": "88b59a0672b5f80ac7d4d9aaf595da4256d7b237",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.1.0",
+                "ext-json": "*",
+                "nikic/php-parser": "^4.2",
+                "php": ">=7.1",
+                "psr/container": "^1.0",
+                "psr/log": "^1.1",
+                "symfony/finder": "^4.2"
+            },
+            "require-dev": {
+                "composer/composer": "^1.8",
+                "ext-zend-opcache": "*",
+                "jangregor/phpstan-prophecy": "^0.3.0",
+                "phpstan/phpstan": "^0.11.4",
+                "phpunit/phpunit": "^7.0",
+                "roave/security-advisories": "dev-master",
+                "squizlabs/php_codesniffer": "^3.4"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Icanhazstring\\Composer\\Unused\\UnusedPlugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "Icanhazstring\\Composer\\Unused\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andreas Frömer",
+                    "email": "blubb0r05+github@gmail.com"
+                }
+            ],
+            "description": "Show unused packages by scanning your code",
+            "homepage": "https://github.com/icanhazstring/composer-unused",
+            "keywords": [
+                "composer",
+                "php-parser",
+                "plugin",
+                "unused"
+            ],
+            "time": "2019-10-31T17:26:50+00:00"
         },
         {
             "name": "infection/infection",
