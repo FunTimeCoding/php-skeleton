@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace FunTimeCoding\PhpSkeleton\Test\Unit\LanguageExample;
 
-use FunTimeCoding\PhpSkeleton\LanguageExample\Calculator;
 use FunTimeCoding\PhpSkeleton\DivisionByZero;
+use FunTimeCoding\PhpSkeleton\LanguageExample\Calculator;
 use PHPUnit\Framework\TestCase;
 
 class CalculatorTest extends TestCase
