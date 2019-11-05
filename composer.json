@@ -34,6 +34,6 @@
         "doctrine/coding-standard": "6.*",
         "maglnet/composer-require-checker": "2.*",
         "icanhazstring/composer-unused": "0.*",
-        "sensiolabs-de/deptrac-shim": "^0.6.0"
+        "sensiolabs-de/deptrac-shim": "0.*"
     }
 }
