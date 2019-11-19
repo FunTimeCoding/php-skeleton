@@ -10,7 +10,7 @@ if [ "${CODENAME}" = jessie ]; then
 elif [ "${CODENAME}" = stretch ]; then
     cp /vagrant/configuration/backports.txt /etc/apt/sources.list.d/backports.list
     apt-get --quiet 2 update
-    apt-get --quiet 2 install neovim multitail htop tree git shellcheck hunspell devscripts ruby-ronn dos2unix
+    apt-get --quiet 2 install neovim multitail htop tree git shellcheck hunspell devscripts ronn dos2unix
     apt-get --quiet 2 install ansible --target-release stretch-backports
 
     apt-get --quiet 2 install apt-transport-https
@@ -37,5 +37,5 @@ elif [ "${CODENAME}" = stretch ]; then
     wget --no-verbose --output-document /usr/local/bin/composer https://getcomposer.org/download/1.9.0/composer.phar
     chmod +x /usr/local/bin/composer
 elif [ "${CODENAME}" = buster ]; then
-    apt-get --quiet 2 install neovim multitail htop tree git shellcheck hunspell devscripts ruby-ronn dos2unix ansible
+    apt-get --quiet 2 install neovim multitail htop tree git shellcheck hunspell devscripts ronn dos2unix ansible
 fi
