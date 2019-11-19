@@ -1,36 +1,49 @@
 <?php
+
+declare(strict_types=1);
+
 namespace FunTimeCoding\PhpSkeleton\Test\Integration;
 
-use DirectoryIterator;
 use Exception;
 use PHPUnit\Framework\TestCase;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
+use SplFileInfo;
+use const DIRECTORY_SEPARATOR;
+use function basename;
+use function fclose;
+use function fgets;
+use function fopen;
+use function realpath;
+use function strlen;
+use function strpos;
+use function substr;
+use function trim;
 
 class MetricsTest extends TestCase
 {
-    public static function isFile(DirectoryIterator $iterator): bool
+    public static function isFile(SplFileInfo $iterator) : bool
     {
         return $iterator->isFile();
     }
 
-    public static function getFileName(DirectoryIterator $iterator): string
+    public static function getFileName(SplFileInfo $iterator) : string
     {
         return $iterator->getFilename();
     }
 
-    public static function getPathName(DirectoryIterator $iterator): string
+    public static function getPathName(SplFileInfo $iterator) : string
     {
         return $iterator->getPathname();
     }
 
     /**
-     * @param string $testDirectory
      * @return string[]
      */
-    public static function collectFiles(string $testDirectory): array
+    public static function collectFiles(string $testDirectory) : array
     {
         $files = [];
+
         $iteratorIterator = new RecursiveIteratorIterator(
             new RecursiveDirectoryIterator(
                 $testDirectory,
@@ -40,13 +53,18 @@ class MetricsTest extends TestCase
         );
 
         foreach ($iteratorIterator as $item) {
-            if (self::isFile($item)) {
-                $filename = self::getFileName($item);
-
-                if (self::endsWith($filename, 'Test.php')) {
-                    $files[] = self::getPathName($item);
-                }
+            /** @var SplFileInfo $item */
+            if (! self::isFile($item)) {
+                continue;
             }
+
+            $filename = self::getFileName($item);
+
+            if (! self::endsWith($filename, 'Test.php')) {
+                continue;
+            }
+
+            $files[] = self::getPathName($item);
         }
 
         return $files;
@@ -54,9 +72,10 @@ class MetricsTest extends TestCase
 
     /**
      * Find wrongly capitalized TestCase with a lower case c, which causes problems with phploc.
+     *
      * @throws Exception
      */
-    public function testInheritanceCapitalization(): void
+    public function testInheritanceCapitalization() : void
     {
         $testDirectory = '' . realpath(__DIR__ . DIRECTORY_SEPARATOR . '..');
         self::assertStringStartsWith('/', $testDirectory);
@@ -88,7 +107,7 @@ class MetricsTest extends TestCase
         }
     }
 
-    public static function endsWith(string $haystack, string $needle): bool
+    public static function endsWith(string $haystack, string $needle) : bool
     {
         $length = strlen($needle);
 
@@ -99,7 +118,7 @@ class MetricsTest extends TestCase
         return substr($haystack, -$length) === $needle;
     }
 
-    public static function startsWith(string $haystack, string $needle): bool
+    public static function startsWith(string $haystack, string $needle) : bool
     {
         return strpos($haystack, $needle) === 0;
     }
