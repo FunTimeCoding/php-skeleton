@@ -60,6 +60,7 @@ cp .phpmd.xml "${TARGET}"
 cp .phpunit.ci.xml "${TARGET}"
 cp .phpstan.neon "${TARGET}"
 cp .phpbrewrc "${TARGET}"
+cp infection.json.dist "${TARGET}"
 mkdir -p "${TARGET}/.phan"
 cp .phan/config.php "${TARGET}/.phan/config.php"
 cd "${TARGET}" || exit 1
