@@ -35,11 +35,11 @@ elif [ "${CODENAME}" = stretch ]; then
 elif [ "${CODENAME}" = buster ]; then
     apt-get --quiet 2 install neovim multitail htop tree git shellcheck hunspell devscripts ronn dos2unix ansible
 
-    apt-get --quiet 2 install php-cli php-fpm php-xdebug php-xml php-mbstring php-zip php-ast composer
+    apt-get --quiet 2 install php-cli php-fpm php-xdebug php-xml php-mbstring php-zip php-ast php-curl php-intl composer
     cp /vagrant/configuration/xdebug.ini /etc/php/7.3/mods-available/xdebug.ini
     systemctl restart php7.3-fpm
 
-    apt-get --quiet 2 install nginx-light curl
+    apt-get --quiet 2 install nginx-light ssl-cert curl
 
     cp /vagrant/configuration/site.txt /etc/nginx/sites-available/default
     systemctl restart nginx
