@@ -1,0 +1,22 @@
+version: '3.7'
+services:
+  nginx-service:
+    image: nginx:1.16
+    ports:
+      - 80:80
+    volumes:
+      - .:/usr/src/php-skeleton
+      - ./configuration/docker/site.txt:/etc/nginx/conf.d/default.conf
+  php-service:
+    image: php:7.4-fpm
+    volumes:
+      - .:/usr/src/php-skeleton
+  mysql-service:
+    image: mariadb:10.4
+    volumes:
+      - ./tmp/mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: php_skeleton
+      MYSQL_USER: php_skeleton
+      MYSQL_PASSWORD: php_skeleton
