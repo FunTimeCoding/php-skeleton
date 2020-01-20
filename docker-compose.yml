@@ -13,6 +13,8 @@ services:
       - .:/usr/src/php-skeleton
   mysql-service:
     image: mariadb:10.4
+    ports:
+      - 3307:3306
     volumes:
       - ./tmp/mysql_data:/var/lib/mysql
     environment:
