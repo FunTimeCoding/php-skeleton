@@ -36,6 +36,7 @@
         "icanhazstring/composer-unused": "0.*",
         "sensiolabs-de/deptrac-shim": "0.*",
         "phpbench/phpbench": "0.*",
-        "symfony/process": "4.*"
+        "symfony/process": "4.*",
+        "rector/rector": "0.7.*"
     }
 }
