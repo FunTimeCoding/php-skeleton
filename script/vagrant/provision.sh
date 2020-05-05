@@ -30,6 +30,7 @@ elif [ "${CODENAME}" = stretch ]; then
     cp /vagrant/configuration/site.txt /etc/nginx/sites-available/default
     systemctl restart nginx
 
+    # Download Composer manually because the Debian package depends on PHP 7.0.
     wget --no-verbose --output-document /usr/local/bin/composer https://getcomposer.org/download/1.9.1/composer.phar
     chmod +x /usr/local/bin/composer
 elif [ "${CODENAME}" = buster ]; then
