@@ -1,7 +1,10 @@
 #!/bin/sh -e
 
 DIRECTORY=$(dirname "${0}")
-SCRIPT_DIRECTORY=$(cd "${DIRECTORY}" || exit 1; pwd)
+SCRIPT_DIRECTORY=$(
+    cd "${DIRECTORY}" || exit 1
+    pwd
+)
 # shellcheck source=/dev/null
 . "${SCRIPT_DIRECTORY}/../configuration/project.sh"
 
@@ -39,7 +42,7 @@ DICTIONARY=en_US
 mkdir -p tmp
 
 if [ -d documentation/dictionary ]; then
-    cat documentation/dictionary/*.dic > tmp/combined.dic
+    cat documentation/dictionary/*.dic >tmp/combined.dic
 else
     touch tmp/combined.dic
 fi
@@ -95,7 +98,7 @@ if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
 
     for FILE in ${FILES}; do
         FILE_REPLACED=$(echo "${FILE}" | ${SED} 's/\//-/g')
-        shellcheck --external-sources --format checkstyle "${FILE}" > "build/log/checkstyle-${FILE_REPLACED}.xml" || true
+        shellcheck --external-sources --format checkstyle "${FILE}" >"build/log/checkstyle-${FILE_REPLACED}.xml" || true
     done
 fi
 
@@ -174,7 +177,7 @@ echo
 RETURN_CODE=0
 
 if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
-    vendor/bin/phpstan analyse --configuration .phpstan.neon --no-progress --memory-limit 1G --error-format checkstyle --level max src test web > build/log/checkstyle-phpstan.xml || RETURN_CODE="${?}"
+    vendor/bin/phpstan analyse --configuration .phpstan.neon --no-progress --memory-limit 1G --error-format checkstyle --level max src test web >build/log/checkstyle-phpstan.xml || RETURN_CODE="${?}"
     # TODO: What to do with this return code?
 fi
 

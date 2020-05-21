@@ -4,7 +4,7 @@ export DEBIAN_FRONTEND=noninteractive
 CODENAME=$(lsb_release --codename --short)
 
 if [ "${CODENAME}" = jessie ]; then
-    echo Europe/Berlin > /etc/timezone
+    echo Europe/Berlin >/etc/timezone
     dpkg-reconfigure --frontend noninteractive tzdata
     apt-get --quiet 2 install vim multitail htop tree git dos2unix
 elif [ "${CODENAME}" = stretch ]; then
@@ -15,11 +15,11 @@ elif [ "${CODENAME}" = stretch ]; then
 
     apt-get --quiet 2 install apt-transport-https
     wget --no-verbose --output-document /etc/apt/trusted.gpg.d/sury.gpg https://packages.sury.org/php/apt.gpg
-    echo "deb https://packages.sury.org/php stretch main" > /etc/apt/sources.list.d/sury.list
+    echo "deb https://packages.sury.org/php stretch main" >/etc/apt/sources.list.d/sury.list
     apt-get --quiet 2 update
 
     # Set timezone for PHP.
-    echo Europe/Berlin > /etc/timezone
+    echo Europe/Berlin >/etc/timezone
     dpkg-reconfigure --frontend noninteractive tzdata
 
     apt-get --quiet 2 install php-cli php-fpm php-xdebug php-xml php-mbstring php-zip php-ast

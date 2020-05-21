@@ -1,7 +1,10 @@
 #!/bin/sh -e
 
 DIRECTORY=$(dirname "${0}")
-SCRIPT_DIRECTORY=$(cd "${DIRECTORY}" || exit 1; pwd)
+SCRIPT_DIRECTORY=$(
+    cd "${DIRECTORY}" || exit 1
+    pwd
+)
 # shellcheck source=/dev/null
 . "${SCRIPT_DIRECTORY}/../../configuration/project.sh"
 TARGET="${1}"
@@ -48,6 +51,7 @@ cp -R configuration/* "${TARGET}/configuration"
 mkdir -p "${TARGET}/inventory"
 cp -R inventory/* "${TARGET}/inventory"
 cp .gitignore "${TARGET}"
+cp .shellspec "${TARGET}"
 cp playbook.yaml "${TARGET}"
 cp Vagrantfile "${TARGET}"
 cp Dockerfile "${TARGET}"
