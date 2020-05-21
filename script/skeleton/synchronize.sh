@@ -1,7 +1,10 @@
 #!/bin/sh -e
 
 DIRECTORY=$(dirname "${0}")
-SCRIPT_DIRECTORY=$(cd "${DIRECTORY}" || exit 1; pwd)
+SCRIPT_DIRECTORY=$(
+    cd "${DIRECTORY}" || exit 1
+    pwd
+)
 # shellcheck source=/dev/null
 . "${SCRIPT_DIRECTORY}/../../configuration/project.sh"
 TARGET="${1}"
@@ -44,8 +47,11 @@ cp -R script/* "${TARGET}/script"
 mkdir -p "${TARGET}/debian"
 cp -R debian/* "${TARGET}/debian"
 mkdir -p "${TARGET}/configuration"
-cp configuration/* "${TARGET}/configuration"
+cp -R configuration/* "${TARGET}/configuration"
+mkdir -p "${TARGET}/inventory"
+cp -R inventory/* "${TARGET}/inventory"
 cp .gitignore "${TARGET}"
+cp .shellspec "${TARGET}"
 cp playbook.yaml "${TARGET}"
 cp Vagrantfile "${TARGET}"
 cp Dockerfile "${TARGET}"
@@ -60,6 +66,7 @@ cp .phpmd.xml "${TARGET}"
 cp .phpunit.ci.xml "${TARGET}"
 cp .phpstan.neon "${TARGET}"
 cp .phpbrewrc "${TARGET}"
+cp infection.json.dist "${TARGET}"
 mkdir -p "${TARGET}/.phan"
 cp .phan/config.php "${TARGET}/.phan/config.php"
 cd "${TARGET}" || exit 1

@@ -1,7 +1,6 @@
 FunTimeCoding
 funtimecoding
 Reitzel
-virtualbox
 debian
 shellcheck
 netcat
@@ -34,3 +33,4 @@ icanhazstring
 sensiolabs
 deptrac
 phpbench
+Nginx
