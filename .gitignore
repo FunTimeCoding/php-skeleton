@@ -7,7 +7,6 @@
 /debian/php-skeleton.substvars
 /documentation/man/*.1
 /.scannerwork
-
 /vendor
 /composer.phar
 /.php_cs.cache
