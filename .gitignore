@@ -8,8 +8,8 @@
 /documentation/man/*.1
 /.scannerwork
 
-vendor
-composer.phar
-.php_cs.cache
-.phpunit.result.cache
-.deptrac.cache
+/vendor
+/composer.phar
+/.php_cs.cache
+/.phpunit.result.cache
+/.deptrac.cache
