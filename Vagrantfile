@@ -1,5 +1,7 @@
 Vagrant.configure('2') do |c|
   c.vm.box = 'debian/buster64'
+  # TODO: Add a way to switch without having to rewrite this file.
+  #c.vm.box = 'centos/7'
   c.ssh.forward_agent = true
   Dir.mkdir('tmp') unless File.exist?('tmp')
 
@@ -52,7 +54,14 @@ Vagrant.configure('2') do |c|
     c.vm.provision :ansible do |a|
       a.playbook = 'playbook.yaml'
       a.compatibility_mode = '2.0'
-      a.extra_vars = {}
+      a.extra_vars = {
+        'ansible_python_interpreter': '/usr/bin/python3',
+        'git': {
+          'protocol': 'ssh'
+        },
+        'ethernet_device': 'eth1',
+        'domain': domain
+      }
       # Allow remote_user: root.
       a.force_remote_user = false
       # Uncomment for more verbosity.
