@@ -7,9 +7,10 @@ JenkinsTools
 LowerCaseSeparated
 UpperCaseSeparated
 ic
-PhpSkeleton
+ShellSkeleton
 ss
 ps
+pu
 src
 LanguageExample
 XmlLibrary
