@@ -18,8 +18,13 @@ python3
 gitpython
 mypy
 lxml
+uwsgi
 passlib
 sitepackages
+aiohttp
+windll
+pysqlite
+typer
 
 # pytest
 pytest
@@ -54,3 +59,12 @@ applicationid
 envlist
 testenv
 deps
+
+# sqlalchemy
+pymysql
+sqlalchemy
+tablename
+
+# django
+django
+syncdb
