@@ -14,7 +14,7 @@ script/setup.sh
 Run the main program:
 
 ```sh
-bin/ps
+bin/phsk
 ```
 
 Run the main program inside the container:
