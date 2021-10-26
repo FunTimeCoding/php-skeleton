@@ -6,7 +6,7 @@ end_of_line = lf
 indent_size = 4
 indent_style = space
 insert_final_newline = true
-max_line_length = 80
+max_line_length = 78
 tab_width = 4
 ij_continuation_indent_size = 8
 ij_formatter_off_tag = @formatter:off
@@ -16,12 +16,21 @@ ij_smart_tabs = false
 ij_visual_guides = none
 ij_wrap_on_typing = false
 
+[.editorconfig]
+ij_editorconfig_align_group_field_declarations = false
+ij_editorconfig_space_after_colon = false
+ij_editorconfig_space_after_comma = false
+ij_editorconfig_space_before_colon = false
+ij_editorconfig_space_before_comma = false
+ij_editorconfig_spaces_around_assignment_operators = true
+
 [{*.bash,*.sh,*.zsh}]
 ij_shell_binary_ops_start_line = false
 ij_shell_keep_column_alignment_padding = false
 ij_shell_minify_program = false
 ij_shell_redirect_followed_by_space = false
 ij_shell_switch_cases_indented = false
+ij_shell_use_unix_line_separator = true
 
 [{*.ctp,*.hphp,*.inc,*.module,*.php,*.php4,*.php5,*.phtml}]
 ij_continuation_indent_size = 4
@@ -236,3 +245,30 @@ ij_php_variable_naming_style = mixed
 ij_php_version_weight = 28
 ij_php_while_brace_force = never
 ij_php_while_on_new_line = false
+
+[{*.markdown,*.md}]
+indent_size = 2
+ij_markdown_force_one_space_after_blockquote_symbol = true
+ij_markdown_force_one_space_after_header_symbol = true
+ij_markdown_force_one_space_after_list_bullet = true
+ij_markdown_force_one_space_between_words = true
+ij_markdown_keep_indents_on_empty_lines = false
+ij_markdown_max_lines_around_block_elements = 1
+ij_markdown_max_lines_around_header = 1
+ij_markdown_max_lines_between_paragraphs = 1
+ij_markdown_min_lines_around_block_elements = 1
+ij_markdown_min_lines_around_header = 1
+ij_markdown_min_lines_between_paragraphs = 1
+
+[{*.yaml,*.yml}]
+indent_size = 2
+ij_yaml_align_values_properties = do_not_align
+ij_yaml_autoinsert_sequence_marker = true
+ij_yaml_block_mapping_on_new_line = false
+ij_yaml_indent_sequence_value = true
+ij_yaml_keep_indents_on_empty_lines = false
+ij_yaml_keep_line_breaks = true
+ij_yaml_sequence_on_new_line = false
+ij_yaml_space_before_colon = false
+ij_yaml_spaces_within_braces = true
+ij_yaml_spaces_within_brackets = true
