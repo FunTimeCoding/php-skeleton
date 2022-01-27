@@ -5,7 +5,7 @@ script/clean.sh
 if [ -f composer.phar ]; then
     php composer.phar install --no-interaction --no-progress
 else
-    composer install --no-interaction --no-progress
+    composer install --no-interaction --no-progress --no-scripts
 fi
 
 script/check.sh --ci-mode
