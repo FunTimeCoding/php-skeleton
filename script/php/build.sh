@@ -1,6 +1,10 @@
 #!/bin/sh -e
 
-script/clean.sh
+if [ -f /.dockerenv ]; then
+    export COMPOSER_ALLOW_SUPERUSER=1
+else
+    script/clean.sh
+fi
 
 if [ -f composer.phar ]; then
     php composer.phar install --no-interaction --no-progress

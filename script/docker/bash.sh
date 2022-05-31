@@ -6,7 +6,7 @@ CONTAINER_IDENTIFIER="${1}"
 
 if [ "${CONTAINER_IDENTIFIER}" = '' ]; then
     echo "Usage: ${0} CONTAINER_IDENTIFIER"
-    # TODO 1: Search for "${PROJECT_NAME_DASH}-instance" and use if it exists
+    # TODO 1: Search for "${PROJECT_CONTAINER_DEVELOPMENT}" and use if it exists
     # TODO 2: Filter output for "${PROJECT_NAME_DASH}" if not found
     docker ps -a
 

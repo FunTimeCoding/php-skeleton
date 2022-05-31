@@ -14,21 +14,18 @@ if [ "${1}" = --ci-mode ]; then
     CONTINUOUS_INTEGRATION_MODE=true
 fi
 
-script/shell/create-build-information.sh
-docker build --tag "${PROJECT_NAME_DASH}-snapshot" .
+script/shell/build-information.sh
+docker build --target development --tag "${PROJECT_IMAGE_DEVELOPMENT}" .
+# TODO: Make the instance run OS independent like in composer.sh and development.sh
+docker run --rm --interactive --tty \
+    --volume "${COMPOSER_HOME:-${HOME}/.composer}:/tmp" \
+    --volume "$(pwd)/build:/usr/src/php-skeleton/build" \
+    "${PROJECT_IMAGE_DEVELOPMENT}" script/build.sh
 GIT_TAG=$(git describe --exact-match --tags HEAD 2>/dev/null || echo '')
 
-# TODO: Extract build logs
-docker rm "${PROJECT_NAME_DASH}-instance" || true
-docker create --name "${PROJECT_NAME_DASH}-instance" \
-    "${PROJECT_NAME_DASH}-snapshot"
-LOG_PATH="/usr/src/php-skeleton/build/log"
-mkdir -p build/log
-docker cp "${PROJECT_NAME_DASH}-instance:${LOG_PATH}/junit.xml" \
-    build/log/junit.xml
-docker rm "${PROJECT_NAME_DASH}-instance"
-
 if [ ! "${GIT_TAG}" = '' ]; then
+    docker build --target production --tag "${PROJECT_IMAGE_SNAPSHOT}" .
+
     if [ "${CONTINUOUS_INTEGRATION_MODE}" = 'true' ]; then
         # Log in on Jenkins. GitLab does that via .gitlab-ci.yml.
         if [ ! "${JENKINS_HOME}" = '' ]; then
@@ -42,6 +39,7 @@ fi
 
 # Save space on CI.
 if [ "${CONTINUOUS_INTEGRATION_MODE}" = 'true' ]; then
-    docker rmi "${PROJECT_NAME_DASH}-snapshot"
+    docker rmi "${PROJECT_IMAGE_DEVELOPMENT}"
+    docker rmi "${PROJECT_IMAGE_SNAPSHOT}"
     docker image prune --force
 fi

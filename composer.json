@@ -14,7 +14,7 @@
         }
     },
     "require": {
-        "php": "7.3.*",
+        "php": "7.4.*",
         "roave/you-are-using-it-wrong": "1.*"
     },
     "require-dev": {
@@ -28,7 +28,7 @@
         "phpstan/phpstan": "0.*",
         "phpstan/phpstan-strict-rules": "0.*",
         "phpstan/phpstan-phpunit": "0.*",
-        "phan/phan": "1.*",
+        "phan/phan": "3.*",
         "vimeo/psalm": "3.*",
         "infection/infection": "0.*",
         "roave/security-advisories": "dev-master",
@@ -38,5 +38,12 @@
         "phpbench/phpbench": "0.*",
         "symfony/process": "5.*",
         "rector/rector": "0.8.*"
+    },
+    "config": {
+        "allow-plugins": {
+            "infection/extension-installer": true,
+            "icanhazstring/composer-unused": true,
+            "roave/you-are-using-it-wrong": true
+        }
     }
 }

@@ -10,12 +10,4 @@ SCRIPT_DIRECTORY=$(
 # shellcheck source=/dev/null
 . "${HOME}/.virtualization-tools.sh"
 
-git config --get remote.origin.url | grep --quiet github.com && IS_GITHUB=true || IS_GITHUB=false
-
-if [ "${IS_GITHUB}" = 'true' ]; then
-    REGISTRY_SERVER='ghcr.io'
-else
-    REGISTRY_SERVER="${PRIVATE_REGISTRY_PASSWORD}"
-fi
-
 helm status --set "ImagePrefix=${REGISTRY_SERVER}/${VENDOR_NAME_LOWER}" "${PROJECT_NAME_DASH}"

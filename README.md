@@ -1,15 +1,25 @@
 # PhpSkeleton
 
-## Setup
+## Preparation
 
-Install project dependencies:
+Configure Git on Windows before cloning:
 
 ```sh
-script/setup.sh
+git config --global core.autocrlf input
 ```
 
 
-## Usage
+## Development environments
+
+Choose one.
+
+Host is discouraged because maintaining the environment across multiple operating systems is more work than virtualized environments.
+Docker is the suggested way, because it is available on M1 and promises the most environment stability.
+Docker Compose is optional and like Docker.
+Virtual Machine is in need of migration to QEMU because VirtualBox will not be supported on M1.
+
+
+### Host
 
 Run the main program:
 
@@ -17,19 +27,45 @@ Run the main program:
 bin/phsk
 ```
 
-Run the main program inside the container:
+Run tests, style check and metrics:
+
+```sh
+script/test.sh
+script/check.sh
+script/measure.sh
+```
+
+Build project:
+
+```sh
+script/build.sh
+```
+
+
+### Container: Docker
+
+Run the main program:
 
 ```sh
 docker run -it --rm funtimecoding/php-skeleton
 ```
 
 
-## Development
+### Container: Docker Compose
 
-Configure Git on Windows before cloning:
+Run the main program:
 
 ```sh
-git config --global core.autocrlf input
+docker-compose run
+```
+
+
+### Virtual machine: VirtualBox
+
+Install project dependencies:
+
+```sh
+script/setup.sh
 ```
 
 Install NFS plug-in for Vagrant on Windows:
@@ -48,20 +84,6 @@ Create the development virtual machine on Windows:
 
 ```bat
 script\vagrant\create.bat
-```
-
-Run tests, style check and metrics:
-
-```sh
-script/test.sh [--help]
-script/check.sh [--help]
-script/measure.sh [--help]
-```
-
-Build project:
-
-```sh
-script/build.sh
 ```
 
 Install Debian package:

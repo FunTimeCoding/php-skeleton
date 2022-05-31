@@ -27,7 +27,7 @@ else
 fi
 
 if [ "${DEVELOPMENT}" = true ]; then
-    IMAGE="${PROJECT_NAME_DASH}-snapshot"
+    IMAGE="${PROJECT_IMAGE_SNAPSHOT}"
 else
     GIT_TAG="${1}"
 
@@ -36,24 +36,15 @@ else
         shift
     fi
 
-    git config --get remote.origin.url | grep --quiet github.com && IS_GITHUB=true || IS_GITHUB=false
-
-    if [ "${IS_GITHUB}" = 'true' ]; then
-        REGISTRY_SERVER='ghcr.io'
-    else
-        REGISTRY_SERVER="${PRIVATE_REGISTRY_PASSWORD}"
-    fi
-
     IMAGE="${REGISTRY_SERVER}/${VENDOR_NAME_LOWER}/${PROJECT_NAME_DASH}:${GIT_TAG}"
 fi
 
 SYSTEM=$(uname -o)
 
 if [ "${SYSTEM}" = 'Msys' ]; then
-    # TODO: Add volume parameters that work on Windows.
     # shellcheck disable=SC2068
-    winpty docker run --interactive --tty --rm --name "${PROJECT_NAME_DASH}-instance" "${IMAGE}" ${@}
+    winpty docker run --interactive --tty --rm --name "${PROJECT_CONTAINER_DEVELOPMENT}" "${IMAGE}" ${@}
 else
     # shellcheck disable=SC2068
-    docker run --interactive --tty --rm --name "${PROJECT_NAME_DASH}-instance" "${IMAGE}" ${@}
+    docker run --interactive --tty --rm --name "${PROJECT_CONTAINER_DEVELOPMENT}" "${IMAGE}" ${@}
 fi

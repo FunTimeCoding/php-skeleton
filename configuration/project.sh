@@ -74,3 +74,22 @@ INCLUDE_STILL_FILTER='^.*\/__pycache__\/.*$'
 export INCLUDE_STILL_FILTER
 EXCLUDE_DOCUMENTATION_FILTER='^\.\/(documentation\/dictionary)\/.*$'
 export EXCLUDE_DOCUMENTATION_FILTER
+
+PROJECT_IMAGE_DEVELOPMENT="${PROJECT_NAME_DASH}-development"
+export PROJECT_IMAGE_DEVELOPMENT
+PROJECT_IMAGE_SNAPSHOT="${PROJECT_NAME_DASH}-snapshot"
+export PROJECT_IMAGE_SNAPSHOT
+
+PROJECT_CONTAINER_DEVELOPMENT="${PROJECT_NAME_DASH}-instance"
+export PROJECT_CONTAINER_DEVELOPMENT
+
+git config --get remote.origin.url | grep --quiet github.com && IS_GITHUB=true || IS_GITHUB=false
+export IS_GITHUB
+
+if [ "${IS_GITHUB}" = 'true' ]; then
+    REGISTRY_SERVER='ghcr.io'
+else
+    REGISTRY_SERVER="${PRIVATE_REGISTRY_SERVER}"
+fi
+
+export REGISTRY_SERVER

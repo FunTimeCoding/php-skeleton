@@ -27,14 +27,6 @@ appVersion: ${GIT_TAG}
 version: ${GIT_TAG}.1
 EOF
 
-git config --get remote.origin.url | grep --quiet github.com && IS_GITHUB=true || IS_GITHUB=false
-
-if [ "${IS_GITHUB}" = 'true' ]; then
-    REGISTRY_SERVER='ghcr.io'
-else
-    REGISTRY_SERVER="${PRIVATE_REGISTRY_PASSWORD}"
-fi
-
 docker run --rm --volume "${PWD}/helm-chart:/helm-chart" --volume "${HOME}/.kube:/root/.kube" dtzar/helm-kubectl helm list --short | grep --quiet "${PROJECT_NAME_DASH}" && IS_INSTALLED=true || IS_INSTALLED=false
 
 if [ "${IS_INSTALLED}" = 'true' ]; then
