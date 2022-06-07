@@ -7,6 +7,8 @@ SCRIPT_DIRECTORY=$(
 )
 # shellcheck source=/dev/null
 . "${SCRIPT_DIRECTORY}/../../configuration/project.sh"
+# shellcheck source=/dev/null
+. "${HOME}/.static-analysis-tools.sh"
 
 CONTINUOUS_INTEGRATION_MODE=false
 
@@ -20,6 +22,9 @@ docker build --target development --tag "${PROJECT_IMAGE_DEVELOPMENT}" .
 docker run --rm --interactive --tty \
     --volume "${COMPOSER_HOME:-${HOME}/.composer}:/tmp" \
     --volume "$(pwd)/build:/usr/src/php-skeleton/build" \
+    --volume "${HOME}/.static-analysis-tools.sh:/root/.static-analysis-tools.sh" \
+    --env SONAR_LOCATOR="${SONAR_LOCATOR}" \
+    --env SONAR_TOKEN="${SONAR_TOKEN}" \
     "${PROJECT_IMAGE_DEVELOPMENT}" script/build.sh
 GIT_TAG=$(git describe --exact-match --tags HEAD 2>/dev/null || echo '')
 

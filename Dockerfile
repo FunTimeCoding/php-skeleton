@@ -15,7 +15,14 @@ FROM base AS development
 COPY --from=composer:2.3.5 /usr/bin/composer /usr/local/bin/composer
 RUN install-php-extensions zip xdebug ast
 RUN apt-get --quiet 2 update
-RUN apt-get --quiet 2 install unzip shellcheck python3 git hunspell
+RUN apt-get --quiet 2 install unzip shellcheck python3 git hunspell jq wget default-jdk-headless
+
+# sonar-scanner
+ENV PATH=/opt/sonar-scanner/bin:${PATH}
+RUN wget --quiet --output-document /opt/sonar-scanner-cli.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747.zip
+RUN unzip /opt/sonar-scanner-cli.zip
+RUN mv sonar-scanner-4.7.0.2747 /opt/sonar-scanner
+
 RUN mv /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
 COPY configuration/docker/xdebug.txt /usr/local/etc/php/conf.d/xdebug.ini
 COPY script script
@@ -32,6 +39,7 @@ COPY phpunit.xml phpunit.xml
 COPY infection.json.dist infection.json.dist
 COPY psalm.xml psalm.xml
 COPY depfile.yml depfile.yml
+COPY sonar-project.properties sonar-project.properties
 
 FROM base AS production
 RUN mv /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
